@@ -1,0 +1,13 @@
+{
+  "name": "TrainingForSuccess",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "git@github.com:RunnersMind/TrainingForSuccess.git",
+  "author": "Jayna, Allison, Pat, Victoria",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6"
+  }
+}
