@@ -1,13 +1,15 @@
-var express 		= require("express");
-var session 		= require("express-session");
-var bodyParser 		= require("body-parser");
-var cookieParser 	= require("cookie-parser");
-var morgan       	= require('morgan');
-var db 				= require("./models");
+const express 		= require("express");
+const session 		= require("express-session");
+const bodyParser 	= require("body-parser");
+const cookieParser 	= require("cookie-parser");
+const morgan       	= require('morgan');
+const db 			= require("./models");
 
-var PORT = process.env.PORT || 3001;
+const passport      = require("passport");
 
-var app = express();
+const PORT = process.env.PORT || 3001;
+
+const app = express();
 
 // set up express application
 app.use(express.static("public"));
@@ -18,7 +20,12 @@ app.use(cookieParser()); // read cookies (needed for auth)
 
 app.use(morgan('dev')); // log every request to the console
 
-// require("./controllers/routes.js")(app, passport);
+app.use(session({ secret: 'rynality-super-secret' }));
+app.use( passport.initialize());
+app.use( passport.session());
+
+require('./config/passport-setup')(passport);
+require('./routes/auth-routes.js')(app, passport);
 
 db.sequelize.sync().then( function(){
 	app.listen(PORT, function(){

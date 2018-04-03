@@ -1,6 +1,8 @@
 # dependencies
 /node_modules
-./config/config.json
+
+/config/config.json
+/config/auth.js
 
 # misc
 .DS_Store
