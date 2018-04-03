@@ -7,17 +7,7 @@ module.exports = function(sequelize, DataTypes){
 			allowNull: true,
 			defaultValue: null
 		},
-		googleToken: {
-			type: DataTypes.STRING,
-			allowNull: true,
-			defaultValue: null
-		},
 		stravaId: {
-			type: DataTypes.STRING,
-			allowNull: true,
-			defaultValue: null
-		},
-		stravaToken: {
 			type: DataTypes.STRING,
 			allowNull: true,
 			defaultValue: null
