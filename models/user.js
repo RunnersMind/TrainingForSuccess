@@ -64,15 +64,19 @@ module.exports = function(sequelize, DataTypes){
 		},
 		country: {
 			type: DataTypes.STRING,
-			defaultValue: 'us'			
+			defaultValue: 'US'			
 		},
 		zipcode: {
 			type: DataTypes.STRING,
 			defaultValue: null
 		},
 		birthDate: {
-			type: DataTypes.STRING,
+			type: DataTypes.DATE,
 			defaultValue: null			
+		},
+		gender: {
+			type: DataTypes.STRING,
+			defaultValue: null
 		},
 		//emergency contact
 		emergencyFName: {
@@ -89,12 +93,12 @@ module.exports = function(sequelize, DataTypes){
 		}		
 	});
 
-	// User.associate = function(models) {
-	// 	User.belongsToMany(models.Program, 
-	// 		{ through: 'userPrograms', foreignKey: 'userProgramId' });
-	// 	User.belongsToMany(models.Race, 
-	// 		{ through: 'userRaces', foreignKey: 'userId' });
-	// };
+	User.associate = function(models) {
+		User.belongsToMany(models.Program, 
+			{ through: 'userPrograms', foreignKey: 'userProgramId' });
+		User.belongsToMany(models.Race, 
+			{ through: 'userRaces', foreignKey: 'userId' });
+	};
 
 	return User;
 }

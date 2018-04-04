@@ -1,23 +1,18 @@
 module.exports = function(sequelize, Sequelize) {
     var Race = sequelize.define("Race", {
   
-    raceId: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
-    },
-
+    stravaRaceId: {
+        type: Sequelize.INTEGER,
+        allowNull: true
+    },    
+    
     raceName: {
         type: Sequelize.STRING,
         allowNull: false
     },
 
-    userId: {
-    type: Sequelize.INTEGER,
-    allowNull: false},
-
     raceDate: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATETIME,
         allowNull: false,
     },
 
@@ -26,40 +21,34 @@ module.exports = function(sequelize, Sequelize) {
         allowNull: true
     },
 
+    raceUOM: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        defaultValue: 'KM'
+    },
+
     raceLocation: {
         type: Sequelize.STRING,
-         allowNull: true
+        allowNull: true
     },
 
     deleteFlag: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false,
-                allowNull: false
-                },
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+    },
 
     deleteDate: {
-                type: Sequelize.DATE,
-                allowNull: true
-                },
-
-    createdAt: {
-                type: Sequelize.DATE,
-                allowNull: false,
-                defaultValue: Sequelize.NOW
-                },
-
-    updatedAt: {
-                type: Sequelize.DATE,
-                allowNull: true,
-                defaultValue: Sequelize.NOW
-                }
-    });
+        type: Sequelize.DATETIME,
+        allowNull: true
+    }
+});
   
   
-  //associate race model to the user model
-    // Race.associate = function(models) {
-    //   models.Race.hasMany(models.User, {foreignKey: 'raceId'});
-    // };
+//   associate race model to the user model
+    Race.associate = function(models) {
+      models.Race.hasMany(models.User, {foreignKey: 'Id'});
+    };
   
     return Race;
   };
