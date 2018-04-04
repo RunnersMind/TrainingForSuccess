@@ -49,9 +49,11 @@ module.exports = function(passport) {
                     // if user is found, log in
                     // update user if some fields are missing
                     db.User.update({ 
-                            displayName : user.display_name || profile.displayName,
-                            firstName   : user.first_name || profile.name.familyName,
-                            lastName    : user.last_name || profile.name.givenName,
+                            googleId    : user.googleToken || profile.id,
+                            googleToken : token,
+                            displayName : user.displayName || profile.displayName,
+                            firstName   : user.firstName || profile.name.familyName,
+                            lastName    : user.lastName || profile.name.givenName,
                             email       : user.email || profile.emails[0].value,
                             photo       : user.photo || profile.photos[0].value
                         },
@@ -73,6 +75,7 @@ module.exports = function(passport) {
                     console.log('\nNEW USER!\n');
                     const new_user = {
                         googleId    : profile.id,
+                        googleToken : token,
                         displayName : profile.displayName,
                         firstName   : profile.name.familyName,
                         lastName    : profile.name.givenName,

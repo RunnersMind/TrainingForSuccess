@@ -7,7 +7,17 @@ module.exports = function(sequelize, DataTypes){
 			allowNull: true,
 			defaultValue: null
 		},
+		googleToken: {
+			type: DataTypes.STRING,
+			allowNull: true,
+			defaultValue: null			
+		} ,
 		stravaId: {
+			type: DataTypes.STRING,
+			allowNull: true,
+			defaultValue: null
+		},
+		stravaToken: {
 			type: DataTypes.STRING,
 			allowNull: true,
 			defaultValue: null
@@ -95,9 +105,17 @@ module.exports = function(sequelize, DataTypes){
 
 	User.associate = function(models) {
 		User.belongsToMany(models.Program, 
-			{ through: 'userPrograms', foreignKey: 'userProgramId' });
-		User.belongsToMany(models.Race, 
-			{ through: 'userRaces', foreignKey: 'userId' });
+			{ through: { model: 'UserProgram', unique:false }, 
+			foreignKey: 'userId',
+			constraints: false
+		});
+		User.belongsToMany(models.Race, { 
+			through: { model: 'UserRace' , unique: false }, 
+			foreignKey: 'userId',
+			constraints: false 
+		});
+		User.hasMany(models.Workout,
+			{ foreignKey: 'coachId' });
 	};
 
 	return User;

@@ -1,34 +1,39 @@
 module.exports = function(sequelize, Sequelize) {
     var TrainingPlan = sequelize.define("TrainingPlan", {
   
-    workoutId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
+        workoutLocationDescription: {
+            type: Sequelize.STRING,
+            allowNull: true
+        },
 
-    programId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
+        workoutDay: { //day number in the program
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
 
-    workoutLocationDescription: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
+        deleteFlag: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
+        },
 
-    workoutDay: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
+        deleteDate: {
+            type: Sequelize.DATE,
+            allowNull: true
+        }
+    });
 
-    deleteFlag: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-    },
+    TrainingPlan.associate = function(models) {
+        TrainingPlan.belongsTo(models.Program, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+        TrainingPlan.belongsTo(models.Workout, { 
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
 
-    deleteDate: {
-        type: Sequelize.DATE,
-        allowNull: true
-    }
-});
+    return TrainingPlan;
 }

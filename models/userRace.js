@@ -1,9 +1,9 @@
 module.exports = function(sequelize, Sequelize) {
-    var UserProgram = sequelize.define("UserProgram", {
+    var UserRace = sequelize.define("UserRace", {
   
-        userRole: {
+        userResult: {
             type: Sequelize.STRING,
-            defaultValue: 'athlete'
+            allowNull: true
         },
 
         deleteFlag: {
@@ -18,5 +18,7 @@ module.exports = function(sequelize, Sequelize) {
         }
     });
   
-    return UserProgram;
+    return UserRace;
 };
+  
+    
