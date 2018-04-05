@@ -1,6 +1,11 @@
 module.exports = function(sequelize, Sequelize) {
     var UserProgram = sequelize.define("UserProgram", {
-  
+        
+        approved: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
+        },
+
         userRole: {
             type: Sequelize.STRING,
             defaultValue: 'athlete'

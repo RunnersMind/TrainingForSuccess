@@ -52,7 +52,7 @@ module.exports = function(sequelize, Sequelize) {
             constraints: false
         });
         Race.belongsToMany(models.Program, { 
-            through: {model: 'ProgramRace', unique: false }, 
+            through: { model: 'ProgramRace', unique: false }, 
             foreignKey: 'raceId',
             constraints: false
         });

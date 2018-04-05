@@ -23,6 +23,10 @@ module.exports = function(sequelize, DataTypes){
 			defaultValue: null
 		},
 		//personal info
+		description: {
+			type: DataTypes.TEXT,
+			allowNull: true
+		},
 		email: {
 			type: DataTypes.STRING,
 			allowNull: false,
