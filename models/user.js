@@ -118,8 +118,12 @@ module.exports = function(sequelize, DataTypes){
 			foreignKey: 'userId',
 			constraints: false 
 		});
+
 		User.hasMany(models.Workout,
-			{ foreignKey: 'coachId' });
+			{ foreignKey: 'coachId', onDelete: "cascade" });
+
+		User.hasMany(models.Program,
+			{ foreignKey: 'coachId', onDelete: "cascade" });
 	};
 
 	return User;

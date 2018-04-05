@@ -50,7 +50,14 @@ module.exports = function(sequelize, Sequelize) {
             through: { model: 'ProgramRace', unique: false },
             foreignKey: 'programId', 
             constraints: false 
-        });      
+        });
+        
+        Program.hasMany(models.TrainingPlan, {
+            onDelete: "cascade"
+        });
+
+        Program.belongsTo(models.User, { foreignKey: 'coachId' });      
+
         // Program.belongsToMany(models.Workout, { 
         //     through: { model: 'TrainingPlan', unique: false },
         //     foreignKey: 'programId',

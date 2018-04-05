@@ -4,6 +4,7 @@ const bodyParser 	= require("body-parser");
 const cookieParser 	= require("cookie-parser");
 const morgan       	= require('morgan');
 const db 			= require("./models");
+const routes 		= require("./routes");
 
 const passport      = require("passport");
 
