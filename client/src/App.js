@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
-import Athlete from "./pages/Athlete";
+import User from "./pages/User";
 
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
         </p>
       <Router>
         <Switch>
-          <Route exact path="/athlete" component={Athlete} />
+          <Route exact path="/user" component={User} />
         </Switch>
       </Router>
       </div>

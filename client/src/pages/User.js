@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 
-class Athlete  {
+class User  {
   state = {
     
   };
@@ -9,9 +9,9 @@ class Athlete  {
 
   render() {
     return (
-        <p>Hello Athlete!</p>
+        <p>Hello User!!</p>
     );
   }
 }
 
-export default Athlete;
+export default User;

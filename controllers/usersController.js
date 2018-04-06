@@ -1,5 +1,4 @@
 const db = require("../models");
-const Op = db.Sequelize.Op;
 
 const ATTR_user = ['id', 'firstName', 'lastName', 'displayName',
                       'userType', 'city','state'];
@@ -17,6 +16,7 @@ module.exports = {
   },
 
   findById: function(req, res) {
+    console.log("Are we getting here?");
     db.User.findById( req.user.id )
     .then( user => {
       res.json(user);
@@ -25,6 +25,5 @@ module.exports = {
       res.status(422).json(error);
     });
   }
-
 
 };
