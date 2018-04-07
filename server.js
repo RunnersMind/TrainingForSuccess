@@ -14,6 +14,8 @@ const app = express();
 
 // set up express application
 app.use(express.static("public"));
+app.use(express.static("client/build"));
+app.enable('trust proxy');
 
 app.use(bodyParser.json());// get information from html forms
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 
+import LogIn from "./components/LogIn";
 import User from "./pages/User";
 import ProgramForm from "./components/ProgramForm";
 
@@ -21,6 +22,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/user" component={User} />
           <Route exact path="/program" component={ProgramForm} />
+          <Route exact path="/login" component={LogIn} />
         </Switch>
       </Router>
       

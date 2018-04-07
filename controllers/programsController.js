@@ -54,8 +54,8 @@ module.exports = {
   },
 
   create: function(req, res) {
-    console.log('\n\nnew program request!!!\n\n');
-    // if (req.isAuthenticated()) {
+    console.log('\n\nnew program request!!! user:'+req.user.id+'\n\n');
+    if (req.isAuthenticated()) {
       console.log(req.body);
       let new_program = req.body;
       new_program.coachId = 1;//req.user.id;
@@ -68,8 +68,8 @@ module.exports = {
           console.log('create_program_'+ error);
           res.status(422).json(err);
       });
-    // }
-    // else res.redirect('/'); 
+    }
+    else res.redirect('/'); 
   },
 
   update: function(req, res){

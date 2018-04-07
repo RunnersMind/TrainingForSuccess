@@ -24,5 +24,5 @@ export default {
   // Deletes the program with the given id
   deleteProgram: function(id) {
     return axios.delete("/api/programs/" + id);
-  },
+  }
 };
