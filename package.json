@@ -2,9 +2,21 @@
   "name": "TrainingForSuccess",
   "version": "1.0.0",
   "main": "server.js",
+  "scripts": {
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    "build": "node scripts/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installDeps": "yarn && cd client && yarn"
+  },
   "repository": "git@github.com:RunnersMind/TrainingForSuccess.git",
   "author": "Jayna, Allison, Pat, Victoria",
   "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
@@ -17,3 +29,4 @@
     "sequelize": "^4.37.5"
   }
 }
+

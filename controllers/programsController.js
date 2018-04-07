@@ -7,6 +7,7 @@ const ATTR_program = ['id', 'programName', 'programDescription', 'coachId',
 module.exports = {
 
   findAll: function(req,res){
+    // res.json({msg: 'HELLO'});
     db.Program.findAll({
       attributes: ATTR_program
     }).then( programs => {
@@ -53,9 +54,11 @@ module.exports = {
   },
 
   create: function(req, res) {
-    if (req.isAuthenticated()) {
+    console.log('\n\nnew program request!!!\n\n');
+    // if (req.isAuthenticated()) {
+      console.log(req.body);
       let new_program = req.body;
-      new_program.coachId = req.user.id;
+      new_program.coachId = 1;//req.user.id;
 
       db.Program.create( new_program )
         .then( program => {
@@ -65,8 +68,8 @@ module.exports = {
           console.log('create_program_'+ error);
           res.status(422).json(err);
       });
-    }
-    else res.redirect('/'); 
+    // }
+    // else res.redirect('/'); 
   },
 
   update: function(req, res){

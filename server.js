@@ -28,8 +28,10 @@ app.use( passport.session());
 require('./config/passport-setup')(passport);
 require('./routes/auth-routes.js')(app, passport);
 
+app.use(routes);
+
 db.sequelize.sync().then( function(){
 	app.listen(PORT, function(){
-		console.log("Listening on port %s", PORT);
+		console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 	});
 });

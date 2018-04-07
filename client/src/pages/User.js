@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 
-class User  {
+class User extends Component {
   state = {
     
   };

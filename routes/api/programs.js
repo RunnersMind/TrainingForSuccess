@@ -7,11 +7,13 @@ router.route("/")
   .post(programsController.create);
 
 // Matches with "/api/programs/:id"
-router
-  .route("/:id")
-  .get(programsController.findByCoach)
+router.route("/:id")
   .get(programsController.findById)
   .put(programsController.update)
   .delete(programsController.remove);
+
+// Matches with "/api/programs/coach/:id"
+router.route("/coach/:id")
+  .get(programsController.findByCoach);
 
 module.exports = router;

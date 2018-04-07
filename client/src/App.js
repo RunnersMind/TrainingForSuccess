@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
-import User from "./pages/User";
 
+import User from "./pages/User";
+import ProgramForm from "./components/ProgramForm";
 
 class App extends Component {
   render() {
@@ -19,8 +20,10 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/user" component={User} />
+          <Route exact path="/program" component={ProgramForm} />
         </Switch>
       </Router>
+      
       </div>
     );
   }
