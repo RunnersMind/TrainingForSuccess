@@ -52,8 +52,8 @@ module.exports = function(passport) {
                             googleId    : user.googleToken || profile.id,
                             googleToken : token,
                             displayName : user.displayName || profile.displayName,
-                            firstName   : user.firstName || profile.name.familyName,
-                            lastName    : user.lastName || profile.name.givenName,
+                            firstName   : user.firstName || profile.name.givenName,
+                            lastName    : user.lastName || profile.name.familyName,
                             email       : user.email || profile.emails[0].value,
                             photo       : user.photo || profile.photos[0].value
                         },
