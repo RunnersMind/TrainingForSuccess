@@ -58,7 +58,17 @@
     border: 1px solid #f1962a;
     color: #fff;
 }
-
+.DateInput_input__focused {
+    outline: 0;
+    background: #fff;
+    border: 0;
+    border-top: 0;
+    border-right: 0;
+    border-top: 2px solid #f1962a;
+    border-bottom: 2px solid #f1962a;
+    /*#008489;*/
+    border-left: 0;
+}
 .DayPickerKeyboardShortcuts_show__bottomRight {
     border-top: 26px solid transparent;
     border-right: 33px solid #f1962a;
