@@ -1,0 +1,21 @@
+.rbc-month-view {
+  height: 600px;
+}
+.rbc-event {
+  margin-right: auto;
+  margin-left: auto;
+  width: 80%;
+  background-color: orange;
+}
+.rbc-event.rbc-selected{
+  background-color: #f05c2a;
+}
+.rbc-today {
+  background-color: #ffd7a7;
+}
+.rbc-btn-group {
+  background-color: orange;
+}
+.rbc-toolbar button{
+  color:white;
+}

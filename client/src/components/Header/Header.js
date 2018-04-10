@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
+
 import API   from "../../utils/API";
 
 import './Header.css';
@@ -32,6 +34,7 @@ class Header extends Component {
     const isLoggedIn = this.state.isLoggedIn;
     // console.log(isLoggedIn);
     return (
+      <Router>
       <div className='nav'>
         <ul>
           <li>
@@ -43,11 +46,21 @@ class Header extends Component {
                 </a></span>)
             }
           </li>
-          <li><a href='/program'>Add New Program</a></li>
-          <li><a href='/user'>User Profile</a></li>
-          <li><a href='/search'>Search</a></li>
+          <li>
+            <Link to="/program">Add New Program</Link>
+          </li>
+          <li>
+            <Link to='/user'>User Profile</Link>
+            </li>
+          <li>
+            <Link to='/search'>Search</Link>
+          </li>
+          <li>
+            <Link to='/training-plan'>Training Plan</Link>
+          </li>
         </ul>
       </div>
+      </Router>
     );
   }
 }
