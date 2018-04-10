@@ -6,6 +6,7 @@ import './App.css';
 import Header       from './components/Header';
 import User         from './pages/User';
 import ProgramForm  from './components/ProgramForm';
+import SearchComp   from './components/Search';
 
 const Landing = () => <h2>Landing Page</h2>;
 const Footer = () => <footer className='footer'>Footer</footer>;
@@ -20,6 +21,7 @@ const App = () => {
           <Route exact path="/" component={Landing} />
           <Route exact path="/user" component={User} />
           <Route exact path="/program" component={ProgramForm} />
+          <Route exact path="/search" component={SearchComp} />
           <hr/>
           <Footer />
         </div>
