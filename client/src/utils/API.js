@@ -25,8 +25,9 @@ export default {
   deleteProgram: function(id) {
     return axios.delete("/api/programs/" + id);
   },
-  // Finds a user based on id
-  getUser: function(id) {
-    return axios.get("/api/user/" + id);
+  //=================
+  getUserLoggedin: function() {
+    return axios.get("/api/current_user");
   }
+
 };

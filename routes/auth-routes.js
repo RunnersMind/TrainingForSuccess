@@ -1,14 +1,5 @@
 module.exports = function(app, passport) {
 
-    app.get('/', function(req, res){
-        //default page for all users
-        res.json({msg: "Hello World!"});
-    });
-
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.json({ msg: "Logged In(google)", user: req.user });
-    });
-
     app.get('/auth/google', 
         passport.authenticate('google', { 
             scope : ['profile', 'email'] 
@@ -16,13 +7,18 @@ module.exports = function(app, passport) {
 
     app.get('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect : 'http://localhost:3000/program',
+            successRedirect : 'http://localhost:3000/user',
             failureRedirect : '/'
     }));
 
-    app.get('/logout', function(req, res) {
+    app.get('/api/logout', function(req, res) {
         req.logout();
+        // res.send(req.user);
         res.redirect('/');
+    });
+
+    app.get('/api/current_user', function(req, res) {
+        res.send(req.user);
     });
 
 };

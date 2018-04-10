@@ -26,7 +26,8 @@
     "mysql2": "^1.5.3",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
-    "sequelize": "^4.37.5"
+    "react-search": "^2.0.5",
+    "sequelize": "^4.37.5",
+    "sequelize-cli": "^4.0.0"
   }
 }
-
