@@ -225,7 +225,7 @@ VALUES
 'Sue',
 'Sue',
 'Sue',
-'Sue',
+'Couch',
 '',
 'XXXL',
 '551-555-5555',
