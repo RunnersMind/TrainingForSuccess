@@ -1,6 +1,6 @@
 import Search from 'react-search';
 import React, { Component, PropTypes } from 'react';
-import './Search.css';
+import './search.css';
 
 class SearchComponent extends Component {
     SearchItems(items) {
