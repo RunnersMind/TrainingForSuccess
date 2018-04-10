@@ -47,16 +47,16 @@ class Header extends Component {
             }
           </li>
           <li>
-            <Link to="/program">Add New Program</Link>
+            <a href="/program">Add New Program</a>
           </li>
           <li>
-            <Link to='/user'>User Profile</Link>
+            <a href='/user'>User Profile</a>
             </li>
           <li>
-            <Link to='/search'>Search</Link>
+            <a href='/search'>Search</a>
           </li>
           <li>
-            <Link to='/training-plan'>Training Plan</Link>
+            <a href='/training-plan'>Training Plan</a>
           </li>
         </ul>
       </div>
