@@ -1,5 +1,6 @@
 import React from "react";
 import logoR from "./runality2.svg"
+import './NavbarLand.css';
 import {
     Nav,
     NavItem,
@@ -15,8 +16,8 @@ const NavbarLand = () => (
       </div>
       <Nav pullRight>
   <NavItem componentClass={NavLink} className="action-group text-light text-uppercase pl-2 pr-2" href="/" to="/">Login</NavItem>
-  <NavItem componentClass={NavLink} className="action-group text-light text-uppercase pl-2 pr-2" href="/" to="/">/</NavItem>
-  <NavItem componentClass={NavLink} className="action-group text-light text-uppercase pl-2 pr-2" href="/book" to="/book">Signup</NavItem>
+  <NavItem className="action-group text-light text-uppercase" href="" to="">/</NavItem>
+  <NavItem componentClass={NavLink} className="action-group text-light text-uppercase pl-2 pr-2" href="/" to="/">Signup</NavItem>
 </Nav>
     </div>
   </nav>
