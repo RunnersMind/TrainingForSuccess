@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import API   from "../../utils/API";
 
 import './Header.css';
@@ -43,9 +44,18 @@ class Header extends Component {
                 </a></span>)
             }
           </li>
-          <li><a href='/program'>Add New Program</a></li>
-          <li><a href='/user'>User Profile</a></li>
-          <li><a href='/search'>Search</a></li>
+          <li>
+            <a href="/program">Add New Program</a>
+          </li>
+          <li>
+            <a href='/user'>User Profile</a>
+            </li>
+          <li>
+            <a href='/search'>Search</a>
+          </li>
+          <li>
+            <a href='/training-plan'>Training Plan</a>
+          </li>
         </ul>
       </div>
     );
