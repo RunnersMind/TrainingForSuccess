@@ -5,28 +5,28 @@ const ATTR_user = ['id', 'description','email','firstName', 'lastName', 'display
 
 module.exports = {
 
-  findAll: function(req,res){
-    db.User.findAll({
-      attributes: ATTR_user
-    }).then( users => {
-      res.json(users);
-    }, error => {
-      res.status(422).json(error);
-    });
-  },
+  // findAll: function(req,res){
+  //   db.User.findAll({
+  //     attributes: ATTR_user
+  //   }).then( users => {
+  //     res.json(users);
+  //   }, error => {
+  //     res.status(422).json(error);
+  //   });
+  // },
 
   findById: function(req, res) {
-    // let id = req.params.id ? req.params.i : 
-
-    // if(req.params.id)
+    
     //check first if you're getting the id passed into the request
-    db.User.findById( req.user.id )
-    .then( user => {
-      res.json(user);
-    }, error => {
-      console.log('findById_'+ error);
-      res.status(422).json(error);
-    });
+    // if (req.params.id ==='undefined') 
+      db.User.findById( req.user.id )
+      .then( user => {
+        res.json(user);
+      }, error => {
+        console.log('findById_'+ error);
+        res.status(422).json(error);
+      });
+    
   }
 
 };
