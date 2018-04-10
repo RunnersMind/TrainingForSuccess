@@ -16,14 +16,12 @@ module.exports = {
   },
 
   findById: function(req, res) {
-    console.log("Are we getting here?");
     // let id = req.params.id ? req.params.i : 
 
     // if(req.params.id)
     //check first if you're getting the id passed into the request
     db.User.findById( req.user.id )
     .then( user => {
-      console.log("YEYYYYYYYYYYYYYY" + user);
       res.json(user);
     }, error => {
       console.log('findById_'+ error);

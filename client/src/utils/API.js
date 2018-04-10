@@ -26,6 +26,11 @@ export default {
     return axios.delete("/api/programs/" + id);
   },
   //=================
+
+  getUser: function(id) {
+    return axios.get("/api/user/" + id);
+  },
+
   getUserLoggedin: function() {
     return axios.get("/api/current_user");
   }
