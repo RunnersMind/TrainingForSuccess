@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 import API   from "../../utils/API";
 
@@ -34,7 +33,6 @@ class Header extends Component {
     const isLoggedIn = this.state.isLoggedIn;
     // console.log(isLoggedIn);
     return (
-      <Router>
       <div className='nav'>
         <ul>
           <li>
@@ -60,7 +58,6 @@ class Header extends Component {
           </li>
         </ul>
       </div>
-      </Router>
     );
   }
 }
