@@ -45,7 +45,7 @@ loadUser = () => {
 
       <div id="athlete-page">
         <div id="left-column">
-            <div id="photo"><img src={this.state.photo}></img></div>
+            <div id="photo"><img alt="user" src={this.state.photo}></img></div>
             <div>
             edit profile
             </div>

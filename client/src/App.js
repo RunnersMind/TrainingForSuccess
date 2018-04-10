@@ -8,6 +8,7 @@ import User         from './pages/User';
 import ProgramForm  from './components/ProgramForm';
 import SearchComp   from './components/Search';
 import NavbarLand from './components/NavbarLand';
+import Jumbo from './components/Jumbotron';
 
 const Landing = () => <h2>Landing Page</h2>;
 const Footer = () => <footer className='footer'>Footer</footer>;
@@ -16,11 +17,19 @@ const App = () => {
   return (
     <div className="App">
     <Router>
-    <div className="container">
+      <div className="container-fluid">
       <NavbarLand />
       <Route exact path="/" component={Landing} />
       </div>
       </Router>
+
+      <Router>
+      <div className="container-fluid">
+      <Jumbo />
+      <Route exact path="/" component={Landing} />
+      </div>
+      </Router>
+
       <Router>
         <div className="container">
           <Header />
