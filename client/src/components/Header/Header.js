@@ -45,6 +45,7 @@ class Header extends Component {
           </li>
           <li><a href='/program'>Add New Program</a></li>
           <li><a href='/user'>User Profile</a></li>
+          <li><a href='/search'>Search</a></li>
         </ul>
       </div>
     );
