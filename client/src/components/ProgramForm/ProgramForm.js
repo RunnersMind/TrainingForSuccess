@@ -1,50 +1,81 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
+
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+import { DateRangePicker } from 'react-dates';
+
 import "./ProgramForm.css";
 
 class ProgramForm extends Component {
-
-  state = {
-    programName: "",
-    programDescription: "",
-    programStartDate: "",
-    programEndDate: ""
-    // result: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      programName: "",
+      description: "",
+      startDate: null,
+      endDate: null,
+      focusedInput: null,
+      result: "",
+      validation_msg : ""
+    };
+  }
 
   addProgram = query => {
     API.addProgram(query)
-      .then(res => this.setState({ result: res.data }))
-      .catch(err => console.log(err));
-  };
+      .then(res => {
+        this.setState({ result: "success" })
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ result: "error"});
+      });
+  }
 
   handleInputChange = event => {
+    this.setState({validation_msg: ""});
 
     let value = event.target.value;
     const name = event.target.name;
     this.setState({
       [name]: value
     });
-  };
+  }
+
+  handleDatesChange = event => {
+    this.setState({validation_msg: ""});
+  }
 
   handleFormSubmit = event => {
 
     event.preventDefault();
+      
+      if(!this.state.programName || !this.state.description){
+        this.setState({validation_msg: "Please, provide Program Name and Description!"});
+        return;
+      }
+      if(!this.state.startDate || !this.state.endDate){
+        this.setState({validation_msg: "Please, provide Program Start and End dates!"});
+        return;
+      }
 
-    // if (this.state.startDate < this.state.endDate) {
-    //   alert("Check your Start and End dates, please!");
-    // } else {
-      alert(`Adding New Program!`);
+      this.addProgram({
+        programName       : this.state.programName,
+        programDescription: this.state.description,
+        programStartDate  : this.state.startDate,
+        programEndDate    : this.state.endDate
+      });
 
-      this.addProgram(this.state);
       this.setState({
         programName: "",
-        programDescription: "",
-        programStartDate: "",
-        programEndDate: ""
+        description: "",
+        startDate: null,
+        endDate: null,
+        focusedInput: null,
+        validation_msg: ""
       });
-    // }
-  };
+
+  }
 
   render() {
     return (
@@ -52,6 +83,9 @@ class ProgramForm extends Component {
         <p>
           New Program
         </p>
+        <div className="addProgram_validation">
+          {"  "}{this.state.validation_msg}
+        </div>
         <form className="form">
           <input
             value={this.state.programName}
@@ -59,28 +93,27 @@ class ProgramForm extends Component {
             onChange={this.handleInputChange}
             type="text"
             placeholder="Program Name"
+            className="program_input"
           />
           <input
-            value={this.state.programStartDate}
-            name="programStartDate"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Start Date"
-          />
-          <input
-            value={this.state.programEndDate}
-            name="programEndDate"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="End Date"
-          />
-          <input
-            value={this.state.programDescription}
-            name="programDescription"
+            value={this.state.description}
+            name="description"
             onChange={this.handleInputChange}
             type="text"
             placeholder="Program Description"
+            className="program_input"
           />
+
+          <DateRangePicker
+            startDate={this.state.startDate}
+            startDateId="start_date_id"
+            endDate={this.state.endDate}
+            endDateId="end_date_id"
+            onDatesChange={({ startDate, endDate }) => { this.setState({ startDate, endDate })}}
+            focusedInput={this.state.focusedInput}
+            onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
+          />
+          <br/><br/>
           <button onClick={this.handleFormSubmit}>Add</button>
         </form>
       </div>
