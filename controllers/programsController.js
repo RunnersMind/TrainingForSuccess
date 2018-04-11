@@ -18,14 +18,24 @@ module.exports = {
   },
 
   findByCoach: function(req, res) {
+    var user_id;
+    if( req.params.id ){
+      user_id = req.params.id;
+    } else if( req.user ){
+      user_id = req.user.id;
+    } else {
+      res.redirect('/');
+    }
+
     db.Program.findAll({
       attributes: ATTR_program,
       where: { [Op.and]: [
-        { deletedAt: { [Op.ne]: null }}, 
-        { coachId: req.params.id }
+        { deleteFlag: 0 }, 
+        { coachId: user_id }
       ]}
     }).then( coach_programs => {
-      if( req.user && req.user.id === req.params.id ){
+
+      if( req.user && req.user.id == user_id ){
         res.json({
           rights: 'canEdit',
           programs: coach_programs
@@ -95,16 +105,37 @@ module.exports = {
   },
 
   remove: function(req, res) {
-    if( req.isAuthenticated() )
-    db.Program.destroy({
-      where: {
-        [db.Sequelize.Op.and]: [
-          { id : req.params.id },
-          { coachId : req.user.id }
-        ]
-      }
-    }).then(result=> res.status(200).send(),
-      error => res.status(422).send()
-    );
+    if (req.isAuthenticated()) {
+
+      db.Program.update( {
+        deleteFlag : 1
+      },{
+        where: { 
+          [Op.and]: [
+            { id : req.body.id },
+            { coachId : req.user.id }
+          ]
+        }
+      }).then( program => {
+        console.log(program.get({ plain: true }));
+        res.json(program);
+      }, error => {
+        console.log('delete_program_'+ error);
+        res.status(422).json(err);
+      });
+
+    }
+    else res.redirect('/');     
+    // if( req.isAuthenticated() )
+    // db.Program.destroy({
+    //   where: {
+    //     [db.Sequelize.Op.and]: [
+    //       { id : req.params.id },
+    //       { coachId : req.user.id }
+    //     ]
+    //   }
+    // }).then(result=> res.status(200).send(),
+    //   error => res.status(422).send()
+    // );
   }
 };
