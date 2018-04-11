@@ -7,7 +7,11 @@ export default {
   },
   // Gets all programs for authenticated coach
   getCoachPrograms: function(coach_id) {
-    return axios.get("/api/programs/coach"+ coach_id);
+    return axios.get("/api/programs/user"+ coach_id);
+  },
+  //Gets all programs user signed up for
+  getUserPrograms: function(user_id){
+    //to do
   },
   // Gets the program with the given id
   getProgram: function(id) {

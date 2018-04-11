@@ -2,7 +2,7 @@ const router = require("express").Router();
 const programsController = require("../../controllers/programsController");
 
 // Matches with "/api/programs/coach/:id"
-router.route("/coach/:id?")
+router.route("/user/:id?")
   .get(programsController.findByCoach);
 
 // Matches with "/api/programs/:id"
