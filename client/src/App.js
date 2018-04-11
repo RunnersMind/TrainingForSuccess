@@ -17,14 +17,16 @@ const Footer = () => <footer className='footer'>Footer</footer>;
 const App = () => {
   return (
     <div className="App">
+    <Router>
+    <div className="container-fluid">
+          <Jumbo />
+          <Route exact path="/" component={Jumbo} />
+          </div>
+      </Router>
       <Router>
       <div className="container content">
         <NavbarLand />
         <Route exact path="/" component={NavbarLand} />
-        <div className="container-fluid">
-          <Jumbo />
-          <Route exact path="/" component={Jumbo} />
-          </div>
         <div className="container">
           <Header />
           <hr/>
