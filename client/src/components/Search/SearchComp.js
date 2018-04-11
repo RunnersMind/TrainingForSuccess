@@ -1,5 +1,5 @@
 import Search from 'react-search';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import './search.css';
 
 class SearchComponent extends Component {
