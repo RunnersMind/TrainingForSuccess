@@ -5,10 +5,12 @@
   "mdbreact": "git+https://github.com/mdbootstrap/React-Bootstrap-with-Material-Design.git",
   "proxy": {
     "/auth/google": {
-      "target": "http://localhost:3001"
+      "target": "https://https://rocky-crag-48295.herokuapp.com"
+      // "target": "http://localhost:3001"
     },
     "/api": {
-      "target": "http://localhost:3001"
+      "target": "https://https://rocky-crag-48295.herokuapp.com"
+      // "target": "http://localhost:3001"
     }
   },
   "dependencies": {
