@@ -3,7 +3,7 @@ const programsController = require("../../controllers/programsController");
 
 // Matches with "/api/programs/coach/:id"
 router.route("/user/:id?")
-  .get(programsController.findByCoach);
+  .get(programsController.findByUser);
 
 // Matches with "/api/programs/:id"
 router.route("/:id")
