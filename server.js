@@ -13,8 +13,10 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 // set up express application
-app.use(express.static("public"));
-app.use(express.static("client/build"));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+// app.use(express.static("client/build"));
 app.enable('trust proxy');
 
 app.use(bodyParser.json());// get information from html forms
