@@ -37,7 +37,8 @@ module.exports = function(passport) {
     passport.use(new GoogleStrategy({
         clientID        : configAuth.googleAuth.clientID,
         clientSecret    : configAuth.googleAuth.clientSecret,
-        callbackURL     : '/auth/google/callback'
+        callbackURL     : '/auth/google/callback',
+        proxy: true
     },
     function(token, refreshToken, profile, done) {
         console.log('passport.use')
