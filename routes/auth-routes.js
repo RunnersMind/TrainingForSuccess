@@ -11,10 +11,16 @@ module.exports = function(app, passport) {
             failureRedirect : '/'
     }));
 
-    app.get('/api/logout', function(req, res) {
+    app.get('/api/logout', function(req, res, next) {
         req.logout();
+        req.session.destroy((err) => {
+            if (err) {
+                return next(err);
+            }
+            res.redirect('/');
+        });
         // res.send(req.user);
-        res.redirect('/');
+        // res.redirect('/');
     });
 
     app.get('/api/current_user', function(req, res) {

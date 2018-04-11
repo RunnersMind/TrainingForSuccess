@@ -3,31 +3,24 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
 
-import Header       from './components/Header';
 import User         from './pages/User';
+import Landing      from './pages/Landing';
+
+import Header       from './components/Header';
 import ProgramForm  from './components/ProgramForm';
 import SearchComp   from './components/Search';
-import Jumbo from './components/Jumbotron';
 import NavbarLand   from './components/NavbarLand';
 import TrainingPlan from './components/TrainingPlan';
 
-const Landing = () => <h2>Landing Page</h2>;
 const Footer = () => <footer className='footer'>Footer</footer>;
 
 const App = () => {
   return (
     <div className="App">
-    <Router>
-    <div className="container-fluid">
-          <Jumbo />
-          <Route exact path="/" component={Jumbo} />
-          </div>
-      </Router>
       <Router>
-      <div className="container content">
+      <div className="container">
         <NavbarLand />
-        <Route exact path="/" component={NavbarLand} />
-        <div className="container">
+        <div className="container content">
           <Header />
           <hr/>
             <Route exact path="/" component={Landing} />
