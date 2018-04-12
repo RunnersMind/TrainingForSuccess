@@ -1,0 +1,7 @@
+.card-title, h1 {
+    font-family: 'Titillium Web', sans-serif;
+  }
+
+.card-img-top {
+    opacity: .8;
+}
