@@ -3,8 +3,8 @@
   }
 
 .nav-item:hover {
-  padding-bottom: .5rem;
-	border-bottom: .16rem solid white;
+  padding-bottom: .1rem;
+	border-bottom: .1rem solid white;
 	color: white;
   text-decoration: none;
   cursor: pointer;
