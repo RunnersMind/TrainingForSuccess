@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import API   from "../../utils/API";
 
@@ -45,16 +46,16 @@ class Header extends Component {
             }
           </li>
           <li>
-            <a href="/program">Add New Program</a>
+            <Link to="/program">Add New Program</Link>
           </li>
           <li>
-            <a href='/user'>User Profile</a>
+            <Link to='/user'>User Profile</Link>
             </li>
           <li>
-            <a href='/search'>Search</a>
+            <Link to='/search'>Search</Link>
           </li>
           <li>
-            <a href='/training-plan'>Training Plan</a>
+            <Link to='/training-plan'>Training Plan</Link>
           </li>
         </ul>
       </div>

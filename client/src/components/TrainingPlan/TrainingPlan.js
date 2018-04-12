@@ -14,14 +14,14 @@ BigCalendar.momentLocalizer(moment);
 let events = [
   {
     id: 2,
-    title: 'button',
+    title: 'workout1',
     allDay: true,
     start: new Date(2018, 3, 21),
     end: new Date(2018, 3, 21),
   },
   {
     id: 0,
-    title: 'All Day Event very long title',
+    title: 'workout with a very long title',
     allDay: true,
     start: new Date(2018, 3, 21),
     end: new Date(2018, 3, 21),
@@ -40,9 +40,10 @@ class TrainingPlan extends Component {
     super(props);
     this.state = {
     	eventList : events,
-	    startDate: new Date(2018, 3, 3),
+	    startDate: new Date(2018, 3, 3),//apr 03
 	    endDate: new Date(2018, 6, 6),
 	    program : {},
+      selectable : true,
 	    result : '',
 	    programId : 1 //props.program_id
     };
@@ -53,6 +54,14 @@ class TrainingPlan extends Component {
 	   //  program : props.id,
 	   //  result : ''
     // };
+
+    // this.bindScopes([
+    //   'handleSlotClick',
+    //   'handleEventClick'
+    // ]);
+
+    this.handleSlotClick = this.handleSlotClick.bind(this);
+    this.handleEventClick = this.handleEventClick.bind(this);
   };
 
   componentDidMount(){
@@ -75,9 +84,15 @@ class TrainingPlan extends Component {
     //     `\nend: ${slotInfo.end.toLocaleString()}` +
     //     `\naction: ${slotInfo.action}`
     // );
-    console.log(slotInfo);
+    let clickedDate = moment(slotInfo.start);
+    let programDay = clickedDate.diff(this.state.startDate, 'days')+1;
+    console.log(programDay);
   }
-		      
+
+  handleEventClick(event){
+    console.log(event);
+  }
+
   render() {
     return (
       <div>
@@ -88,13 +103,13 @@ class TrainingPlan extends Component {
           {"  "}{this.state.result}
         </div>
     		<BigCalendar
-		      selectable
+		      selectable={this.state.selectable}
 		      events={this.state.eventList}
 		      views={['month']}
 		      defaultView='month'
 		      scrollToTime={this.state.endDate}
-		      defaultDate={new Date()}
-		      onSelectEvent={event => alert(event.title)}
+		      defaultDate={this.state.startDate}
+		      onSelectEvent={this.handleEventClick}
 		      onSelectSlot={this.handleSlotClick}
 		    />
       </div>

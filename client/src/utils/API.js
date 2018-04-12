@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+  // ====== Programs ==============
   // Gets all programs
   getPrograms: function() {
     return axios.get("/api/programs");
@@ -12,6 +13,7 @@ export default {
   //Gets all programs user signed up for
   getUserPrograms: function(user_id){
     //to do
+    // return axios.get("/api/programs/athlete"+ user_id);
   },
   // Gets the program with the given id
   getProgram: function(id) {
@@ -29,7 +31,7 @@ export default {
   deleteProgram: function(id) {
     return axios.delete("/api/programs/" + id);
   },
-  //=================
+  //========== User ===================
 
   getUser: function(id) {
     return axios.get("/api/user/" + id);
@@ -37,6 +39,27 @@ export default {
 
   getUserLoggedin: function() {
     return axios.get("/api/current_user");
-  }
+  },
 
+  // ======== Workouts ===============
+  getCoachWorkouts(){
+    return axios.get("/api/workouts/coach/")
+  },
+  
+  getWorkout(id){
+    return axios.get("/api/workouts/" + id);
+  },
+
+  //========= Training Plan ==========
+
+  addWorkoutToProgram(workout_id, planData){
+    if( workout_id )
+      return axios.post("/add-workout/" + workout_id);
+    else
+      return axios.post("/add-new-workout");
+  },
+
+  removeWorkoutFromProgram(id){
+    return axios.delete("/remove-workout/" + id);
+  }
 };
