@@ -1,0 +1,33 @@
+.footer-copyright {
+    background-color: #333333;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+}
+
+.footer-copyright p {
+    margin: 10px;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.social-networks {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 16px;
+}
+
+.social-networks a {
+    font-size: 32px;
+    color: #f9f9f9;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+.social-networks a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.footer-button {
+    background-image: linear-gradient(to right, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+}
