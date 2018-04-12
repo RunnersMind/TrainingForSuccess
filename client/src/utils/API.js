@@ -45,21 +45,21 @@ export default {
   getCoachWorkouts(){
     return axios.get("/api/workouts/coach/")
   },
-  
+
   getWorkout(id){
     return axios.get("/api/workouts/" + id);
   },
 
   //========= Training Plan ==========
 
-  addWorkoutToProgram(workout_id, planData){
-    if( workout_id )
-      return axios.post("/add-workout/" + workout_id);
+  addWorkoutToProgram(planData){
+    if( planData.workout_id > 0  )
+      return axios.post("/api/plan/add-workout/", planData);
     else
-      return axios.post("/add-new-workout");
+      return axios.post("/api/plan/add-new-workout", planData);
   },
 
-  removeWorkoutFromProgram(id){
-    return axios.delete("/remove-workout/" + id);
+  removeWorkoutFromProgram(data){
+    return axios.delete("/api/plan/remove-workout/" , data);
   }
 };

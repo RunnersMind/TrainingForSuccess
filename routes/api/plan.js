@@ -1,16 +1,16 @@
 const router = require("express").Router();
-const planController = require("../../controllers/plansController");
+const plansController = require("../../controllers/plansController");
 
 // Matches with "/api/plan/add-new-workout", body prog-id, prog-day, workout-name, descr
 router.route("/add-new-workout")
-  .post(planController.addNewWorkout);
+  .post(plansController.addNewWorkout);
 
 // Matches with "/api/plan/add-workout", body: prog-id, prog-day, workout-id
 router.route("/add-workout")
-  .post(planController.addWorkout);
+  .post(plansController.addWorkout);
 
-// Matches with "/api/plan/remove-workout/:id, id=TrainingPlanId
-router.route("/remove-workout/:id")
-  .delete(planController.removeWorkout);
+// Matches with "/api/plan/remove-workout, program_id, program_day, workout_id
+router.route("/remove-workout")
+  .delete(plansController.removeWorkout);
 
 module.exports = router;

@@ -4,13 +4,14 @@ const Op = db.Sequelize.Op;
 module.exports = {
 
   addNewWorkout: function(req, res){
+    console.log("controller: Adding NEW WORKOUT");
     //body: prog-id, prog-day, workout-name, descr
     if(req.isAuthenticated()){
       //1.add workout to Workout table -> id
       let new_workout = {
-        workoutName       : req.body.workout_name,
-        workoutDescripton : req.body.workout_descr,
-        coachId           : req.user.id
+        workoutName        : req.body.workout_name,
+        workoutDescription : req.body.workout_descr,
+        coachId            : req.user.id
       };
       db.Workout.create( new_workout )
         .then( workout => {
@@ -33,10 +34,11 @@ module.exports = {
           res.status(422).json(err);
       });      
     }
-    else req.redirect('/');
+    else res.redirect('/');
   },
 
   addWorkout: function(req, res){
+    console.log("controller: Adding WORKOUT");
     //body: prog-id, prog-day, workout-id
     if(req.isAuthenticated()){
       // add workout to TrainingPlans (w_id, )
@@ -52,18 +54,23 @@ module.exports = {
           res.status(422).json(err);
       });
     }
-    else req.redirect('/');
+    else res.redirect('/');
   },
 
   removeWorkout: function(req, res){
   // TrainingPlanId
-    if( req.isAuthenticated() )
-    db.TrainingPlan.destroy({
-      where: { id : req.params.id }
-    }).then(result=> res.status(200).send(),
-      error => res.status(422).json(error)
-    );
-
+    if( req.isAuthenticated() ){
+      db.TrainingPlan.destroy({
+        where: { [Op.and]: [
+          { id : req.body.program_id }, 
+          { id : req.params.workout_id },
+          { id : req.params.program_day },          
+        ]}
+      }).then(result=> res.status(200).send(),
+        error => res.status(422).json(error)
+      );
+    }
+    else res.redirect('/');
   }
 
 };
