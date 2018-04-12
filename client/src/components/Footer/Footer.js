@@ -1,0 +1,33 @@
+import React from 'react';
+import { Container } from 'reactstrap';
+import './Footer.css';
+
+const Footer = (props) => {
+    return (
+<div>
+<Container fluid>
+<div className="footer-dark bg-dark text-white pt-5">
+        <div className="container">
+            <div className="row mb-5">
+                <div className="col-sm-12">
+                    <div className="social-networks">
+                        <a href="" className="twitter"><i className="fab fa-twitter"></i></a>
+                        <a href="" className="facebook"><i className="fab fa-facebook"></i></a>
+                        <a href="" className="google"><i className="fab fa-google-plus"></i></a>
+                        <a href="" className="instagram"><i className="fab fa-instagram"></i></a>
+                    </div>
+                    <button type="button" className="footer-button btn text-center btn-outline-light pl-3 p-r-4">Contact us</button>
+                </div>
+            </div>
+        </div>
+        <div className="footer-copyright">
+            <p><small>© 2018 Copyright Runality</small></p>
+        </div>
+        </div>
+    </Container>
+    </div>
+
+    );
+};
+
+export default Footer;

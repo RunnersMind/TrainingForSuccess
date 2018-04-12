@@ -1,0 +1,11 @@
+section {
+    width: 100%;
+    background-image: url("./lanes.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+h3 {
+    font-family: 'Titillium Web', sans-serif;
+  }
