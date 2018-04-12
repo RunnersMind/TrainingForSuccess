@@ -4,6 +4,8 @@ import Divider from "../components/Divider";
 import Footer from "../components/Footer";
 import Results from "../components/Results";
 import Services from "../components/Services";
+import Login from "../components/Login";
+import Signup from "../components/Signup";
 
 const Landing = () => {
 return (
@@ -13,6 +15,8 @@ return (
 <Services />
 <Divider />
 <Footer />
+<Login />
+<Signup />
 </div>
 
 )
