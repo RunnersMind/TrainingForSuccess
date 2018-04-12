@@ -13,27 +13,23 @@ import SearchComp   from './components/Search';
 import NavbarLand   from './components/NavbarLand';
 import TrainingPlan from './components/TrainingPlan';
 import WorkoutsForm from './components/WorkoutsForm';
-
-const Footer = () => <footer className='footer'>Footer</footer>;
+// import Footer       from './components/Footer';
+const Footer_tmp = () => <footer className='footer'>Footer</footer>;
 
 const App = () => {
   return (
     <div className="App">
       <Router>
-      <div className="container">
+      <div>
         <NavbarLand />
-        <div className="container content">
-          <Header />
-          <hr/>
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/user" component={User} />
-            <Route exact path="/program" component={ProgramForm} />
-            <Route exact path="/search" component={SearchComp} />
-            <Route exact path="/training-plan" component={TrainingPlan} />
-            <Route exact path="/add-workout" component={WorkoutsForm} />
-          <hr/>
-          <Footer />
-        </div>
+        <Header />
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/user" component={User} />
+          <Route exact path="/program" component={ProgramForm} />
+          <Route exact path="/search" component={SearchComp} />
+          <Route exact path="/training-plan" component={TrainingPlan} />
+          <Route exact path="/add-workout" component={WorkoutsForm} />
+        <Footer_tmp />
       </div>
       </Router>    
     </div>

@@ -34,28 +34,31 @@ class Header extends Component {
     const isLoggedIn = this.state.isLoggedIn;
     // console.log(isLoggedIn);
     return (
-      <div>
+      <div className='content'>
         <ul className='nav'>
           <li className="nav-item">
+            <Link to='/'>Home</Link>
+          </li>
+          <li className="nav-item">
             {isLoggedIn
-              ?(<p> Hello, {this.state.userName}! _
-                <a href="/api/logout">Log Out</a>_</p>)
-              :(<p>Login With <a href="/auth/google">
+              ?(<span> Hello, {this.state.userName}!
+                <a href="/api/logout">Log Out</a></span>)
+              :(<span>Login With <a href="/auth/google">
                 <img className="logo-google" alt="google" src={logoG}/>
-                </a>||</p>)
+                </a></span>)
             }
           </li>
           <li className="nav-item">
-            <Link to="/program">Add New Program</Link> _
+            <Link to="/program">Add New Program</Link>
           </li>
           <li className="nav-item">
-            <Link to='/user'>User Profile</Link> _
+            <Link to='/user'>User Profile</Link>
             </li>
           <li className="nav-item">
-            <Link to='/search'>Search</Link> _
+            <Link to='/search'>Search</Link>
           </li>
           <li className="nav-item">
-            <Link to='/training-plan'>Training Plan</Link> _
+            <Link to='/training-plan'>Training Plan</Link>
           </li>
           <li className="nav-item">
             <Link to='/add-workout'>Add Workout</Link>

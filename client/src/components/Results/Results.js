@@ -5,6 +5,7 @@ import { Container, Card, CardHeader, CardBody, Row, Col, Table } from 'reactstr
 
 const Results = () => {
   return (
+    <div className="container">
     <Container fluid>
        <Row>
        <Col>
@@ -47,6 +48,7 @@ const Results = () => {
      </Row>
       
     </Container>
+    </div>
   );
 };
 

@@ -6,3 +6,11 @@
 .login {
   font-size: 23px;
 }
+.nav-item, .nav-item:hover{
+	margin-bottom: 0px;
+	padding: 10px;
+}
+
+.nav-item span:hover {
+	color: black;
+}
