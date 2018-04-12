@@ -1,3 +1,11 @@
 .nav-item {
     font-family: 'Titillium Web', sans-serif;
   }
+
+.nav-item:hover {
+  padding-bottom: .5rem;
+	border-bottom: .16rem solid white;
+	color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
