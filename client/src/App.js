@@ -6,7 +6,7 @@ import './App.css';
 import Header       from './components/Header';
 import User         from './pages/User';
 import ProgramForm  from './components/ProgramForm';
-import SearchComp   from './components/Search';
+import SearchComponent   from './components/Search';
 import Jumbo from './components/Jumbotron';
 import NavbarLand   from './components/NavbarLand';
 import TrainingPlan from './components/TrainingPlan';
@@ -26,6 +26,7 @@ const App = () => {
       <Router>
       <div className="container content">
         <NavbarLand />
+        <SearchComponent />
         <Route exact path="/" component={NavbarLand} />
         <div className="container">
           <Header />
@@ -33,7 +34,7 @@ const App = () => {
             <Route exact path="/" component={Landing} />
             <Route exact path="/user" component={User} />
             <Route exact path="/program" component={ProgramForm} />
-            <Route exact path="/search" component={SearchComp} />
+            {/* <Route exact path="/search" component={SearchComponent} /> */}
             <Route exact path="/training-plan" component={TrainingPlan} />
           <hr/>
           <Footer />

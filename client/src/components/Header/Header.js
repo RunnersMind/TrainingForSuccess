@@ -50,9 +50,9 @@ class Header extends Component {
           <li>
             <a href='/user'>User Profile</a>
             </li>
-          <li>
+          {/* <li>
             <a href='/search'>Search</a>
-          </li>
+          </li> */}
           <li>
             <a href='/training-plan'>Training Plan</a>
           </li>
