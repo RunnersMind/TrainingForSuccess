@@ -9,12 +9,10 @@ import Landing      from './pages/Landing';
 // import Header, ProgramForm, SearchComp, NavbarLand, TrainingPlan, WorkoutsForm from './components';
 import Header       from './components/Header';
 import ProgramForm  from './components/ProgramForm';
-import SearchComponent   from './components/Search';
-import Jumbo from './components/Jumbotron';
 import NavbarLand   from './components/NavbarLand';
 import TrainingPlan from './components/TrainingPlan';
 import WorkoutsForm from './components/WorkoutsForm';
-// import Footer       from './components/Footer';
+
 const Footer_tmp = () => <footer className='footer'>Footer</footer>;
 
 const App = () => {
@@ -23,19 +21,13 @@ const App = () => {
       <Router>
       <div>
         <NavbarLand />
-        <SearchComponent />
         <Route exact path="/" component={NavbarLand} />
-        <div className="container">
           <Header />
-          <hr/>
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/user" component={User} />
-            <Route exact path="/program" component={ProgramForm} />
-            {/* <Route exact path="/search" component={SearchComponent} /> */}
-            <Route exact path="/training-plan" component={TrainingPlan} />
-          <hr/>
-          <Footer />
-        </div>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/user" component={User} />
+          <Route exact path="/program" component={ProgramForm} />
+          <Route exact path="/training-plan" component={TrainingPlan} />
+          <Footer_tmp />
       </div>
       </Router>    
     </div>
