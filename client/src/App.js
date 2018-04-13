@@ -12,8 +12,7 @@ import ProgramForm  from './components/ProgramForm';
 import NavbarLand   from './components/NavbarLand';
 import TrainingPlan from './components/TrainingPlan';
 import WorkoutsForm from './components/WorkoutsForm';
-
-const Footer_tmp = () => <footer className='footer'>Footer</footer>;
+import Footer from './components/Footer';
 
 const App = () => {
   return (
@@ -27,7 +26,7 @@ const App = () => {
           <Route exact path="/user" component={User} />
           <Route exact path="/program" component={ProgramForm} />
           <Route exact path="/training-plan" component={TrainingPlan} />
-          <Footer_tmp />
+          <Footer />
       </div>
       </Router>    
     </div>
