@@ -54,14 +54,11 @@ class Header extends Component {
           <li className="nav-item">
             <Link to='/user'>User Profile</Link>
             </li>
-          <li className="nav-item">
-            <Link to='/search'>Search</Link>
-          </li>
-          <li className="nav-item">
-            <Link to='/training-plan'>Training Plan</Link>
-          </li>
-          <li className="nav-item">
-            <Link to='/add-workout'>Add Workout</Link>
+          {/* <li>
+            <a href='/search'>Search</a>
+          </li> */}
+          <li>
+            <a href='/training-plan'>Training Plan</a>
           </li>
         </ul>
       </div>
