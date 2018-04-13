@@ -1,7 +1,17 @@
 const GoogleStrategy   = require('passport-google-oauth20').Strategy;
 
-const db         = require('../models');
-const configAuth = require('./auth');
+const db       = require('../models');
+let configAuth = {
+    googleAuth: {
+        clientID: process.env.googleClientId,
+        clientSecret: process.env.googleClientSecret,
+    }
+};
+try {
+    configAuth = require('./auth');
+} catch (e) {}
+
+console.log('clientID ' + configAuth.googleAuth.clientID);
 
 const user_attr = [
     'id', 
@@ -27,7 +37,8 @@ module.exports = function(passport) {
     passport.use(new GoogleStrategy({
         clientID        : configAuth.googleAuth.clientID,
         clientSecret    : configAuth.googleAuth.clientSecret,
-        callbackURL     : configAuth.googleAuth.callbackURL
+        callbackURL     : '/auth/google/callback',
+        proxy: true
     },
     function(token, refreshToken, profile, done) {
         console.log('passport.use')

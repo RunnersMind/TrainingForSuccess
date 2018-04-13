@@ -17,7 +17,7 @@ module.exports = {
     });
   },
 
-  findByCoach: function(req, res) {
+  findByUser: function(req, res) {
     var user_id;
     if( req.params.id ){
       user_id = req.params.id;
@@ -48,7 +48,7 @@ module.exports = {
         });
       }
     }, error => {
-      console.log('findByCoach_'+ error);
+      console.log('findByUserh_'+ error);
       res.status(422).json(error);
     });   
   },

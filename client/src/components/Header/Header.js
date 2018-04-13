@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import API   from "../../utils/API";
 
@@ -33,22 +34,25 @@ class Header extends Component {
     const isLoggedIn = this.state.isLoggedIn;
     // console.log(isLoggedIn);
     return (
-      <div className='nav'>
-        <ul>
-          <li>
+      <div className='content'>
+        <ul className='nav'>
+          <li className="nav-item">
+            <Link to='/'>Home</Link>
+          </li>
+          <li className="nav-item">
             {isLoggedIn
-              ?(<span> Hello, {this.state.userName}! | 
+              ?(<span> Hello, {this.state.userName}!
                 <a href="/api/logout">Log Out</a></span>)
               :(<span>Login With <a href="/auth/google">
                 <img className="logo-google" alt="google" src={logoG}/>
                 </a></span>)
             }
           </li>
-          <li>
-            <a href="/program">Add New Program</a>
+          <li className="nav-item">
+            <Link to="/program">Add New Program</Link>
           </li>
-          <li>
-            <a href='/user'>User Profile</a>
+          <li className="nav-item">
+            <Link to='/user'>User Profile</Link>
             </li>
           {/* <li>
             <a href='/search'>Search</a>
