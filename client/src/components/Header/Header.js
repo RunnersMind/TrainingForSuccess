@@ -43,7 +43,7 @@ class Header extends Component {
             {isLoggedIn
               ?(<span> Hello, {this.state.userName}!
                 <a href="/api/logout">Log Out</a></span>)
-              :(<span>Login With <a href="/auth/google">
+              :(<span><a href="/auth/google">Login With 
                 <img className="logo-google" alt="google" src={logoG}/>
                 </a></span>)
             }
@@ -54,11 +54,11 @@ class Header extends Component {
           <li className="nav-item">
             <Link to='/user'>User Profile</Link>
             </li>
-          {/* <li>
-            <a href='/search'>Search</a>
-          </li> */}
-          <li>
-            <a href='/training-plan'>Training Plan</a>
+          <li className="nav-item">
+            <Link to='/search'>Search</Link>
+          </li>
+          <li className="nav-item">
+            <Link to='/training-plan'>Training Plan</Link>
           </li>
         </ul>
       </div>

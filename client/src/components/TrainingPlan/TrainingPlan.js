@@ -95,7 +95,7 @@ class TrainingPlan extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <p>
           Training Plan
         </p>

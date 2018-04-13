@@ -1,13 +1,11 @@
 .logo-google {
-  width: 30px;
-  height: 30px;
+  width: 23px;
   /*margin-bottom: -7px;*/
 }
 .login {
-  font-size: 23px;
+  font-size: 25px;
 }
-.nav-item, .nav-item:hover{
-	margin-bottom: 0px;
+.nav-item {
 	padding: 10px;
 }
 
