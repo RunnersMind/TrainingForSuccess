@@ -1,12 +1,10 @@
+import React from "react";
 
-import React from 'react';
-
-export const SearchDropDown = props => (
-
-    <Form>
-        <FormGroup>
-            <Label for="Select">Select a State to find a Program or Coach</Label>
-            <Input type="select" name="selectState" id="selectState">
+export const dropdown = props => (
+    <form>
+        <formgroup>
+            <label for="Select">Select a State to find a Program or Coach</label>
+            <input type="select" name="selectState" id="selectState">
                 <option>Hawaii</option>
                 <option>Alaska</option>
                 <option>Florida</option>
@@ -56,7 +54,7 @@ export const SearchDropDown = props => (
                 <option>Kansas</option>
                 <option>Louisiana</option>
                 <option>Virginia</option>
-            </Input>
-        </FormGroup>
-    </Form>
-)
+            </input>
+        </formgroup>
+    </form>
+);

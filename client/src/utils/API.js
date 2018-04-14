@@ -61,5 +61,9 @@ export default {
 
   removeWorkoutFromProgram(data){
     return axios.post("/api/plan/remove-workout" , data);
+  },
+
+  getSearchResults(data){
+    return axios.get("api/search/results", data);
   }
-};
+};   

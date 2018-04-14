@@ -33,6 +33,7 @@ class WorkoutsForm extends Component {
 
   createOptList(){
     let options: [];
+    console.log(this.state.workoutList);
     for(let i=0; i < this.state.workoutList; i++){
       let workout = this.state.workoutList[i];
       options.push({
@@ -40,6 +41,7 @@ class WorkoutsForm extends Component {
         label: workout.workoutName
       });
     }
+    console.log("OPTIONS",options);
     return options;
   }
 
