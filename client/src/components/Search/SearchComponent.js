@@ -1,11 +1,7 @@
-<<<<<<< Updated upstream
 import React, { Component } from 'react';
 import { button, dropdown, map, results, input } from '../Search';
-=======
-import React, { Component} from 'react';
 import './search.css';
 import { FormGroup, Form, Label, Input, Container } from 'reactstrap';
->>>>>>> Stashed changes
 
 class SearchComponent extends Component{
     constructor(props){
@@ -17,17 +13,6 @@ class SearchComponent extends Component{
 
     render(){
         return(
-<<<<<<< Updated upstream
-            <div fluid>
-                <map />
-                <dropdown float-left />
-                <input float-right />
-                <results>
-                    <button />
-                </results>
-            </div>   
-        );
-=======
             <Container>
             <div className="row d-flex justify-content-center">
                             <div className="col-md-10">
@@ -95,7 +80,6 @@ class SearchComponent extends Component{
             </div>
             </Container>
         )
->>>>>>> Stashed changes
     }
 }
 
