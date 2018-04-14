@@ -9,9 +9,7 @@ return (
   <Jumbo />
   <UserComponent />
 </div>
-
 )
-
 }
 
 export default User;

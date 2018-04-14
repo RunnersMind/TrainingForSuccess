@@ -8,13 +8,11 @@ const ATTR_search = ['id', 'displayName', 'description',
 module.exports = {
     findCoaches: function(req,res){
         db.users.findAll({
-            attributes: ATTR_search
-            where: {userType: 'Coach'}}
-            }
-        }).then( Couches => {
+            attributes: ATTR_search,
+            where: {userType: 'Coach'}})
+        }.then(Couches => {
             res.json(users);
         }, error => {
             res.status(422).json(error);
-        });
+        })
     }
-}
