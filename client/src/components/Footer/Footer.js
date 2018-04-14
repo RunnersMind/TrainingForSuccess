@@ -6,7 +6,7 @@ const Footer = (props) => {
     return (
 <div>
 <Container fluid>
-<div className="footer-dark bg-dark text-white pt-5">
+<div className="footer footer-dark bg-dark text-white pt-5">
         <div className="container">
             <div className="row mb-5">
                 <div className="col-sm-12">

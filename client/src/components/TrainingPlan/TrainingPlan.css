@@ -1,5 +1,6 @@
 .rbc-month-view {
-  height: 600px;
+  min-height: 800px;
+  height: auto;
 }
 .rbc-event {
   margin-right: auto;
@@ -18,4 +19,12 @@
 }
 .rbc-toolbar button{
   color:white;
+}
+.rbc-row-segment {
+  min-width: 14.29%;
+}
+
+
+.ReactModal__Content {
+	/*width: 40vw;*/
 }

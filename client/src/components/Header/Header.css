@@ -12,3 +12,7 @@
 .nav-item span:hover {
 	color: black;
 }
+
+.nav-item {
+    font-family: 'Titillium Web', sans-serif;
+  }

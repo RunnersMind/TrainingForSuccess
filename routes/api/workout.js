@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const workoutsController = require("../../controllers/workoutsController");
 
-// Matches with "/api/workouts/coach"
-router.route("/coach")
+// Matches with "/api/workouts/coach/:id"
+router.route("/coach/:id")
   .get(workoutsController.findByCoach);
 
 // Matches with "/api/workouts/:id"

@@ -6,21 +6,18 @@ const ATTR_workout = ['id', 'workoutName', 'workoutDescription', 'coachId'];
 module.exports = {
 
   findByCoach: function(req, res){
-    if(req.isAuthenticated()){
-      db.Workout.findAll({
-        attributes: ATTR_workout,
-        where: { [Op.and]: [
-          { deleteFlag: 0 }, 
-          { coachId: req.user.id }
-        ]}
-      }).then( workouts => {
-        res.json(workouts);
-      }, error => {
-        console.log('findWorkoutByCoach_'+ error);
-        res.status(422).json(error);
-      });
-    }
-    else res.redirect('/'); 
+    db.Workout.findAll({
+      attributes: ATTR_workout,
+      where: { [Op.and]: [
+        { deleteFlag: 0 }, 
+        { coachId: req.params.id }
+      ]}
+    }).then( workouts => {
+      res.json(workouts);
+    }, error => {
+      console.log('findWorkoutByCoach_'+ error);
+      res.status(422).json(error);
+    });
   },
  
   findById: function(req, res){

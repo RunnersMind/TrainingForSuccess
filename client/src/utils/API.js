@@ -42,8 +42,8 @@ export default {
   },
 
   // ======== Workouts ===============
-  getCoachWorkouts(){
-    return axios.get("/api/workouts/coach/")
+  getCoachWorkouts(coach_id){
+    return axios.get("/api/workouts/coach/" + coach_id);
   },
 
   getWorkout(id){
@@ -60,6 +60,6 @@ export default {
   },
 
   removeWorkoutFromProgram(data){
-    return axios.delete("/api/plan/remove-workout/" , data);
+    return axios.post("/api/plan/remove-workout" , data);
   }
 };

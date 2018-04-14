@@ -1,6 +1,9 @@
 .addWorkout_validation {
 	color: red;
 }
+.addWorkout_validation {
+	color: green;
+}
 
 .form input {
 	padding: 5px;

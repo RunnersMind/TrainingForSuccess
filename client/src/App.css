@@ -24,9 +24,19 @@
 
 .content {
   margin-top:75px;
+  margin-bottom: 20px;
 }
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+    margin-bottom: 277px; /* for sticky footer */
 }

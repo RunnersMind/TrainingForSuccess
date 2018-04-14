@@ -1,7 +1,6 @@
 import React from "react";
 import Jumbo from "../components/Jumbotron";
 import Divider from "../components/Divider";
-import Footer from "../components/Footer";
 import Results from "../components/Results";
 import Services from "../components/Services";
 import Login from "../components/Login";

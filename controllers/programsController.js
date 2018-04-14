@@ -56,7 +56,20 @@ module.exports = {
   findById: function(req, res) {
     db.Program.findById( req.params.id, { include: [ db.TrainingPlan ] })
     .then( program => {
-      res.json(program);
+      let user_id = program.coachId;
+      if( req.user && req.user.id == user_id ){
+        res.json({
+          rights: 'canEdit',
+          program: program
+        });
+      }
+      else {
+        res.json({
+          rights: 'canView',
+          program: program
+        });
+      }
+      // res.json(program);
     }, error => {
       console.log('findById_'+ error);
       res.status(422).json(error);

@@ -30,7 +30,7 @@ module.exports = {
               res.status(422).json(err);
             });
         }, error => {
-          console.log('create_program_'+ error);
+          console.log('addNewWorkout_'+ error);
           res.status(422).json(err);
       });      
     }
@@ -51,6 +51,7 @@ module.exports = {
         .then( plan_day =>{
           res.status(200).json({result: "success"});
         },err =>{
+          console.log('addWorkout_'+ error);
           res.status(422).json(err);
       });
     }
@@ -59,15 +60,20 @@ module.exports = {
 
   removeWorkout: function(req, res){
   // TrainingPlanId
+    console.log("controller: Deleting WORKOUT");
+    console.log(req.body);
     if( req.isAuthenticated() ){
       db.TrainingPlan.destroy({
         where: { [Op.and]: [
-          { id : req.body.program_id }, 
-          { id : req.params.workout_id },
-          { id : req.params.program_day },          
+          { ProgramId : req.body.program_id }, 
+          { WorkoutId : req.body.workout_id },
+          { WorkoutDay : req.body.program_day },          
         ]}
       }).then(result=> res.status(200).send(),
-        error => res.status(422).json(error)
+        error => {
+          console.log('removeWorkout'+ error);          
+          res.status(422).json(error)
+        }
       );
     }
     else res.redirect('/');

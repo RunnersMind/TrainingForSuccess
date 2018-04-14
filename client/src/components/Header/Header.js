@@ -14,7 +14,6 @@ class Header extends Component {
   };
 
   componentDidMount(){
-    console.log("HERE");
     API.getUserLoggedin()
       .then(res => {
         // console.log(res.data);

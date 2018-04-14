@@ -11,6 +11,6 @@ router.route("/add-workout")
 
 // Matches with "/api/plan/remove-workout, program_id, program_day, workout_id
 router.route("/remove-workout")
-  .delete(plansController.removeWorkout);
+  .post(plansController.removeWorkout);
 
 module.exports = router;

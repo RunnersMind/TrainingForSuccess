@@ -11,7 +11,6 @@ import Header       from './components/Header';
 import ProgramForm  from './components/ProgramForm';
 import NavbarLand   from './components/NavbarLand';
 import TrainingPlan from './components/TrainingPlan';
-import WorkoutsForm from './components/WorkoutsForm';
 import Footer from './components/Footer';
 
 const App = () => {
@@ -20,13 +19,12 @@ const App = () => {
       <Router>
       <div>
         <NavbarLand />
-        <Route exact path="/" component={NavbarLand} />
           <Header />
           <Route exact path="/" component={Landing} />
           <Route exact path="/user" component={User} />
           <Route exact path="/program" component={ProgramForm} />
           <Route exact path="/training-plan" component={TrainingPlan} />
-          <Footer />
+        <Footer />
       </div>
       </Router>    
     </div>
