@@ -11,13 +11,13 @@ class SearchComponent extends Component{
 
     render(){
         return(
-            <div fluid>
-                <map />
+            <div>
+                {/* <map /> */}
                 <dropdown float-left />
                 <input float-right />
-                <results>
+                {/* <results>
                     <button />
-                </results>
+                </results> */} 
             </div>   
         );
     }
