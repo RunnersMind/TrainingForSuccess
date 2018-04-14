@@ -12,6 +12,7 @@ import ProgramForm  from './components/ProgramForm';
 import NavbarLand   from './components/NavbarLand';
 import TrainingPlan from './components/TrainingPlan';
 import Footer from './components/Footer';
+import SearchComponent from './components/Search';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route exact path="/user" component={User} />
           <Route exact path="/program" component={ProgramForm} />
           <Route exact path="/training-plan" component={TrainingPlan} />
+          <Route exact path="/search" component={TrainingPlan} />
         <Footer />
       </div>
       </Router>    
