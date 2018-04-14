@@ -21,8 +21,9 @@ componentDidMount() {
 loadUser = () => {
   API.getUser()
     .then(res => {
-      if (res.data.id === 'User not found'){
-        console.log('Need to show the login button instead?');
+      console.log(res);
+      if (!res.data.loggedIn){
+        console.log("User isn't logged in");
       }
       else {
         this.setState({ id: res.data.id, photo: res.data.photo, name: res.data.displayName, email: res.data.email, location: res.data.country })
@@ -35,7 +36,7 @@ loadUser = () => {
 
   render() {
     return (
-//primary wrapper
+      //primary wrapper
       <div>
         <div>
           <p>User id for testing: {this.state.id}</p>

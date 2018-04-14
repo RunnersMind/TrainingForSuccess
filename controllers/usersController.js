@@ -18,15 +18,21 @@ module.exports = {
   findById: function(req, res) {
     
     //check first if you're getting the id passed into the request
-    // if (req.params.id ==='undefined') 
-      db.User.findById( req.user.id )
-      .then( user => {
-        res.json(user);
-      }, error => {
-        console.log('findById_'+ error);
-        res.status(422).json(error);
+    if (req.params.id ==='undefined') 
+    {
+      res.json({
+        loggedIn: false
       });
-    
+    }
+    else {
+        db.User.findById( req.user.id )
+        .then( user => {
+            res.json(user);
+          }, error => {
+          console.log('findById_'+ error);
+          res.status(422).json(error);
+        });
+      
+    }
   }
-
 };
