@@ -9,7 +9,7 @@ const Map = (props) => {
 <div clasName="bg-light">
       <div clasName="row justify-content-center">
         <div clasName="col-6 mt-5">
-          <h1 clasName="display-5 text-center">Find a Running Coach...</h1> 
+          <h1 clasName="display-5 text-center">Find Training ...</h1> 
         </div>
       </div>
     </div>

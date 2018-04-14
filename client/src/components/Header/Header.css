@@ -6,13 +6,18 @@
   font-size: 25px;
 }
 .nav-item {
-	padding: 10px;
+  padding: 10px;
+  background-color: black;
 }
 
 .nav-item span:hover {
 	color: black;
 }
 
+<<<<<<< Updated upstream
 .nav-item {
     font-family: 'Titillium Web', sans-serif;
   }
+=======
+
+>>>>>>> Stashed changes

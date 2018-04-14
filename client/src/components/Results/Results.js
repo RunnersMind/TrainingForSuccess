@@ -10,7 +10,7 @@ const Results = () => {
        <Row>
        <Col>
          <Card className="mb-3">
-           <CardHeader><h2>Coaching we found in your area</h2></CardHeader>
+           <CardHeader><h2>Training we found in your area</h2></CardHeader>
            <CardBody>
              <Table responsive>
                <thead>
