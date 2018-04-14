@@ -6,11 +6,15 @@ import Services from "../components/Services";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import SearchComponent from "../components/Search";
+import Navbar from "../components/Navbar";
+import Map from "../components/Map";
 
 const Landing = () => {
 return (
 <div>
+<Navbar />
 <Jumbo />
+<Map />
 <SearchComponent/>
 <Results />
 <Services />
