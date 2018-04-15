@@ -14,7 +14,8 @@ class WorkoutsForm extends Component {
       workoutId         : 0,
       workoutList       : props.woList,
       validation_msg    : "",
-      result: ""
+      result            : ""
+
     };
   }
 
@@ -31,20 +32,6 @@ class WorkoutsForm extends Component {
       });
   }
 
-  createOptList(){
-    let options: [];
-    console.log(this.state.workoutList);
-    for(let i=0; i < this.state.workoutList; i++){
-      let workout = this.state.workoutList[i];
-      options.push({
-        value: workout.id,
-        label: workout.workoutName
-      });
-    }
-    console.log("OPTIONS",options);
-    return options;
-  }
-
   handleInputChange = event => {
     this.setState({validation_msg: ""});
     let value = event.target.value;
@@ -57,35 +44,42 @@ class WorkoutsForm extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if((!this.state.workoutId) &&
-        !(this.state.workoutName && this.state.workoutDescr)){
-      this.setState({validation_msg: "Please, provide Workout!"});
-      return;
-    }
-    // console.log("NAME="+this.state.workoutName);
-    this.addWorkoutToPlan({
-      workout_name  : this.state.workoutName,
-      workout_descr : this.state.workoutDescr,
-      program_id    : this.state.workoutProgramId,
-      program_day   : this.state.workoutProgramDay,
-      workout_id    : 0//this.state.workoutId
-    });
+    if( this.state.workoutId ||
+      (this.state.workoutName && this.state.workoutDescr)) {
 
-    this.setState({
-      workoutName      : "",
-      workoutDescr     : "",
-      workoutId        : 0,
-      validation_msg   : ""
-    });
+      this.addWorkoutToPlan({
+        workout_name  : this.state.workoutName,
+        workout_descr : this.state.workoutDescr,
+        program_id    : this.state.workoutProgramId,
+        program_day   : this.state.workoutProgramDay,
+        workout_id    : this.state.workoutId
+      });
+
+      this.setState({
+        workoutName      : "",
+        workoutDescr     : "",
+        workoutId        : 0,
+        validation_msg   : ""
+      });
+      
+      if (typeof this.props.onAdd === 'function') {
+        this.props.onAdd();
+      }
+      // if (typeof this.state.onAddWorkout === 'function') {
+      //   console.log('RRRRRRRR');
+      //   this.state.onAddWorkout();
+      // }
+    }
+    else {
+      this.setState({validation_msg: "Please, provide Workout!"});
+      return;      
+    }
   }
 
   render() {
-    let wo_options = this.createOptList();
     return (
       <div>
 
-        <p> DAY : {this.state.workoutProgramDay}</p>
-        <p> PROGRAM : {this.state.workoutProgramId}</p>
         <div className="addWorkout_validation">
           {"  "}{this.state.validation_msg}
         </div>
@@ -93,32 +87,40 @@ class WorkoutsForm extends Component {
           {"  "}{this.state.result}
         </div>
         <form className="form">
-          <p>Select Workout</p>
-          <input 
-            value={this.state.workoutId}
-            name="workoutId"
-            onChange={this.handleInputChange}
-            type="select"
-            className="workout_input"
-            options={wo_options}
-          />
-          <p>or Create New</p>
-          <input
-            value={this.state.workoutName}
-            name="workoutName"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Workout Title"
-            className="workout_input"
-          />
-          <input
-            value={this.state.workoutDescr}
-            name="workoutDescr"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Workout Description"
-            className="workout_input"
-          />
+          <label>
+            Select Workout
+
+            <select 
+              className="workout_input"
+              name="workoutId"
+              value={this.state.workoutList[0].workoutId} 
+              onChange={this.handleInputChange}
+            >
+              <option value={0}>{''}</option>
+              {this.state.workoutList.map( item =>
+                (<option value={item.id} key={item.id}>{item.workoutName}</option>)
+              )}
+            </select>
+          </label>
+          <label>
+            or Create New
+            <input
+              value={this.state.workoutName}
+              name="workoutName"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Workout Title"
+              className="workout_input"
+            />
+            <input
+              value={this.state.workoutDescr}
+              name="workoutDescr"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Workout Description"
+              className="workout_input"
+            />
+          </label>
           <br/><br/>
           <button onClick={this.handleFormSubmit}>Add</button>
         </form>
