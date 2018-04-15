@@ -9,7 +9,6 @@ return (
   <Jumbo />
   <UserComponent />
 </div>
-
 )
 }
 

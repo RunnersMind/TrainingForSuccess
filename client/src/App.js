@@ -9,7 +9,7 @@ import Landing      from './pages/Landing';
 // import Header, ProgramForm, SearchComp, NavbarLand, TrainingPlan, WorkoutsForm from './components';
 import Header       from './components/Header';
 import ProgramForm  from './components/ProgramForm';
-import NavbarLand   from './components/NavbarLand';
+import Navbar   from './components/Navbar';
 import TrainingPlan from './components/TrainingPlan';
 import Footer from './components/Footer';
 import SearchComponent from './components/Search';
@@ -19,7 +19,7 @@ const App = () => {
     <div className="App">
       <Router>
       <div>
-        <NavbarLand />
+        <Navbar />
           <Header />
           <Route exact path="/" component={Landing} />
           <Route exact path="/user" component={User} />
