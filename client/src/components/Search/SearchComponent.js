@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { button, dropdown, map, results, input } from '../Search';
+import SearchButton from "./button.js";
+import SearchDropdown from "./dropdown.js";
+import SearchInput from "./input.js";
+import SearchMap from "./map.js";
+import SearchResults from "./results.js";
 
 class SearchComponent extends Component{
     constructor(props){
@@ -12,12 +16,12 @@ class SearchComponent extends Component{
     render(){
         return(
             <div>
-                {/* <map /> */}
-                <dropdown float-left />
-                <input float-right />
-                {/* <results>
-                    <button />
-                </results> */} 
+                <SearchMap />
+                <SearchDropdown />
+                <SearchInput  />
+                <SearchResults>
+                    <SearchButton />
+                </SearchResults> 
             </div>   
         );
     }
