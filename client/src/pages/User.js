@@ -1,12 +1,13 @@
 import React from "react";
-import Jumbo from "../components/Jumbotron";
 import UserComponent from "../components/User";
+import ProgramListComp from "../components/ProgramList";
 
 
 const User = () => {
 return (
 <div>
   <UserComponent />
+  <ProgramListComp />
 </div>
 )
 }

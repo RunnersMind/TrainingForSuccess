@@ -19,11 +19,9 @@ componentDidMount() {
 }
 
 loadUser = () => {
-
   API.getUser()
     .then(res => {
         this.setState({ id: res.data.id, photo: res.data.photo, name: res.data.displayName, email: res.data.email, location: res.data.country })
-        console.log("id should be" + res.data.id);
       })
     .catch(err => console.log(err));
 
@@ -59,15 +57,6 @@ loadUser = () => {
         <p>
             <strong>LOCATION</strong>
             <span>{this.state.location}</span>
-        </p>
-        <p>
-            <strong>PROGRAMS</strong>
-            <span>
-                <ul>
-                    <li>Program 1 (need to pull this from API)</li>
-                    <li>Program 2 (need to pull this from API)</li>
-                </ul>    
-            </span>
         </p>
     </div>
 
