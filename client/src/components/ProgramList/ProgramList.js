@@ -23,10 +23,10 @@ loadList = () => {
     }).catch(err => console.log(err));
 
     // the user call is working, we have the ID 
-    API.getUserPrograms()
-      .then(res => {
-          console.log("Did anything come back??" + res);
-        //   this.setState({ id: res.data.id, photo: res.data.photo, name: res.data.displayName, email: res.data.email, location: res.data.country })
+    API.getUserPrograms(this.state.userID)
+    .then(res => {
+          console.log(JSON.stringify(res.data.programs[0].programName));
+          this.setState({ programName: res.data.programs[0].programName, programDescription: res.data.programs[0].programDescription, programStartDate: res.data.programs[0].programStartDate, programEndDate: res.data.programs[0].programEndDate })
         })
       .catch(err => console.log(err));
   
@@ -35,11 +35,17 @@ loadList = () => {
     render() {
         return (
           //primary wrapper
+          <div className="program-list" >
             <div>
-                Program List test user ID is: 
-                {this.state.userID}
+                Your Programs:
             </div>
-    
+            <ul>
+              <li>Name: {this.state.programName}</li>
+              <li>Description: {this.state.programDescription}</li>
+              <li>Start date: {this.state.programStartDate}</li>
+              <li>End date: {this.state.programEndDate}</li>
+            </ul>
+          </div>
         );
       }
     }
