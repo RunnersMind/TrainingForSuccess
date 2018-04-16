@@ -15,24 +15,28 @@ module.exports = {
   //   });
   // },
 
+
   findById: function(req, res) {
     
-    //check first if you're getting the id passed into the request
-    if (req.params.id ==='undefined') 
-    {
-      res.json({
-        loggedIn: false
-      });
-    }
+    if (req.isAuthenticated()) {
+            db.User.findById( req.user.id )
+            .then( user => {
+                res.json(user);
+              }, error => {
+              console.log('findById_'+ error);
+              res.status(422).json(error);
+            });
+          
+    } //closes if statement
+    
+    //send user away from the profile page if they're not logged in
     else {
-        db.User.findById( req.user.id )
-        .then( user => {
-            res.json(user);
-          }, error => {
-          console.log('findById_'+ error);
-          res.status(422).json(error);
-        });
-      
+      console.log("Are we here?");
+      res.redirect('/search');
     }
-  }
+
+  } //closes the findById function
+
+
+
 };
