@@ -19,7 +19,11 @@ module.exports = {
 
   findByUser: function(req, res) {
     var user_id;
+    console.log("THIS IS FIND PROGRAM BY USER!!!! Are we getting here? \n \n \n \n" + req.data);
+
+    
     if( req.params.id ){
+      console.log("What's the params part here" + req.params);
       user_id = req.params.id;
     } else if( req.user ){
       user_id = req.user.id;

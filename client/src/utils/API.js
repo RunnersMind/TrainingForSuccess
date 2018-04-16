@@ -12,8 +12,7 @@ export default {
   },
   //Gets all programs user signed up for
   getUserPrograms: function(user_id){
-    //to do
-    // return axios.get("/api/programs/athlete"+ user_id);
+    return axios.get("/api/programs/athlete"+ user_id);
   },
   // Gets the program with the given id
   getProgram: function(id) {

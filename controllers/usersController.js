@@ -31,7 +31,7 @@ module.exports = {
     
     //send user away from the profile page if they're not logged in
     else {
-      console.log("Are we here?");
+      //note: this isn't working right now, but only needs to happen if user hits /user path directly....so come back to it
       res.redirect('/search');
     }
 
