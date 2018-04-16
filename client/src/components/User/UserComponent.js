@@ -19,20 +19,15 @@ componentDidMount() {
 }
 
 loadUser = () => {
+
   API.getUser()
     .then(res => {
-      console.log(res);
-      if (!res.data.loggedIn){
-        console.log("User isn't logged in");
-      }
-      else {
         this.setState({ id: res.data.id, photo: res.data.photo, name: res.data.displayName, email: res.data.email, location: res.data.country })
-        console.log(res);
-      }
-    })
+        console.log("id should be" + res.data.id);
+      })
     .catch(err => console.log(err));
 
-};
+  };
 
   render() {
     return (

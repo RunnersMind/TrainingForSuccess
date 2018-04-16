@@ -6,7 +6,6 @@ import UserComponent from "../components/User";
 const User = () => {
 return (
 <div>
-  <Jumbo />
   <UserComponent />
 </div>
 )
