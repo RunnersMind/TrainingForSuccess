@@ -23,7 +23,7 @@ class SearchMap extends Component {
 
   render() {
     return (
-      <div className="SearchMap">
+      <div className="SearchMap m-5">
         <USAMap customize={this.statesCustomConfig} onClick={this.mapHandler} />
       </div>
     );
