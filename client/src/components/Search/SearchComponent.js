@@ -15,7 +15,8 @@ class SearchComponent extends Component{
 
     render(){
         return(
-            <div>
+            <div className="container-fluid"> 
+                    <h1 className="display-5 text-center mt-5">Find training in your area...</h1>      
                 <SearchMap />
                 <SearchDropdown />
                 <SearchInput  />
