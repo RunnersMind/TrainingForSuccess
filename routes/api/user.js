@@ -11,5 +11,7 @@ router.route("/")
 router.route("/:id")
   .get(usersController.findById);
 
+router.route("/info/:id")
+	.get(usersController.findInfoById);
 
 module.exports = router;
