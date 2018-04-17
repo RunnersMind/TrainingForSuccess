@@ -1,0 +1,21 @@
+.addWorkout_validation {
+	color: red;
+}
+.addWorkout_validation {
+	color: green;
+}
+
+.form input {
+	padding: 5px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.workout_input {
+	/*display: block;*/
+	margin-bottom: 10px;
+	height: 40px;
+	/*width: 70%;*/
+}

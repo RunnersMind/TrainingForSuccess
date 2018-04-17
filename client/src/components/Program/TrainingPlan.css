@@ -1,0 +1,34 @@
+.rbc-month-view {
+  min-height: 800px;
+  height: auto;
+}
+.rbc-event {
+  margin-right: auto;
+  margin-left: auto;
+  width: 80%;
+  background-color: orange;
+}
+.rbc-event.rbc-selected{
+  background-color: #f05c2a;
+}
+.rbc-today {
+  background-color: #ffd7a7;
+}
+.rbc-btn-group {
+  background-color: orange;
+}
+.rbc-toolbar button{
+  color:white;
+}
+.rbc-row-segment {
+  min-width: 14.29%;
+}
+
+
+.ReactModal__Content {
+	/*width: 40vw;*/
+}
+
+.calendar {
+  padding-bottom: 50px;
+}

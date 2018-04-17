@@ -3,9 +3,10 @@ import Modal              from 'react-modal';
 import BigCalendar        from 'react-big-calendar';
 import moment             from 'moment';
 
-import WorkoutsForm from '../WorkoutsForm';
+import WorkoutsForm from './WorkoutsForm';
 
 import API from "../../utils/API";
+import dates from "../../utils/dates";
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import "./TrainingPlan.css";
@@ -32,40 +33,32 @@ const modalCustomStyles = {
   }
 };
 
-
-function format_date(sql_date){
-  let date = sql_date.split('-');
-  date[0] = parseInt(date[0], 10);
-  date[1] = parseInt(date[1]-1, 10);
-  date[2] = parseInt(date[2].substr(0,2), 10);
-  return new Date(date[0], date[1], date[2]);
-}
-
 class TrainingPlan extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      programId : 2, //props.program_id,
+      programId     : props.program_id,
+      coachId       : props.coach_id,
 
-      program : {},
-	    startDate: new Date(),
-	    endDate: new Date(),
-      workoutList : [],
-      eventList : [],
-      canEdit : false,
+      trainingPlan  : props.training_plan,
 
-      modalIsOpen : false,
-      progDay     : null,
+	    startDate     : props.program_start,
+	    endDate       : props.program_end,
+      canEdit       : props.can_edit,
 
-      modal2IsOpen     : false,
-      currWorkoutName : "",
-      currWorkoutDescr : "",
-      currWorkoutId    : 0,
+      workoutList   : [],
+      eventList     : [],
+
+      modalIsOpen   : false,
+      progDay       : null,
+
+      modal2IsOpen      : false,
+      currWorkoutName   : "",
+      currWorkoutDescr  : "",
+      currWorkoutId     : 0,
 
       msg : '',
 
-      statePromises     : []
-// 
     };
 
     this.handleSlotClick = this.handleSlotClick.bind(this);
@@ -83,48 +76,17 @@ class TrainingPlan extends Component {
 
   componentDidMount(){
     console.log("*** Training Plan ***");
-    this.getProgram(this.state.programId);
+    this.createEventList();
   }
 
-  componentWillUnmount() {
+  createEventList(){
 
-    // this.statePromises.forEach(p => p.cancel());
+    if(this.state.coachId){
 
-  }
-
-  getProgram(id){
-    // let promises_arr = this.state.statePromises;
-    // promises_arr.push (
-
-      API.getProgram(id)
-        .then(res => {
-          console.log(res.data.program);
-          this.setState({ 
-            program: res.data.program,
-            canEdit: (res.data.rights==='canEdit') ? true : false,
-            startDate: format_date(res.data.program.programStartDate),
-            endDate: format_date(res.data.program.programEndDate),
-          });
-          this.createEventList(res.data.program);
-        },err => {
-          console.log(err);
-          this.setState({ result: "error"});
-      })
-    // );
-
-    // this.setState({ statePromises : promises_arr });
-  }
-
-  createEventList(program){
-
-    let coachId = this.state.program.coachId;
-    // let promises_arr = this.state.statePromises;
-    
-    // promises_arr.push (
-      API.getCoachWorkouts(coachId)
+      API.getCoachWorkouts(this.state.coachId)
         .then(res=>{
 
-          const tr_plan = this.state.program.TrainingPlans;
+          const tr_plan = this.state.trainingPlan;
           const wo_list = res.data;
 
           let event_list = [];
@@ -134,7 +96,7 @@ class TrainingPlan extends Component {
             for(let j=0; j < wo_list.length; j++){
               
               if( tr_plan[i].WorkoutId === wo_list[j].id ){
-                const eventDate = format_date(this.get_event_date(tr_plan[i].workoutDay));
+                const eventDate = dates.format_for_calendar(this.get_event_date(tr_plan[i].workoutDay));
                 event_list.push({
                   id        : index,
                   title     : wo_list[j].workoutName,
@@ -152,22 +114,36 @@ class TrainingPlan extends Component {
           }
           // console.log("EVENTS", event_list);
           // console.log("WORKOUTS", wo_list);
-          this.setState({ workoutList: wo_list });
-          this.setState({ eventList : event_list });
+          this.setState({ workoutList : wo_list,
+                          eventList   : event_list 
+          });
 
         },error=>{
           console.log(error);
           this.setState({result:"error: can't get workouts"});
-      })
-    // );
-
-    // this.setState({ statePromises : promises_arr });
+      });
+    }
 
   }
   
   get_event_date(n){
     let start = moment(this.state.startDate).add(n-1, 'days');
     return start.format();
+  }
+
+  getPlan(id){
+      API.getProgram(this.state.programId)
+        .then(res => {
+          console.log('Program.js: getProgram: ',res.data.program);
+          this.setState({ 
+            trainingPlan : res.data.program.TrainingPlans,
+          });
+          this.createEventList();
+          console.log("got the Training Plan");
+        },err => {
+          console.log(err);
+          this.setState({ msg: "error"});
+      });
   }
 
   handleSlotClick(slotInfo){
@@ -206,14 +182,29 @@ class TrainingPlan extends Component {
     this.openModal2();
   }
 
-  remove_wo(){
-      API.removeWorkoutFromProgram({
-        program_id  : this.state.programId, 
-        workout_id  : this.state.currWorkoutId,
-        program_day : this.state.progDay        
-      });
-      this.closeModal2();
+  remove_wo_from_events(wo, day){
+    let event_arr = this.state.eventList;
+    for(let i=0; i < event_arr.length; i++){
+      if(event_arr[i].wo_day === day && event_arr[i].wo_id === wo){
+        event_arr.splice(i, 1);
+        break;
+      }
+    }
+    this.setState({
+      eventList    : event_arr,
+      modal2IsOpen : false
+    });
   }
+
+  remove_wo(){
+    API.removeWorkoutFromProgram({
+      program_id  : this.state.programId, 
+      workout_id  : this.state.currWorkoutId,
+      program_day : this.state.progDay        
+    });
+    this.remove_wo_from_events(this.state.currWorkoutId, this.state.progDay);
+  }
+
   openModal() {
     this.setState({modalIsOpen: true});
   }
@@ -224,7 +215,8 @@ class TrainingPlan extends Component {
   }
 
   closeModal() {
-    this.getProgram(this.state.programId);
+    this.getPlan();
+    // this.getProgram(this.state.programId);
     this.setState({modalIsOpen: false});
   }
 
@@ -233,16 +225,15 @@ class TrainingPlan extends Component {
   }
 
   closeModal2() {
-    this.getProgram(this.state.programId);
     this.setState({modal2IsOpen: false});
   }
 
   render() {
     return (
-      <div className='container mt-5 py-5'>
-        <h1 className="mb-5">
+      <div className='container calendar'>
+        <h3>
           Training Plan
-        </h1>
+        </h3>
         <div className="addProgram_validation">
           {"  "}{this.state.result}
         </div>

@@ -1,5 +1,6 @@
-.card-title, h1 {
+.card-title {
     font-family: 'Titillium Web', sans-serif;
+    font-size: 2rem;
   }
 
 .card-img-top {

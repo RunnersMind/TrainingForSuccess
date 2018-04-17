@@ -35,8 +35,17 @@ module.exports = {
       res.redirect('/search');
     }
 
-  } //closes the findById function
+  }, //closes the findById function
 
-
+  findInfoById : function(req, res) {
+    db.User.findById( req.params.id, {
+      attributes: ['id', 'email', 'displayName', 'photo', 'phone', 'userType', 'city', 'state']
+    })
+    .then( user => {
+      res.json(user);
+    }, error => {
+      res.status(422).json({});
+    });
+  }
 
 };
