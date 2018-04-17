@@ -19,6 +19,7 @@ module.exports = {
 
   findByUser: function(req, res) {
     var user_id;
+console.log("Could we just use the user" + req.user.id);
     if( req.params.id ){
       user_id = req.params.id;
     } else if( req.user ){

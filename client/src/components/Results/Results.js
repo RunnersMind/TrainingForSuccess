@@ -5,12 +5,11 @@ import { Container, Card, CardHeader, CardBody, Row, Col, Table } from 'reactstr
 
 const Results = () => {
   return (
-    <div className="container">
-    <Container fluid>
+    <Container>
        <Row>
        <Col>
          <Card className="mb-3">
-           <CardHeader><h2>Training we found in your area</h2></CardHeader>
+           <CardHeader><h2>Results</h2></CardHeader>
            <CardBody>
              <Table responsive>
                <thead>
@@ -48,7 +47,6 @@ const Results = () => {
      </Row>
       
     </Container>
-    </div>
   );
 };
 

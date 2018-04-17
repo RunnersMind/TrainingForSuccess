@@ -31,8 +31,9 @@ class SearchComponent extends Component{
 
     render(){
         return(
-            <div>
-                <SearchMap onStateClick={this.onStateClick} />
+            <div className="container-fluid"> 
+                    <h1 className="display-5 text-center mt-5">Find training in your area...</h1>      
+                    <SearchMap onStateClick={this.onStateClick} />
                 <div>
                     <SearchDropdown className="float-left" />
                 </div>
@@ -45,6 +46,6 @@ class SearchComponent extends Component{
             </div>   
         );
     }
-}
+};
 
 export default SearchComponent;
