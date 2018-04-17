@@ -5,21 +5,21 @@ import USAMap from "react-usa-map";
 class SearchMap extends Component {
   /* mandatory */
   mapHandler = (event) => {
-    alert(event.target.dataset.name);
+    this.props.onStateClick(event.target.dataset.name)
   };
 
   /* optional customization of filling per state and calling custom callbacks per state */
-//   statesCustomConfig = () => {
-//     return {
-//       "NJ": {
-//         fill: "navy",
-//         clickHandler: (event) => console.log('Custom handler for NJ', event.target.dataset)
-//       },
-//       "NY": {
-//         fill: "#CC0000"
-//       }
-//     };
-//   };
+  statesCustomConfig = () => {
+    return {
+      "NJ": {
+        fill: "navy",
+        clickHandler: (event) => console.log('Custom handler for NJ', event.target.dataset)
+      },
+      "NY": {
+        fill: "#CC0000"
+      }
+    };
+  };
 
   render() {
     return (

@@ -1,17 +1,40 @@
 import React from "react";
 import "./search.css";
-import { Form, FormGroup, Label, Input } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 
 const SearchDropdown = props => (
-    <Form>
+    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        <DropdownToggle caret>
+            Dropdown
+        </DropdownToggle>
+        <DropdownMenu right>
+            <DropdownItem>Coach</DropdownItem>
+            <DropdownItem>Program</DropdownItem>
+            <DropdownItem>State</DropdownItem>
+            <DropdownItem>Zip Code</DropdownItem>
+        </DropdownMenu>
+    </Dropdown>
+)
+
+export default SearchDropdown;
+
+
+
+
+
+
+
+
+
+    {/* <Form>
         <FormGroup>
-            <Label for="select">Select a State to find a Program or Coach
-                <Input type="select" name="selectState" id="selectState">
-                    <option>Hawaii</option>
-                    <option>Alaska</option>
-                    <option>Florida</option>
-                    <option>South Carolina</option>
-                    <option>Georgia</option>
+            <Label for="select">Select a filter for your search
+                <Input type="select" name="selectFilter" id="selectFilter">
+                    <option>Coach</option>
+                    <option>Program</option>
+                    <option>State</option>
+                    <option>Zip Code</option>
+                    {/* <option>Georgia</option>
                     <option>Alabama</option>
                     <option>North Carolina</option>
                     <option>Tennessee</option>
@@ -55,11 +78,11 @@ const SearchDropdown = props => (
                     <option>Oklahoma</option>
                     <option>Kansas</option>
                     <option>Louisiana</option>
-                    <option>Virginia</option>
+                    <option>Virginia</option> }
                 </Input>
             </Label>
         </FormGroup>
     </Form>
-);
+); */
 
 export default SearchDropdown;
