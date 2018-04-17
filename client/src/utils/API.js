@@ -40,6 +40,10 @@ export default {
     return axios.get("/api/current_user");
   },
 
+  getUserInfo: function(id) {
+    return axios.get("/api/user/info/" + id);
+  },
+
   // ======== Workouts ===============
   getCoachWorkouts(coach_id){
     return axios.get("/api/workouts/coach/" + coach_id);

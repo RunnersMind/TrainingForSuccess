@@ -1,8 +1,10 @@
 import React from "react";
 import "./search.css";
-import { /*Form, FormGroup, Label, Input, Button,*/ Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import { Form, FormGroup, Label, Input, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+
 
 const SearchDropdown = props => (
+    <div>
     <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle caret>
             Dropdown
@@ -14,19 +16,9 @@ const SearchDropdown = props => (
             <DropdownItem>Zip Code</DropdownItem>
         </DropdownMenu>
     </Dropdown>
-)
-
-export default SearchDropdown;
 
 
-
-
-
-
-
-
-
-    /* <Form>
+     <Form>
         <FormGroup>
             <Label for="select">Select a filter for your search
                 <Input type="select" name="selectFilter" id="selectFilter">
@@ -78,11 +70,13 @@ export default SearchDropdown;
                     <option>Oklahoma</option>
                     <option>Kansas</option>
                     <option>Louisiana</option>
-                    <option>Virginia</option> }
+                    <option>Virginia</option> */}
                 </Input>
             </Label>
         </FormGroup>
     </Form>
-); */
+    </div>
+);
 
-// export default SearchDropdown;
+
+export default SearchDropdown;
