@@ -1,3 +1,7 @@
+.rcb-calendar {
+  
+}
+
 .rbc-month-view {
   min-height: 800px;
   height: auto;
@@ -6,19 +10,31 @@
   margin-right: auto;
   margin-left: auto;
   width: 80%;
-  background-color: orange;
+  background-color: #ee6859;
+  opacity: .6;
 }
 .rbc-event.rbc-selected{
-  background-color: #f05c2a;
+  background-color: #ee5f4f;
+  opacity: .3; 
 }
 .rbc-today {
-  background-color: #ffd7a7;
+  background-color: #ff867a;
+  opacity: .2;
 }
 .rbc-btn-group {
-  background-color: orange;
+  background-image: linear-gradient(to right, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
 }
 .rbc-toolbar button{
+  font-family: 'Nunito', sans-serif;
   color:white;
+}
+.rbc-toolbar button:hover{
+  cursor: pointer;
+  opacity: .5;
+}
+.rbc-toolbar .rbc-toolbar-label{
+ font-family: 'Nunito', sans-serif;
+ text-align: right;
 }
 .rbc-row-segment {
   min-width: 14.29%;
