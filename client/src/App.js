@@ -20,7 +20,7 @@ const App = () => {
       <Router>
       <div>
         <Navbar />
-          <Header />
+        <Header />  
           <Route exact path="/" component={Landing} />
           <Route exact path="/user" component={User} />
           <Route exact path="/program" component={ProgramForm} />

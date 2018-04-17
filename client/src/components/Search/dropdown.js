@@ -1,6 +1,6 @@
 import React from "react";
 import "./search.css";
-import { Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { /*Form, FormGroup, Label, Input, Button,*/ Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 const SearchDropdown = props => (
     <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -26,7 +26,7 @@ export default SearchDropdown;
 
 
 
-    {/* <Form>
+    /* <Form>
         <FormGroup>
             <Label for="select">Select a filter for your search
                 <Input type="select" name="selectFilter" id="selectFilter">
@@ -85,4 +85,4 @@ export default SearchDropdown;
     </Form>
 ); */
 
-export default SearchDropdown;
+// export default SearchDropdown;
