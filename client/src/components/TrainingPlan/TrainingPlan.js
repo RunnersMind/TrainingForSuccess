@@ -239,10 +239,10 @@ class TrainingPlan extends Component {
 
   render() {
     return (
-      <div className='container'>
-        <p>
+      <div className='container mt-5 py-5'>
+        <h1 className="mb-5">
           Training Plan
-        </p>
+        </h1>
         <div className="addProgram_validation">
           {"  "}{this.state.result}
         </div>
