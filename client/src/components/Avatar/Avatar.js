@@ -38,7 +38,7 @@ Avatar.defaultProps = {
   rounded: false,
   circle: true,
   size: 40,
-  src: '/img/users/100_4.jpg',
+  src: '',
   style: {},
 };
 

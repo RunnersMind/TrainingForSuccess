@@ -6,6 +6,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 
 import "./ProgramForm.css";
+import { Input } from "reactstrap";
 
 class ProgramForm extends Component {
   constructor(props) {
@@ -79,15 +80,15 @@ class ProgramForm extends Component {
 
   render() {
     return (
-      <div>
-        <p>
-          New Program
-        </p>
+      <div className="my-5">
+        <h2>
+          Add New Program
+        </h2>
         <div className="addProgram_validation">
           {"  "}{this.state.validation_msg}
         </div>
         <form className="form">
-          <input
+          <Input
             value={this.state.programName}
             name="programName"
             onChange={this.handleInputChange}
@@ -95,7 +96,7 @@ class ProgramForm extends Component {
             placeholder="Program Name"
             className="program_input"
           />
-          <input
+          <Input
             value={this.state.description}
             name="description"
             onChange={this.handleInputChange}
