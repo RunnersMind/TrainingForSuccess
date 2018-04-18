@@ -1,5 +1,5 @@
 .addProgram_validation {
-	color: red;
+	color: #ee6859;
 }
 
 .form input {
@@ -13,13 +13,11 @@
 .program_input {
 	display: block;
 	margin-bottom: 10px;
-	height: 40px;
 	width: 50%;
-	height: 20px;
 }
 
 .DateInput {
-	background-color: orange;
+    border: 2px solid #ee6859;
 }
 
 #end_date_id, #start_date_id {
@@ -29,33 +27,33 @@
 .CalendarDay__selected, 
 .CalendarDay__selected:active, 
 .CalendarDay__selected:hover {
-    background: #f1962a;
+    background: #ee6859;
     /*#00a699;*/
-    border: 1px solid #f1962a;
+    border: 1px solid #ee6859;
     /*#00a699;*/
     color: #fff;
 }
 .CalendarDay__selected_span,
 .CalendarDay__selected_span:active {
-    background: #f2ce9f;
+    background: #ebbbb5;
     /*#66e2da;*/
-    border: 1px solid #f1962a;
+    border: 1px solid #ee6859;
     /*#33dacd;*/
     color: #fff;
 }
 .CalendarDay__hovered_span,
 .CalendarDay__hovered_span:hover {
-  background: #f2ce9f;
+  background: #ebbbb5;
   /*#b2f1ec;*/
-  border: 1px solid #f1962a;
+  border: 1px solid #ee6859;
   /*#80e8e0;*/
   color: white;
   /*#007a87*/
 }
 
 .CalendarDay__selected_span:hover {
-    background: #f1962a;
-    border: 1px solid #f1962a;
+    background: #ee6859;
+    border: 1px solid #ee6859;
     color: #fff;
 }
 .DateInput_input__focused {
@@ -64,16 +62,28 @@
     border: 0;
     border-top: 0;
     border-right: 0;
-    border-top: 2px solid #f1962a;
-    border-bottom: 2px solid #f1962a;
     /*#008489;*/
     border-left: 0;
 }
 .DayPickerKeyboardShortcuts_show__bottomRight {
     border-top: 26px solid transparent;
-    border-right: 33px solid #f1962a;
+    border-right: 33px solid #ee6859;
     /*#00a699;*/
     bottom: 0;
     right: 0;
 }
 
+.add-program{
+    margin-top: 8rem;
+    margin-bottom: 35rem;
+}
+
+.form-group, .program-button {
+    font-family: 'Nunito', sans-serif;
+}
+
+.DateRangePickerInput_arrow {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    
+}
