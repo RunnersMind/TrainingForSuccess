@@ -58,14 +58,17 @@ class NavbarGoogle extends Component {
             }
           </Nav>
           <Nav>
-            <NavItem className="action-group text-light text-uppercase pl-2 pr-2">
-              {isLoggedIn
-              ?(<div> <div className='greeting'>{this.state.userName}</div>
-                <a href="/api/logout">Log Out</a></div>)
-              :(<div><a href="/auth/google">Login With <i className="fab fa-google-plus-g"></i>
-                </a></div>)
-              }
-            </NavItem>
+            {isLoggedIn ? (
+                <div className='greeting text-uppercase'>{this.state.userName}</div>
+              ) : ''}
+            {isLoggedIn ? (
+              <NavItem className="action-group text-light text-uppercase pl-2 pr-2">
+                <a href="/api/logout">Log Out</a>
+              </NavItem>              
+              ) : (
+              <NavItem><a href="/auth/google">Login With <i className="fab fa-google-plus-g"></i></a></NavItem>
+              )}
+
           </Nav>
         </div>
       </nav>

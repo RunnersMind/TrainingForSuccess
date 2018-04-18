@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import API   from "../../utils/API";
 
 import './Header.css';
-import logoG from './google-logo.png';
+// import logoG from './google-logo.png';
 
 class Header extends Component {
 
