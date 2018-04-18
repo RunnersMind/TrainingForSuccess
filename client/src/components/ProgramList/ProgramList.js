@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import "./ProgramList.css";
+import { Container, Card, CardHeader, CardText } from "reactstrap";
 
 
 class ProgramListComp extends Component {
@@ -35,17 +36,18 @@ loadList = () => {
     render() {
         return (
           //primary wrapper
-          <div className="program-list" >
+          <Container fluid className="program-list my-5" >
             <div>
-                Your Programs:
+                <h2 className="text-center">PROGRAMS</h2>
+                <hr></hr>
             </div>
-            <ul>
-              <li>Name: {this.state.programName}</li>
-              <li>Description: {this.state.programDescription}</li>
-              <li>Start date: {this.state.programStartDate}</li>
-              <li>End date: {this.state.programEndDate}</li>
-            </ul>
-          </div>
+            <Card className="m-5">
+              <CardHeader className="text-center text-white bg-dark" tag="h5">{this.state.programName}</CardHeader>
+              <CardText className="mt-2 pl-5 py-2">{this.state.programDescription}</CardText>
+              <CardText className="pl-5 py-2">Start date: {this.state.programStartDate}</CardText>
+              <CardText className="pl-5 py-2">End date: {this.state.programEndDate}</CardText>
+            </Card>
+          </Container>
         );
       }
     }

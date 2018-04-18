@@ -10,3 +10,11 @@ path:hover {
   width: 100%;
   height: auto;
 }
+
+.dropdown {
+  width: 75%
+}
+
+.searchPosition {
+  margin-bottom: 50px;
+}
