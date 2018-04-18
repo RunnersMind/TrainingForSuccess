@@ -55,7 +55,7 @@ console.log("Could we just use the user" + req.user.id);
   },
 
   findById: function(req, res) {
-    db.Program.findById( req.params.id, { include: [ db.TrainingPlan ] })
+    db.Program.findById( req.params.id, { include: [ db.TrainingPlan, db.User ] })
     .then( program => {
       let user_id = program.coachId;
       if( req.user && req.user.id == user_id ){

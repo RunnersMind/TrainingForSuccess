@@ -1,16 +1,22 @@
 .nav-item {
     font-family: 'Titillium Web', sans-serif;
-  }
+    height: 50px;
+}
+
+div.greeting {
+	display: inline-block;
+  padding-right: 20px;
+}
 
 .nav-item:hover {
   padding-bottom: .1rem;
-    border-bottom: .1rem solid white;
-	color: white;
+  border-bottom: .1rem solid white;
+  color: white;
   text-decoration: none;
   cursor: pointer;
 }
 
-a, a:hover {
-    color: white;
-    text-decoration: none;
+.nav-item a, a:hover {
+  color: white;
+  text-decoration: none;
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Container } from 'reactstrap';
 import API from "../../utils/API";
 import "./User.css";
 
@@ -30,13 +31,10 @@ loadUser = () => {
   render() {
     return (
       //primary wrapper
-      <div>
-        <div>
+      <Container fluid className="profile bg-light">
+        {/* <div>
           <p>User id for testing: {this.state.id}</p>
-          <div></div>
-        </div>
-
-
+        </div> */}
       <div id="athlete-page">
         <div id="left-column">
             <div id="photo"><img alt="user" src={this.state.photo.split('=')[0] + '=200' }></img></div>
@@ -44,27 +42,28 @@ loadUser = () => {
             edit profile
             </div>
         </div>
-
-    <div id="Info">
-        <p>
-            <strong>NAME</strong>
+    <div className="Info">
+        <h2 className="my-name my-3">
             <span>{this.state.name}</span>
+        </h2>
+        <p>
+            <i className="far fa-envelope mr-2"></i>
+            <span> {this.state.email}</span>
         </p>
         <p>
-            <strong>EMAIL</strong>
-            <span>{this.state.email}</span>
-        </p>
-        <p>
-            <strong>LOCATION</strong>
-            <span>{this.state.location}</span>
+            <i className="fas fa-map-marker-alt mr-2"></i>
+            <span> {this.state.location}</span>
         </p>
     </div>
+    <div>
+    <small><i className="fas fa-pencil-alt mr-2"></i> edit profile</small>
+            </div>
 
 
     </div>
 
 
-    </div>
+    </Container>
 
 
 

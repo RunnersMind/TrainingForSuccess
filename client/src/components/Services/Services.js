@@ -13,21 +13,21 @@ const Services = (props) => {
       <Card>
         <CardImg top width="100%" src={track} alt="Card image cap" />
         <CardBody>
-          <CardTitle><h2>Local/Online Coaching</h2></CardTitle>
+          <CardTitle>Local/Online Coaching</CardTitle>
           <CardText className="mt-3">Find training based on your location/area. View the profiles of certified coaches and connect with those who offer the programs you are looking for.</CardText>
         </CardBody>
       </Card>
       <Card>
         <CardImg top width="100%" src={shoes} alt="Card image cap" />
         <CardBody>
-          <CardTitle><h2>Personalized Training</h2></CardTitle>
+          <CardTitle>Personalized Training</CardTitle>
           <CardText></CardText>
         </CardBody>
       </Card>
       <Card>
         <CardImg top width="100%" src={team} alt="Card image cap" />
         <CardBody>
-          <CardTitle><h2>Meet Other Runners</h2></CardTitle>
+          <CardTitle>Meet Other Runners</CardTitle>
           <CardText></CardText>
         </CardBody>
       </Card>
