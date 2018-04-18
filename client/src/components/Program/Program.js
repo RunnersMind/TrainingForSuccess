@@ -1,5 +1,16 @@
 import React, {Component} from 'react';
 
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemTitle,
+    AccordionItemBody,
+} from 'react-accessible-accordion';
+import 'react-accessible-accordion/dist/fancy-example.css';
+
+import { List, ListItem } from "../../components/List";
+import Athlete from './Athlete';
+
 import TrainingPlan from './TrainingPlan';
 
 import API from "../../utils/API";
@@ -87,9 +98,7 @@ class Program extends Component {
     return (
       <div className='container'>
       	<div className='program_data'>
-	        <h1>
-	          {this.state.programName}
-	        </h1>
+          <h1> {this.state.programName} </h1>
 	        <div className="program_descr">
 	        	{this.state.programDescr}
 	        </div>
@@ -103,7 +112,41 @@ class Program extends Component {
 	      		<span>Coach: {this.state.coachName} </span>
 	      	</div>
 	      </div>
-      	<hr/>
+	      <br/>
+        <Accordion>
+      		<AccordionItem>
+          	<AccordionItemTitle>
+              <h5> Athletes </h5>
+          	</AccordionItemTitle>
+            <AccordionItemBody>
+	            {this.state.athletesList.length ? (
+	            	<div className="athletes_list">
+	              <List>
+	                {this.state.athletesList.map(user => (
+	                  <ListItem key={user.id}>
+	                  	<Athlete 
+	                    	user_id={user.id}
+	                  	/>
+	                  	<div className="user_prog_btn_group">
+			                  <div className="prog-btn approve-btn">
+									    		Accept
+			    							</div>
+			    							<div className="prog-btn decline-btn">
+			    								Decline
+			    							</div>
+			    						</div>
+	                  </ListItem>
+	                ))}
+	              </List>
+	              </div>
+	            ) : (
+	              <h5>No Results to Display</h5>
+	            )}
+
+            </AccordionItemBody>
+		      </AccordionItem>
+		    </Accordion>
+      	<br/>
       	{this.state.loaded 
       		?(
 		        <TrainingPlan 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import API   from "../../utils/API";
 
 import './Header.css';
-import logoG from './google-logo.png';
+// import logoG from './google-logo.png';
 
 class Header extends Component {
 
@@ -36,22 +36,7 @@ class Header extends Component {
       <div className='content'>
         <ul className='nav'>
           <li className="nav-item">
-            <Link to='/'>Home</Link>
-          </li>
-          <li className="nav-item">
-            {isLoggedIn
-              ?(<span> Hello, {this.state.userName}!
-                <a href="/api/logout">Log Out</a></span>)
-              :(<span><a href="/auth/google">Login With 
-                <img className="logo-google" alt="google" src={logoG}/>
-                </a></span>)
-            }
-          </li>
-          <li className="nav-item">
             <Link to="/add-program">Add New Program</Link>
-          </li>
-          <li className="nav-item">
-            <Link to='/user'>User Profile</Link>
           </li>
           <li className="nav-item">
             <Link to='/training-plan'>Training Plan</Link>

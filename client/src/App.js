@@ -7,8 +7,7 @@ import User         from './pages/User';
 import Landing      from './pages/Landing';
 import Program from './pages/Program';
 
-// import Header, ProgramForm, SearchComp, NavbarLand, TrainingPlan, WorkoutsForm from './components';
-// import Header       from './components/Header';
+import Header       from './components/Header';
 import ProgramForm  from './components/ProgramForm';
 import Navbar   from './components/Navbar';
 import TrainingPlan from './components/TrainingPlan';
@@ -20,7 +19,7 @@ const App = () => {
       <Router>
       <div>
         <Navbar />
-        {/* <Header />   */}
+          <Header />
           <Route exact path="/" component={Landing} />
           <Route exact path="/user" component={User} />
           <Route exact path="/add-program" component={ProgramForm} />

@@ -6,7 +6,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 
 import "./ProgramForm.css";
-import { Input } from "reactstrap";
+import { FormText, Label, FormGroup, Form, Input } from "reactstrap";
 
 class ProgramForm extends Component {
   constructor(props) {
@@ -80,31 +80,37 @@ class ProgramForm extends Component {
 
   render() {
     return (
-      <div className="my-5">
-        <h2>
+      <div className="add-program">
+        <h2 className="my-5">
           Add New Program
         </h2>
+        <hr></hr>
         <div className="addProgram_validation">
           {"  "}{this.state.validation_msg}
         </div>
-        <form className="form">
+        <Form className="form">
+        <FormGroup className="mt-5">
+        <Label><strong>Program Name</strong></Label>
           <Input
             value={this.state.programName}
             name="programName"
             onChange={this.handleInputChange}
             type="text"
-            placeholder="Program Name"
             className="program_input"
           />
+          </FormGroup>
+          <FormGroup>
+          <Label><strong>Program Description</strong></Label>
           <Input
             value={this.state.description}
             name="description"
             onChange={this.handleInputChange}
             type="text"
-            placeholder="Program Description"
             className="program_input"
           />
-
+          </FormGroup>
+          
+          <div className="mt-5">
           <DateRangePicker
             startDate={this.state.startDate}
             startDateId="start_date_id"
@@ -114,9 +120,10 @@ class ProgramForm extends Component {
             focusedInput={this.state.focusedInput}
             onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
           />
+          </div>
           <br/><br/>
-          <button onClick={this.handleFormSubmit}>Add</button>
-        </form>
+          <button className="program-button btn btn-outline-dark"onClick={this.handleFormSubmit}>Add</button>
+        </Form>
       </div>
     );
   }

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import SearchButton from "./button.js";
-import SearchDropdown from "./dropdown.js";
 import SearchInput from "./input.js";
 import SearchMap from "./map.js";
 import SearchResults from "./results.js";
 import "./search.css";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 import { Form, FormGroup, Col } from "reactstrap";
 
 
@@ -22,14 +21,10 @@ class SearchComponent extends Component{
                 <div className = "searchPosition">Search by Coach, Program, or Zip Code
                     <Form>
                         <FormGroup row>
-                            <Col sm={3}></Col>
-                            <Col sm={3}>
-                                <SearchDropdown />
-                            </Col>
-                            <Col sm={3}>
+                            <Col sm={6}></Col>
+                            <Col sm={6}>
                                 <SearchInput />
                             </Col>
-                            <Col sm={3}></Col>
                         </FormGroup>
                     </Form>
                 </div>

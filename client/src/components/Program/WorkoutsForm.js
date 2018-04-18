@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+
 import API from "../../utils/API";
 
 import "./WorkoutsForm.css";
@@ -12,12 +15,19 @@ class WorkoutsForm extends Component {
       workoutProgramDay : props.day,
       workoutProgramId  : props.programId,
       workoutId         : 0,
+      workoutLabel      : "",
       workoutList       : props.woList,
+      
       validation_msg    : "",
-      result            : "",
+
       onAdd             : props.onAdd
 
     };
+
+    this.handleInputChange  = this.handleInputChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleFormSubmit   = this.handleFormSubmit.bind(this);
+    // this.getSelectedValue   = this.getSelectedValue.bind(this); 
   }
 
   addWorkoutToPlan = query => {
@@ -37,17 +47,37 @@ class WorkoutsForm extends Component {
     this.setState({validation_msg: ""});
     let value = event.target.value;
     const name = event.target.name;
-    // console.log(name, value);
     this.setState({
-      [name]: value
+      [name] : value,
     });
+
+  }
+  handleSelectChange = (selectedOption) =>{
+
+    console.log(`Selected: ${selectedOption.label}`);
+    console.log(`Selected: ${selectedOption.value}`);
+
+    this.setState({validation_msg: ""});
+
+    // let value = event.target.value;
+    // const name = event.target.name;
+
+    // console.log('val='+value+', name='+name);
+    
+    // let label = event.target.options[event.target.selectedIndex].text;
+
+    this.setState({
+      workoutLabel : selectedOption.label,
+      workoutId : selectedOption.value
+    });
+
   }
 
   handleFormSubmit = event => {
     event.preventDefault();
     if( this.state.workoutId ||
       (this.state.workoutName && this.state.workoutDescr)) {
-
+      console.log('onSubmit: wo_id: '+this.state.workoutId, this.state.workoutLabel);
       this.addWorkoutToPlan({
         workout_name  : this.state.workoutName,
         workout_descr : this.state.workoutDescr,
@@ -63,12 +93,12 @@ class WorkoutsForm extends Component {
         validation_msg   : ""
       });
       
-      // if (typeof this.props.onAdd === 'function') {
-      //   this.props.onAdd();
-      // }
-      if (typeof this.state.onAdd === 'function') {
-        this.state.onAdd();
+      if (typeof this.props.onAdd === 'function') {
+        this.props.onAdd();
       }
+      // if (typeof this.state.onAdd === 'function') {
+      //   this.state.onAdd();
+      // }
     }
     else {
       this.setState({validation_msg: "Please, provide Workout!"});
@@ -77,6 +107,11 @@ class WorkoutsForm extends Component {
   }
 
   render() {
+    
+    const { selectedOption1 } = this.state.workoutId;
+    console.log('&&&'+selectedOption1);
+    let wo_options = this.state.workoutList.map( item => ({ value: item.id, label: item.workoutName }));
+
     return (
       <div>
 
@@ -87,23 +122,22 @@ class WorkoutsForm extends Component {
           {"  "}{this.state.result}
         </div>
         <form className="form">
-          <label>
-            Select Workout
+          {this.state.workoutList.length ? (
+            <div>
+              Select Workout or
+              <Select 
+                matchProp="label"
+                name="workoutId"
+                value={ selectedOption1 }
+                onChange={ this.handleSelectChange }
+                options={ wo_options }
+                onSelectResetsInput={true}
+              />
+            </div>)
+            : ''}
 
-            <select 
-              className="workout_input"
-              name="workoutId"
-              value={this.state.workoutList[0].workoutId} 
-              onChange={this.handleInputChange}
-            >
-              <option value={0}>{''}</option>
-              {this.state.workoutList.map( item =>
-                (<option value={item.id} key={item.id}>{item.workoutName}</option>)
-              )}
-            </select>
-          </label>
           <label>
-            or Create New
+            Create New Workout
             <input
               value={this.state.workoutName}
               name="workoutName"
