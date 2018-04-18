@@ -5,39 +5,40 @@ const ATTR_program = ['id', 'programName', 'programDescription', 'coachId',
                       'displayName', 'zipCode', 'State'];
 
 module.exports = {
-    findCoachesPrograms: function(req,res){
-        db.users.findAll({
+    findByCoachName: function(req,res){
+        console.log('we are at the searchcontroller');
+        db.User.findAll({
             attributes: ATTR_program,
             include: [{
                 model:Program
             }]
             where:{ [Op.and]: [
                  {userType: 'Coach'},
-                 [Op.like]: {[Op.any]: [req.params.displayName]}
+                 {displayName: [Op.like]: '%' + req.params.text + '%'}
             ]})
-        }.then(Couches => {
-            res.json(users);
+        .then(Coaches => {
+            console.log(Coaches);
+            res.json(Coaches);
         }, error => {
             res.status(422).json(error);
         })
 
-    findProgramsByZipCode: function(req,res){
-        db.users.findAll({
-            attributes: ATTR_program,
-            include: [{
-                model:Program
-            }]
-            where: {zipCode: req.param.zipCode}
-        })
-        }.then(Coaches => {
-            res.json(users);
-        }, error => {
-            res.status(422).json(error);
-        })
+    // findByProgram: function(req,res){
+    //     db.users.findAll({
+    //         attributes: ATTR_program,
+    //         include: [{
+    //             model:Program
+    //         }]
+    //         where: {zipCode: req.param.zipCode}
+    //     })
+    //     }.then(Coaches => {
+    //         res.json(users);
+    //     }, error => {
+    //         res.status(422).json(error);
+    //     });
+    // },
 
-    findProgramsByState:
+    //     findByZipCode:
 
-
-
-    findProgramsByDescription:
+    //     findByState:
 }

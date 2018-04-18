@@ -67,7 +67,17 @@ export default {
   },
 
   //=========== Search Results ===============
-  getSearchResults(data){
-    return axios.get("api/search/results", data);
+  getSearchResults(type, text){
+    switch (type){
+      case 'Coach': return axios.get("/api/search/coachname/" + text);
+
+      case 'Program': return axios.get("/api/search/program/" + text);
+
+      case 'Zip Code': return axios.get("/api/search/zipcode/" + text);
+
+      case 'State': return axios.get("/api/search/state/" + text);
+
+
+    }
   }
 };   
