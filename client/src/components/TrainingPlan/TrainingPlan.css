@@ -1,7 +1,6 @@
-.rcb-calendar {
-  
+h1 {
+  font-family: 'Titillium Web', sans-serif;
 }
-
 .rbc-month-view {
   min-height: 800px;
   height: auto;

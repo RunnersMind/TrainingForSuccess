@@ -31,7 +31,7 @@ loadUser = () => {
   render() {
     return (
       //primary wrapper
-      <Container fluid className="profile bg-light">
+      <Container fluid className="profile">
         {/* <div>
           <p>User id for testing: {this.state.id}</p>
         </div> */}
@@ -46,17 +46,18 @@ loadUser = () => {
         <h2 className="my-name my-3">
             <span>{this.state.name}</span>
         </h2>
+        <hr></hr>
         <p>
-            <i className="far fa-envelope mr-2"></i>
+            <i className="icon far fa-envelope mr-2"></i>
             <span> {this.state.email}</span>
         </p>
         <p>
-            <i className="fas fa-map-marker-alt mr-2"></i>
+            <i className="icon fas fa-map-marker-alt mr-2"></i>
             <span> {this.state.location}</span>
         </p>
     </div>
     <div>
-    <small><i className="fas fa-pencil-alt mr-2"></i> edit profile</small>
+    <small><i className="fas fa-pencil-alt mr-2"></i>edit</small>
             </div>
 
 

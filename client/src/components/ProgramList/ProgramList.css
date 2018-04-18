@@ -1,6 +1,8 @@
 .program-list {
-    margin: 300px 0px 0px 350px;
-    border: 1px solid grey;
-    width: 400px;
+    width: 30rem;
     text-align: left;
   }
+
+h2 {
+  font-family: 'Titillium Web', sans-serif;
+}
