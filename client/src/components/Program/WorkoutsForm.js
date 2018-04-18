@@ -87,23 +87,27 @@ class WorkoutsForm extends Component {
           {"  "}{this.state.result}
         </div>
         <form className="form">
-          <label>
-            Select Workout
+          {this.state.workoutList.length ? (
+            <label>
+              Select Workout or
 
-            <select 
-              className="workout_input"
-              name="workoutId"
-              value={0}
-              onChange={this.handleInputChange}
-            >
-              <option value={0}>{''}</option>
-              {this.state.workoutList.map( item =>
-                (<option value={item.id} key={item.id}>{item.workoutName}</option>)
-              )}
-            </select>
-          </label>
+              <select 
+                className="workout_input"
+                name="workoutId"
+                value={0}
+                onChange={this.handleInputChange}
+              >
+                <option value={0}>{''}</option>
+                {this.state.workoutList.map( item =>
+                  (<option value={item.id} key={item.id}>{item.workoutName}</option>)
+                )}
+              </select>
+            </label>
+            ) : (
+              <div></div>
+            )}
           <label>
-            or Create New
+            Create New Workout
             <input
               value={this.state.workoutName}
               name="workoutName"
