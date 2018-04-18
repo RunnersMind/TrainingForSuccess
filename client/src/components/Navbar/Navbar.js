@@ -47,12 +47,12 @@ class NavbarGoogle extends Component {
               </a>
             </div>
             <NavItem>
-              <Link to='/'>SEARCH</Link>
+              <Link className="action-group text-uppercase pl-2 pr-2" to='/'>SEARCH</Link>
             </NavItem>
 
             {isLoggedIn
             ?(<div><NavItem>
-                <Link to='/user'>PROFILE</Link>
+                <Link className="action-group text-uppercase pl-2 pr-2" to='/user'>PROFILE</Link>
               </NavItem></div>)
             : ''
             }
