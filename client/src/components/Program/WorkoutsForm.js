@@ -63,12 +63,12 @@ class WorkoutsForm extends Component {
         validation_msg   : ""
       });
       
-      // if (typeof this.props.onAdd === 'function') {
-      //   this.props.onAdd();
-      // }
-      if (typeof this.state.onAdd === 'function') {
-        this.state.onAdd();
+      if (typeof this.props.onAdd === 'function') {
+        this.props.onAdd();
       }
+      // if (typeof this.state.onAdd === 'function') {
+      //   this.state.onAdd();
+      // }
     }
     else {
       this.setState({validation_msg: "Please, provide Workout!"});

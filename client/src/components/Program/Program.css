@@ -1,12 +1,12 @@
 .user_avatar {
 	display: inline-block;
-	border 			: 1px solid grey;
+	/*border 			: 1px solid grey;*/
 	border-radius 	: 12px;
 }
 .user_avatar img {
 	width 			: 40px;
 	height 			: 40px;
-	border-radius 	: 12px;
+	border-radius 	: 18px;
 }
 .user_avatar span {
 	padding 		: 10px;
@@ -14,4 +14,38 @@
 
 .program_data {
 	text-align: left;
+}
+
+.user_prog_btn_group {
+	display: block;
+	text-align: right;
+}
+.prog-btn {
+	display: inline-block;
+	width : 100px;
+	height : 40px;
+	padding-top: 10px;
+
+	border-radius : 3px;
+	box-shadow : 1px 1px 10px grey;
+	text-align : center;
+	margin : 10px;
+
+	font-size: 1rem;
+	color: white;
+
+	background-image: -webkit-linear-gradient(left, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+	background-image: -o-linear-gradient(left, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+	background-image: linear-gradient(to right, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+}
+
+.prog-btn:hover {
+	color: black;
+}
+
+.accordion__title {
+	background-image: -webkit-linear-gradient(left, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+	background-image: -o-linear-gradient(left, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+	background-image: linear-gradient(to right, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+
 }
