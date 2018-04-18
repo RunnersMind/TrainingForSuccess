@@ -77,7 +77,7 @@ export default {
 
       case 'State': return axios.get("/api/search/state/" + text);
 
-
+      default : return [];
     }
   }
 };   

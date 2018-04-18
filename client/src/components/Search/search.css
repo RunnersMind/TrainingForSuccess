@@ -18,3 +18,10 @@ path:hover {
 .searchPosition {
   margin-bottom: 50px;
 }
+
+.searchByState-msg span{
+	color : #f06e64;
+	font-weight: bold;
+	margin-right: 10px;
+	margin-left: 10px;	
+}
