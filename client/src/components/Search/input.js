@@ -1,9 +1,11 @@
 import React from "react";
+import { InputGroup, InputGroupAddon, Input, Button } from "reactstrap";
 
 const SearchInput = props => (
-  <div className="form-group">
-    <input className="form-control" {...props} />
-  </div>
+  <InputGroup>
+    <Input type="search" placeholder="search text..." />
+    <InputGroupAddon addonType="append"><Button>Search</Button></InputGroupAddon>
+  </InputGroup>
 );
 
 export default SearchInput;

@@ -12,8 +12,7 @@ const Landing = () => {
 return (
 <div>
 <Jumbo />
-{/* <SearchComponent/> */}
-<Results />
+<SearchComponent/>
 <Services />
 <Divider />
 {/* <Login />

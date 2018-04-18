@@ -1,9 +1,13 @@
 import React from "react";
 
 const SearchResults = props => (
-  <div className="form-group">
-    <textarea className="form-control" rows="20" {...props} />
-  </div>
+  <ul className="list-group search-results">
+    {/* {props.results.map(result => (
+      <li key={result} className="list-group-item">
+        insert database record here
+      </li>
+    ))} */}
+  </ul>
 );
 
 export default SearchResults;

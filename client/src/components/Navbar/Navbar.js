@@ -49,6 +49,7 @@ class NavbarGoogle extends Component {
             <NavItem>
               <Link to='/'>SEARCH</Link>
             </NavItem>
+
             {isLoggedIn
             ?(<div><NavItem>
                 <Link to='/user'>PROFILE</Link>

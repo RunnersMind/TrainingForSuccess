@@ -35,13 +35,13 @@ loadUser = () => {
         {/* <div>
           <p>User id for testing: {this.state.id}</p>
         </div> */}
-
-
-      <div className="athlete-page">
-        <div className="left-column">
-            <div className="photo"><img alt="user" src={this.state.photo}></img></div>
+      <div id="athlete-page">
+        <div id="left-column">
+            <div id="photo"><img alt="user" src={this.state.photo.split('=')[0] + '=200' }></img></div>
+            <div>
+            edit profile
+            </div>
         </div>
-
     <div className="Info">
         <h2 className="my-name my-3">
             <span>{this.state.name}</span>
