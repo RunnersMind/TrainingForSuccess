@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+
 import API from "../../utils/API";
 
 import "./WorkoutsForm.css";
@@ -12,12 +15,19 @@ class WorkoutsForm extends Component {
       workoutProgramDay : props.day,
       workoutProgramId  : props.programId,
       workoutId         : 0,
+      workoutLabel      : "",
       workoutList       : props.woList,
+      
       validation_msg    : "",
-      result            : "",
+
       onAdd             : props.onAdd
 
     };
+
+    this.handleInputChange  = this.handleInputChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleFormSubmit   = this.handleFormSubmit.bind(this);
+    // this.getSelectedValue   = this.getSelectedValue.bind(this); 
   }
 
   addWorkoutToPlan = query => {
@@ -37,10 +47,29 @@ class WorkoutsForm extends Component {
     this.setState({validation_msg: ""});
     let value = event.target.value;
     const name = event.target.name;
-    // console.log(name, value);
     this.setState({
-      [name]: value
+      [name] : value,
     });
+
+  }
+  handleSelectChange = (selectedOption) =>{
+
+    console.log(`Selected: ${selectedOption.label}`);
+
+    this.setState({validation_msg: ""});
+
+    // let value = event.target.value;
+    // const name = event.target.name;
+
+    // console.log('val='+value+', name='+name);
+    
+    // let label = event.target.options[event.target.selectedIndex].text;
+
+    this.setState({
+      workoutLabel : selectedOption.label,
+      workoutId : selectedOption.value
+    });
+
   }
 
   handleFormSubmit = event => {
@@ -77,6 +106,10 @@ class WorkoutsForm extends Component {
   }
 
   render() {
+    
+    const { selectedOption } = this.state.workoutId;
+    let wo_options = this.state.workoutList.map( item => ({ value: item.id, label: item.workoutName }));
+
     return (
       <div>
 
@@ -88,24 +121,18 @@ class WorkoutsForm extends Component {
         </div>
         <form className="form">
           {this.state.workoutList.length ? (
-            <label>
+            <div>
               Select Workout or
-
-              <select 
+              <Select 
                 className="workout_input"
                 name="workoutId"
-                value={0}
-                onChange={this.handleInputChange}
-              >
-                <option value={0}>{''}</option>
-                {this.state.workoutList.map( item =>
-                  (<option value={item.id} key={item.id}>{item.workoutName}</option>)
-                )}
-              </select>
-            </label>
-            ) : (
-              <div></div>
-            )}
+                value={ selectedOption }
+                onChange={ this.handleSelectChange }
+                options={ wo_options }
+              />
+            </div>)
+            : ''}
+
           <label>
             Create New Workout
             <input
