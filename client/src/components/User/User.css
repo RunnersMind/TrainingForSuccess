@@ -1,8 +1,15 @@
 .athlete-page
 {
     padding-top: 8rem;
-    width: 635px;
-    margin-bottom: 20px;
+    max-width: 20em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2em;
+    color: #444;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    line-height: 1;
+    text-align: center;    
 }
 
 .left-column
@@ -13,24 +20,14 @@
     margin-right: 20px;
 }
 
-.photo
-{
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-}
-
-.PhotoOptions
-{
-    text-align: center;
-    width: 200px;
-
-}
-
 .my-name{
 font-family: 'Titillium Web', sans-serif;
 }
 
 p {
 font-family: 'nunito', sans-serif; 
+}
+
+.icon {
+    color: #ee6859;
 }

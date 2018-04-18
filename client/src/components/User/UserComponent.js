@@ -52,28 +52,33 @@ loadUser = () => {
     return (
       //primary wrapper
       <Container fluid className="profile bg-light">
-
-
-      <div className="athlete-page">
-        <div className="left-column">
-            <div className="photo"><img alt="user" src={this.state.photo}></img></div>
+        {/* <div>
+          <p>User id for testing: {this.state.id}</p>
+        </div> */}
+      <div id="athlete-page">
+        <div id="left-column">
+            <div id="photo"><img alt="user" src={this.state.photo.split('=')[0] + '=200' }></img></div>
+            <div>
+            edit profile
+            </div>
         </div>
-
     <div className="Info">
         <h2 className="my-name my-3">
             <span>{this.state.name}</span>
         </h2>
+        <hr></hr>
         <p>
-            <i className="far fa-envelope mr-2"></i>
+            <i className="icon far fa-envelope mr-2"></i>
             <span> {this.state.email}</span>
         </p>
         <p>
-            <i className="fas fa-map-marker-alt mr-2"></i>
+            <i className="icon fas fa-map-marker-alt mr-2"></i>
             <span> {this.state.location}</span>
         </p>
     </div>
     <div>
         {isEditable ? (<small><i className="fas fa-pencil-alt mr-2"></i><a href="#">edit profile</a></small>) : (<span></span>)}
+
             </div>
 
 
