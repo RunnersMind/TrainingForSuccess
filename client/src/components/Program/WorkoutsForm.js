@@ -93,7 +93,7 @@ class WorkoutsForm extends Component {
             <select 
               className="workout_input"
               name="workoutId"
-              value={this.state.workoutList[0].workoutId} 
+              value={0}
               onChange={this.handleInputChange}
             >
               <option value={0}>{''}</option>
