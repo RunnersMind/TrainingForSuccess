@@ -68,7 +68,7 @@ export default {
 
   //=========== Search Results ===============
   getSearchResults(type, text){
-    switch (type){
+    switch (type){ 
       case 'Coach': return axios.get("/api/search/coachname/" + text);
 
       case 'Program': return axios.get("/api/search/program/" + text);

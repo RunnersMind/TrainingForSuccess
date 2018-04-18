@@ -4,7 +4,7 @@ import SearchInput from "./input.js";
 import SearchMap from "./map.js";
 import SearchResults from "./results.js";
 import "./search.css";
-import API from "../../utils/API";
+// import API from "../../utils/API";
 import { Form, FormGroup, Col } from "reactstrap";
 
 

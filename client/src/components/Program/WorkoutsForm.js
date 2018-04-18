@@ -55,6 +55,7 @@ class WorkoutsForm extends Component {
   handleSelectChange = (selectedOption) =>{
 
     console.log(`Selected: ${selectedOption.label}`);
+    console.log(`Selected: ${selectedOption.value}`);
 
     this.setState({validation_msg: ""});
 
@@ -76,7 +77,7 @@ class WorkoutsForm extends Component {
     event.preventDefault();
     if( this.state.workoutId ||
       (this.state.workoutName && this.state.workoutDescr)) {
-
+      console.log('onSubmit: wo_id: '+this.state.workoutId, this.state.workoutLabel);
       this.addWorkoutToPlan({
         workout_name  : this.state.workoutName,
         workout_descr : this.state.workoutDescr,
@@ -107,7 +108,8 @@ class WorkoutsForm extends Component {
 
   render() {
     
-    const { selectedOption } = this.state.workoutId;
+    const { selectedOption1 } = this.state.workoutId;
+    console.log('&&&'+selectedOption1);
     let wo_options = this.state.workoutList.map( item => ({ value: item.id, label: item.workoutName }));
 
     return (
@@ -124,11 +126,12 @@ class WorkoutsForm extends Component {
             <div>
               Select Workout or
               <Select 
-                className="workout_input"
+                matchProp="label"
                 name="workoutId"
-                value={ selectedOption }
+                value={ selectedOption1 }
                 onChange={ this.handleSelectChange }
                 options={ wo_options }
+                onSelectResetsInput={true}
               />
             </div>)
             : ''}

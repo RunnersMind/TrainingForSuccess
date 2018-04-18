@@ -1,7 +1,7 @@
 import React from "react";
 import { InputGroup, InputGroupAddon, Input, Button } from "reactstrap";
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import API from "../../utils/API.js";
+import API from "../../utils/API";
 
 export default class SearchDropdown extends React.Component {
   constructor(props) {
@@ -37,8 +37,12 @@ export default class SearchDropdown extends React.Component {
   handleSubmitClick = event => {
     if (this.state.searchType && this.state.searchText){
       console.log(this.state.searchType, this.state.searchText);
-      let result = API.getSearchResults(this.state.searchType, this.state.searchText);
-      console.log(result);
+      API.getSearchResults(this.state.searchType, this.state.searchText)
+      .then(res=>{
+        console.log(res.data);
+      }, err=>{
+        console.log(err);
+      });
     }
  
   }
