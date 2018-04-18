@@ -56,7 +56,7 @@ import {
   <NavItem type={NavLink} className="action-group text-light text-uppercase pl-2 pr-2">{isLoggedIn
               ?(<span> Hello, {this.state.userName}!
                 <a href="/api/logout">Log Out</a></span>)
-              :(<span><a href="/auth/google">Login With <i class="fab fa-google-plus-g"></i>
+              :(<span><a href="/auth/google">Login With <i className="fab fa-google-plus-g"></i>
                 </a></span>)
             }</NavItem>
 </Nav>

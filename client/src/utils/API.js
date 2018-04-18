@@ -62,6 +62,7 @@ export default {
     return axios.post("/api/plan/remove-workout" , data);
   },
 
+  //=========== Search Results ===============
   getSearchResults(data){
     return axios.get("api/search/results", data);
   }

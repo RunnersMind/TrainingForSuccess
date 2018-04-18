@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import './search.css'; /* optional for styling like the :hover pseudo-class */
+import './search.css';
 import USAMap from "react-usa-map";
 
 class SearchMap extends Component {
   /* mandatory */
   mapHandler = (event) => {
     this.props.onStateClick(event.target.dataset.name)
+    console.log(event.target.dataset.name);
   };
 
   /* optional customization of filling per state and calling custom callbacks per state */
@@ -30,7 +31,7 @@ class SearchMap extends Component {
   }
 }
 
-// export default SearchMap;
+export default SearchMap;
 
 // import React from 'react';
 
@@ -105,4 +106,3 @@ class SearchMap extends Component {
 //         </tr>
 //     </div>
 // )
-export default SearchMap;

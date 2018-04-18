@@ -14,7 +14,6 @@ return (
 <Navbar />
 <Jumbo />
 <SearchComponent/>
-<Results />
 <Services />
 <Divider />
 {/* <Login />
