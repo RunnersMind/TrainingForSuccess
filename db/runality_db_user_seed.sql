@@ -243,3 +243,11 @@ VALUES
 curdate(),
 curdate()
 );
+
+
+INSERT INTO UserPrograms (programId,userId,createdAt, `updatedAt`) VALUES (1,1,curdate(),curdate());
+INSERT INTO UserPrograms (programId,userId,createdAt, `updatedAt`) VALUES (1,2,curdate(),curdate());
+INSERT INTO UserPrograms (programId,userId,createdAt, `updatedAt`) VALUES (1,3,curdate(),curdate());
+INSERT INTO UserPrograms (programId,userId,createdAt, `updatedAt`) VALUES (1,4,curdate(),curdate());
+INSERT INTO UserPrograms (programId,userId,createdAt, `updatedAt`) VALUES (1,5,curdate(),curdate());
+

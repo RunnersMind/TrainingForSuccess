@@ -9,13 +9,14 @@ class UserInfo extends Component {
     this.state = {
       userId     : props.user_id,
 
-      userName 		: '',
-      userPicture : '',
+      userName 		: props.userName,
+      userPicture : props.userPictire,
 
       userLoaded : false
     };
   }
   componentDidMount(){
+    if( this.state.userName ) return;
   	this.getUser(this.state.userId);
   }
 
@@ -35,18 +36,18 @@ class UserInfo extends Component {
 
   render() {
     return (
-			<div className="user_info">
-		    {this.state.userLoaded ? (
-	      	<div className="user_avatar">
-	      		{this.state.userPicture ? (
-		      		<img alt="user" src={this.state.userPicture}></img>
-	      			) : (
-	      			<i className="fas fa-user-circle large-avatar-ico"></i>
-	      		)}
-	      		<span>{this.state.userName} </span>
-	      	</div>
-	    		) : ''}
-	   	</div>
+  			<div className="user_info">
+  		    {this.state.userLoaded ? (
+  	      	<div className="user_avatar">
+  	      		{this.state.userPicture ? (
+  		      		<img alt="user" src={this.state.userPicture}></img>
+  	      			) : (
+  	      			<i className="fas fa-user-circle large-avatar-ico"></i>
+  	      		)}
+  	      		<span>{this.state.userName} </span>
+  	      	</div>
+  	    		) : ''}
+  	   	</div>
 	  );
 	}
 };

@@ -126,6 +126,7 @@ class Program extends Component {
             endDate={this.state.endDate}
           />
           <UserInfo user_id={this.state.coachId} />
+          <div className="clearfix"></div>
         </div>
         ) : 'Loading program info ...'}
         <div className ='athletes_list'>
@@ -140,16 +141,14 @@ class Program extends Component {
 	              <List>
 	                {this.state.athletesList.map(user => (
 	                  <ListItem key={user.id}>
-
                       <UserInfo user_id={user.id} />
-	                  
-                    	<div className="user_prog_btn_group">
-			                  <div className="prog-btn approve-btn">
+                      <div className="user_prog_btn_group">
+			                  <button className="prog-btn approve-btn">
 									    		Accept
-			    							</div>
-			    							<div className="prog-btn decline-btn">
+			    							</button>
+			    							<button className="prog-btn decline-btn">
 			    								Decline
-			    							</div>			    					
+			    							</button>			    					
                     	</div>
 
 	                  </ListItem>

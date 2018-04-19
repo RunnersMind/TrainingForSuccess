@@ -76,6 +76,8 @@ class ProgramForm extends Component {
         validation_msg: ""
       });
 
+    window.location.pathname='/user';
+
   }
 
   render() {

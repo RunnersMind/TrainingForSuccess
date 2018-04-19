@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Link } from 'react-router-dom';
 import dates from "../../utils/dates";
 
 import "./ProgramInfo.css";
@@ -8,7 +8,11 @@ import "./ProgramInfo.css";
 const ProgramInfo = (props) =>{
   return (
   	<div className='program_data'>
-      <h1> {props.programName} </h1>
+  		{props.programId ?(
+	      <h4> <Link to={ "/program/" + props.programId } > {props.programName} </Link></h4>
+  		) : (
+      	<h1> {props.programName} </h1>  		
+  		)}
       <div className="program_descr">
       	{props.programDescr}
       </div>

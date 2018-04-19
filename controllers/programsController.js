@@ -17,9 +17,42 @@ module.exports = {
     });
   },
 
+  //get programs, given user subscribed for
   findByUser: function(req, res) {
     var user_id;
-console.log("Could we just use the user" + req.user.id);
+    if( req.params.id ){
+      user_id = req.params.id;
+    } else if( req.user ){
+      user_id = req.user.id;
+    } else {
+      res.redirect('/');
+    }
+    
+    db.UserProgram.findAll({
+      where: [{ userId: user_id  }]
+    })
+    .then( data => {
+      let promises = [];
+      let programs = [];
+      data.forEach(function(user_prog){
+        promises.push( 
+          db.Program.findById( user_prog.programId )
+            .then( program => programs.push(program),
+            err=> res.status(422).json({}) ));
+      });
+      Promise.all( promises ).then( ()=>{
+        res.json({programs});
+      });
+    }, error => {
+      res.status(422).json({});
+    });
+
+  },
+
+  //get programs created by given user
+  findByCoach: function(req, res) {
+    var user_id;
+    console.log("Getting programs created by user(coach) " + req.user.id);
     if( req.params.id ){
       user_id = req.params.id;
     } else if( req.user ){
@@ -36,7 +69,7 @@ console.log("Could we just use the user" + req.user.id);
       ]}
     }).then( coach_programs => {
 
-      if( req.user && req.user.id == user_id ){
+      if( req.user.id == user_id ){
         res.json({
           rights: 'canEdit',
           programs: coach_programs
@@ -49,7 +82,7 @@ console.log("Could we just use the user" + req.user.id);
         });
       }
     }, error => {
-      console.log('findByUserh_'+ error);
+      console.log('findByCoach_'+ error);
       res.status(422).json(error);
     });   
   },

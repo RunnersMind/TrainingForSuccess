@@ -6,6 +6,12 @@
     margin-top: 10px;
 }
 
+.clearfix::after {
+    content: "";
+    clear: both;
+    /*display: table;*/
+}
+
 .large-avatar-ico {
     font-size: 40px;
     color: grey;

@@ -22,6 +22,19 @@ module.exports = function(sequelize, Sequelize) {
             allowNull: true
         }
     });
+
+    // UserProgram.associate = function(models) {
+    //     UserProgram.belongsTo(models.Program, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    //     UserProgram.belongsTo(models.User, { 
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
   
     return UserProgram;
 };
