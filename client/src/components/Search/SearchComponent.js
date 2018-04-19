@@ -18,16 +18,7 @@ class SearchComponent extends Component{
             <div className="container-fluid"> 
                     <h1 className="display-5 text-center mt-5">Find training in your area...</h1>      
                     <SearchMap onStateClick={this.onStateClick} />
-                <div className = "searchPosition">Search by Coach, Program, or Zip Code
-                    <Form>
-                        <FormGroup row>
-                            <Col sm={6}></Col>
-                            <Col sm={6}>
-                                <SearchInput />
-                            </Col>
-                        </FormGroup>
-                    </Form>
-                </div>
+                    <SearchInput />
                 <SearchResults>
                     <SearchButton />
                 </SearchResults> 

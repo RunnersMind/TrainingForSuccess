@@ -41,7 +41,7 @@ class SearchMap extends Component {
   handleSubmitClick = () => {
     if (this.state.selected ){
       console.log('Search for' + this.state.selected);
-      API.getSearchResults('State', this.state.selected)
+      API.getSearchResults('Please choose a filter', this.state.selected)
       .then(res=>{
         console.log(res.data);
       }, err=>{

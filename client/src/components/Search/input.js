@@ -9,7 +9,7 @@ export default class SearchDropdown extends React.Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false,
-      searchType:'Coach',
+      searchType:'Please choose a filter',
       searchText:''
     };
   }
