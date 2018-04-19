@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import "./Athlete.css";
+import "./UserInfo.css";
 
 import API from "../../utils/API";
 
-class Athlete extends Component {
+class UserInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,7 +35,7 @@ class Athlete extends Component {
 
   render() {
     return (
-			<div className="athlete">
+			<div className="user_info">
 		    {this.state.userLoaded ? (
 	      	<div className="user_avatar">
 	      		{this.state.userPicture ? (
@@ -45,12 +45,10 @@ class Athlete extends Component {
 	      		)}
 	      		<span>{this.state.userName} </span>
 	      	</div>
-	    		) : ( <div></div> )}
+	    		) : ''}
 	   	</div>
 	  );
 	}
 };
 
-export default Athlete;
-
-
+export default UserInfo;

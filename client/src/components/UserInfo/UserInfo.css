@@ -1,0 +1,28 @@
+.user_info {
+    display : block;
+    text-align: left;
+    max-width: 70%;
+    float:left;
+    margin-top: 10px;
+}
+
+.large-avatar-ico {
+    font-size: 40px;
+    color: grey;
+    /*color: #f06e64;*/
+}
+
+.user_avatar {
+    display: inline-block;
+    /*border            : 1px solid grey;*/
+    border-radius   : 12px;
+}
+.user_avatar img {
+    width           : 40px;
+    height          : 40px;
+    border-radius   : 18px;
+}
+.user_avatar span {
+    padding         : 10px;
+}
+

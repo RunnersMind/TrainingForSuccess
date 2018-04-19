@@ -23,7 +23,8 @@
 }
 
 .content {
-  margin-top:75px;
+  padding-top:66px;
+  /*padding-bottom: 20px;*/
   margin-bottom: 20px;
 }
 

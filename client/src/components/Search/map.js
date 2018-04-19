@@ -20,7 +20,7 @@ class SearchMap extends Component {
   }
 
   mapHandler = (event) => {
-    console.log(event.target.dataset.name);
+    // console.log(event.target.dataset.name);
     let state = event.target.dataset.name;
     let state_name = dictionary.getFullName(state);
     this.setState({
@@ -53,7 +53,6 @@ class SearchMap extends Component {
   render() {
     return (
       <div className="SearchMap m-5">
-       {/*<USAMap onClick={this.mapHandler} />*/}
        <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
        {this.state.selected ? (
          <div className='searchByState-msg'>Selected State:<span>{ this.state.selected_name }</span><Button onClick={this.handleSubmitClick}>Search</Button></div>

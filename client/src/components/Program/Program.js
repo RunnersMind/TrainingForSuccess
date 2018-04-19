@@ -6,16 +6,18 @@ import {
     AccordionItemTitle,
     AccordionItemBody,
 } from 'react-accessible-accordion';
-import 'react-accessible-accordion/dist/fancy-example.css';
 
 import { List, ListItem } from "../../components/List";
-import Athlete from './Athlete';
+
+import ProgramInfo from '../ProgramInfo';
+import UserInfo from '../UserInfo';
 
 import TrainingPlan from './TrainingPlan';
 
 import API from "../../utils/API";
 import dates from "../../utils/dates";
 
+import 'react-accessible-accordion/dist/fancy-example.css';
 import "./Program.css";
 
 class Program extends Component {
@@ -42,35 +44,51 @@ class Program extends Component {
       // modalIsOpen : false,
 
       msg : '',
-      loaded : false
+      loaded : false,
+
+      isAuthorised : false,
+      authId : 0,
 
     };
 
   };
 
-  // TO DO: check somewhere that API.getUserLoggedin() == coachId or is in Athletes list
-
   componentDidMount(){
-    console.log("*** Program Component ***");
-    this.getProgram(this.state.programId);
+    this.authUser();
   }
 
-  getCoach(id){
-  	API.getUserInfo(id)
-  		.then(res=>{
-  			this.setState({
-  				coachName : res.data.displayName,
-  				coachPicture : res.data.photo,
-  			});
-  		}, error =>{
-  			console.log('API.getUserInfo.error:', error);
-  	});
+  authUser(){
+    API.getUserLoggedin()
+      .then(res => {
+        if(res.data.id ) this.setState({ authId : res.data.id });
+        else return this.setState({ isAuthorised: false });
+
+        this.getProgram(this.state.programId);
+
+      }, err => {
+        window.location.pathname='/';
+        console.log(err)
+      }
+    );
   }
 
   getProgram(id){
-  		this.setState({ loaded: false });
+      this.setState({ loaded: false });
       API.getProgram(id)
         .then(res => {
+          if( this.state.authId === res.data.program.coachId ){
+            this.setState({ isAuthorised:true });
+          }
+          else {
+            let in_list  = 0;
+            let athletes = res.data.program.Users;
+            for(let i=0; i < athletes.length; i++){
+              if(athletes[i].id === this.state.authId)
+                in_list++;
+            }
+            if( in_list ) this.setState({ isAuthorised:true });
+            else window.location.pathname='/';
+          }
           console.log('Program.js: getProgram: ',res.data.program);
           this.setState({ 
             // program: res.data.program,
@@ -85,7 +103,7 @@ class Program extends Component {
             calStartDate : dates.format_for_calendar(res.data.program.programStartDate),
             calEndDate 	 : dates.format_for_calendar(res.data.program.programEndDate),
           });
-          this.getCoach(this.state.coachId);
+
           this.setState({ loaded: true });
           console.log("GOT THE PROGRAM");
         },err => {
@@ -97,22 +115,20 @@ class Program extends Component {
   render() {
     return (
       <div className='container'>
-      	<div className='program_data'>
-          <h1> {this.state.programName} </h1>
-	        <div className="program_descr">
-	        	{this.state.programDescr}
-	        </div>
-	        <div className="program_dates">
-	        	Start Date: {dates.format_for_display(this.state.startDate)}
-	        	<br/>
-	        	End Date : {dates.format_for_display(this.state.endDate)}
-	        </div>
-	      	<div className="user_avatar">
-	      		<img alt="user" src={this.state.coachPicture}></img>
-	      		<span>Coach: {this.state.coachName} </span>
-	      	</div>
-	      </div>
-	      <br/>
+      {this.state.isAuthorised ?( 
+        <div>
+        {this.state.loaded ?(
+        <div>
+          <ProgramInfo 
+            programName={this.state.programName}
+            programDescr={this.state.programDescr}
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
+          />
+          <UserInfo user_id={this.state.coachId} />
+        </div>
+        ) : 'Loading program info ...'}
+        <div className ='athletes_list'>
         <Accordion>
       		<AccordionItem>
           	<AccordionItemTitle>
@@ -124,17 +140,18 @@ class Program extends Component {
 	              <List>
 	                {this.state.athletesList.map(user => (
 	                  <ListItem key={user.id}>
-	                  	<Athlete 
-	                    	user_id={user.id}
-	                  	/>
-	                  	<div className="user_prog_btn_group">
+
+                      <UserInfo user_id={user.id} />
+	                  
+                    	<div className="user_prog_btn_group">
 			                  <div className="prog-btn approve-btn">
 									    		Accept
 			    							</div>
 			    							<div className="prog-btn decline-btn">
 			    								Decline
-			    							</div>
-			    						</div>
+			    							</div>			    					
+                    	</div>
+
 	                  </ListItem>
 	                ))}
 	              </List>
@@ -146,6 +163,7 @@ class Program extends Component {
             </AccordionItemBody>
 		      </AccordionItem>
 		    </Accordion>
+        </div>
       	<br/>
       	{this.state.loaded 
       		?(
@@ -157,9 +175,12 @@ class Program extends Component {
 			    		can_edit={this.state.canEdit}
 			    		training_plan={this.state.trainingPlan}
 		        />)
-      		: 'Loading....' 
+      		: 'Loading Training Plan ...' 
       	}
-      </div>
+        </div>
+      ) : <h1>Unauthorized</h1>}
+    </div>
+
 	)}
 };
 

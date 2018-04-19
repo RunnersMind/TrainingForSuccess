@@ -12,8 +12,9 @@ import './Navbar.css';
 class NavbarGoogle extends Component {
 
   state = {
-    userName: '',
-    isLoggedIn: false
+    userName    : '',
+    userIsCoach : false,
+    isLoggedIn  : false,
   };
 
   componentDidMount(){
@@ -21,12 +22,17 @@ class NavbarGoogle extends Component {
       .then(res => {
         // console.log(res.data);
         if(res.data){
-          this.setState({ userName: res.data.displayName });
-          this.setState({ isLoggedIn: true });
+          this.setState({ 
+            userName: res.data.displayName,
+            userIsCoach: res.data.userType==='coach' ? true : false,
+            isLoggedIn: true
+          });
         }
         else{
-          this.setState({ userName: "" });
-          this.setState({ isLoggedIn: false });          
+          this.setState({ 
+            userName: "",
+            isLoggedIn: false
+          });
         }
       }, err => console.log(err)
     );
@@ -35,6 +41,7 @@ class NavbarGoogle extends Component {
   render() {
 
     const isLoggedIn = this.state.isLoggedIn;
+    const isCoach = this.state.userIsCoach;
     // console.log(isLoggedIn);
     return (
 
@@ -51,11 +58,17 @@ class NavbarGoogle extends Component {
             </NavItem>
 
             {isLoggedIn
-            ?(<div><NavItem>
-                <Link className="action-group text-uppercase pl-2 pr-2" to='/user'>PROFILE</Link>
-              </NavItem></div>)
-            : ''
-            }
+            ?(
+              <NavItem>
+                  <Link className="action-group text-uppercase pl-2 pr-2" to='/user'>PROFILE</Link>
+              </NavItem>
+            ) : ''}
+            {isCoach ? (
+              <NavItem>
+                <Link className="action-group text-uppercase pl-2 pr-2" to='/add-program'>ADD NEW PROGRAM</Link>
+              </NavItem>
+            ) : ''}
+
           </Nav>
           <Nav>
             {isLoggedIn ? (
