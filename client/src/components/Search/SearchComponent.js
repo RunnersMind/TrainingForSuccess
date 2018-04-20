@@ -28,9 +28,9 @@ class SearchComponent extends Component{
                         </FormGroup>
                     </Form>
                 </div>
-                <SearchResults>
-                    <SearchButton />
-                </SearchResults>  */}
+                {/* <SearchResults> */}
+                    {/* <SearchButton /> */}
+                {/* </SearchResults>  */}
             </div>   
         );
     }

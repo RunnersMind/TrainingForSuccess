@@ -9,16 +9,17 @@ h1 {
   margin-right: auto;
   margin-left: auto;
   width: 80%;
-  background-color: #ee6859;
-  opacity: .6;
+  background-color: #ff867a ;
+
 }
 .rbc-event.rbc-selected{
   background-color: #ee5f4f;
-  opacity: .3; 
+
 }
 .rbc-today {
   background-color: #ff867a;
-  opacity: .2;
+  opacity: .1;
+
 }
 .rbc-btn-group {
   background-image: linear-gradient(to right, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
