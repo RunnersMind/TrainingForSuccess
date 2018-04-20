@@ -44,6 +44,10 @@ export default {
     return axios.get("/api/user/info/" + id);
   },
 
+  updateUser: function(id) {
+    return axios.put("/api/user/" + id);
+  },
+
   // ======== Workouts ===============
   getCoachWorkouts(coach_id){
     return axios.get("/api/workouts/coach/" + coach_id);

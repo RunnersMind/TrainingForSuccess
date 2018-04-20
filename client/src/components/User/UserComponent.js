@@ -35,7 +35,8 @@ class User extends Component {
 
 componentDidMount() {
   this.loadUser();
-  // this.test();
+  //testing updating user
+  this.updateUser(this.state.id);
 }
 
 loadUser = () => {
@@ -44,7 +45,13 @@ loadUser = () => {
   if (this.state.urlId) {
     API.getUser(this.state.urlId)
       .then(res => {
+
+        //let's check for edit rights while we're here
+        var tempUser = res.data.id;
+        this.setEditRights(tempUser);
+
         this.setState({ id: res.data.id, photo: res.data.photo, name: res.data.displayName, userType: res.data.usertype, email: res.data.email, location: res.data.country })
+
       })
       .catch(err => console.log(err));
   }
@@ -53,7 +60,12 @@ loadUser = () => {
   else {
     API.getUserLoggedin()
     .then(res => {
+
       this.setState({ id: res.data.id, photo: res.data.photo, name: res.data.displayName, userType: res.data.usertype, email: res.data.email, location: res.data.country })
+
+            //let's check for edit rights while we're here
+            var tempUser = res.data.id;
+            this.setEditRights(tempUser);
     })
     .catch(err => {
       window.location.pathname='/';
@@ -61,17 +73,31 @@ loadUser = () => {
     });
   }
 
-};
 
-  // setEditRights = () => {
-  //       // also set the edit rights while we're here
-  //     if(res.data.id === this.state.id){
-  //       this.setState({isEditable: true});
-  //     }
-  //     else{
-  //       console.log("No edit rights");
-  //     }
-  // }
+}
+
+setEditRights = (tempUser) => {
+
+    if(tempUser === this.state.id){
+      this.setState({isEditable: true});
+    }
+    else{
+      console.log("No edit rights");
+    }
+}
+
+updateUser = userToUpdate => {
+  API.updateUser(userToUpdate)
+      .then(res => {
+        console.log("UPDATED USER");
+        console.log(res.data.displayName);
+        this.setState({ result: "success" })
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ result: "error"});
+      });
+}
 
   render() {
     
@@ -80,38 +106,37 @@ loadUser = () => {
     return (
       //primary wrapper
       <Container fluid className="profile">
-        {/* <div>
-          <p>User id for testing: {this.state.id}</p>
-        </div> */}
-      <div className="profile-widget bg-light">
-      <div id="athlete-page">
-        <div id="left-column">
-            <div id="photo"><img className="rounded-circle" alt="user" src={this.state.photo.split('=')[0] + '=200' }></img></div>
+
+        <div className="profile-widget bg-light">
+          <div id="athlete-page">
+            <div id="left-column">
+              
+              <div id="photo">
+                <img className="rounded-circle" alt="user" src={this.state.photo.split('=')[0] + '=200' }></img></div>
+              </div>
+              
+              <div className="Info">
+                <h2 className="my-name my-3">
+                  <span>{this.state.name}</span>
+                </h2>
+                <p>
+                  <i className="icon far fa-envelope mr-2"></i>
+                  <span> {this.state.email}</span>
+                </p>
+                <p>
+                  <i className="icon fas fa-map-marker-alt mr-2"></i>
+                  <span> {this.state.location}</span>
+                </p>
+              </div>
+
+              <div className="edit-profile pb-3"> 
+                {isEditable ? (<small><i className="fas fa-pencil-alt mr-2"></i><a href="#">edit profile</a></small>) : (<span></span>)}
+              </div>
+          </div>
         </div>
-    <div className="Info">
-        <h2 className="my-name my-3">
-            <span>{this.state.name}</span>
-        </h2>
-        <p>
-            <i className="icon far fa-envelope mr-2"></i>
-            <span> {this.state.email}</span>
-        </p>
-        <p>
-            <i className="icon fas fa-map-marker-alt mr-2"></i>
-            <span> {this.state.location}</span>
-        </p>
-    </div>
-    <div className="edit-profile pb-3"> 
-        {isEditable ? (<small><i className="fas fa-pencil-alt mr-2"></i><a href="#">edit profile</a></small>) : (<span></span>)}
-
-            </div>
 
 
-    </div>
-    </div>
-
-
-    </Container>
+      </Container>
 
 
 
