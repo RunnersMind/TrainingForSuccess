@@ -35,8 +35,6 @@ class User extends Component {
 
 componentDidMount() {
   this.loadUser();
-  //testing updating user
-  this.updateUser(this.state.id);
 }
 
 loadUser = () => {
@@ -86,11 +84,16 @@ setEditRights = (tempUser) => {
     }
 }
 
-updateUser = userToUpdate => {
-  API.updateUser(userToUpdate)
+  // //testing updating user
+  // var testID = 1;
+  // var testData = {
+  //   displayName: "FUCKING HELL"
+  // };
+  // this.updateUser(testID,testData);
+updateUser = (userToUpdate, data) => {
+
+  API.updateUser(userToUpdate,data)
       .then(res => {
-        console.log("UPDATED USER");
-        console.log(res.data.displayName);
         this.setState({ result: "success" })
       })
       .catch(err => {

@@ -44,8 +44,8 @@ export default {
     return axios.get("/api/user/info/" + id);
   },
 
-  updateUser: function(id) {
-    return axios.put("/api/user/" + id);
+  updateUser: function(id, userData) {
+    return axios.put("/api/user/" + id, userData);
   },
 
   // ======== Workouts ===============
