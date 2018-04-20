@@ -5,45 +5,73 @@ import "./User.css";
 
 
 class User extends Component {
-  state = {
-    id: "",
-    //this default needs to get replaced with a local file
-    photo: "https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png",
-    name: "",
-    userType: "",
-    email: "",
-    //this default is set to true when the user viewing is the same as the user whose page it is
-    isEditable: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      //this is the ID of the user being rendered
+      id: "",
+      urlId: props.user_id,
+      //this default should probably be replaced with a local file
+      photo: "https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png",
+      name: "",
+      userType: "",
+      email: "",
+      //this default is set to true when the user viewing is the same as the user whose page it is
+      isEditable: false
+    }
+  }
+  // state = {
+  //   id: "",
+  //   test_user_id: props.user_id,
+  //   //this default needs to get replaced with a local file
+  //   photo: "https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png",
+  //   name: "",
+  //   userType: "",
+  //   email: "",
+  //   //this default is set to true when the user viewing is the same as the user whose page it is
+  //   isEditable: false
+  // };
 
 
 componentDidMount() {
   this.loadUser();
-  this.getUserLoggedin();
+  // this.test();
 }
 
 loadUser = () => {
-  API.getUser()
-    .then(res => {
-        this.setState({ id: res.data.id, photo: res.data.photo, name: res.data.displayName, email: res.data.email, location: res.data.country })
-      })
-    .catch(err => console.log(err));
 
+  //let's see if there's a URL parameter in the request and load that as the user first
+  if (this.state.urlId) {
+    API.getUser(this.state.urlId)
+      .then(res => {
+        this.setState({ id: res.data.id, photo: res.data.photo, name: res.data.displayName, userType: res.data.usertype, email: res.data.email, location: res.data.country })
+      })
+      .catch(err => console.log(err));
   }
 
-  getUserLoggedin = () => {
+  //if there isn't a url parameter, then it's probably the user logging in, so let's check who's logged in instead
+  else {
     API.getUserLoggedin()
-      .then(res => {
-        //if the user we loaded is the same as the user that's logged in, then show the edit link
-        if(res.data.id === this.state.id){
-          this.setState({isEditable: true});
-        }
-        else{
-          console.log("No edit rights");
-        }
-      }, err => console.log(err)
-    );
-  };
+    .then(res => {
+      this.setState({ id: res.data.id, photo: res.data.photo, name: res.data.displayName, userType: res.data.usertype, email: res.data.email, location: res.data.country })
+    })
+    .catch(err => {
+      window.location.pathname='/';
+      console.log("User is trying to hit /user without being logged in" + err);
+    });
+  }
+
+};
+
+  // setEditRights = () => {
+  //       // also set the edit rights while we're here
+  //     if(res.data.id === this.state.id){
+  //       this.setState({isEditable: true});
+  //     }
+  //     else{
+  //       console.log("No edit rights");
+  //     }
+  // }
 
   render() {
     
@@ -52,9 +80,6 @@ loadUser = () => {
     return (
       //primary wrapper
       <Container fluid className="profile bg-light">
-        {/* <div>
-          <p>User id for testing: {this.state.id}</p>
-        </div> */}
       <div id="athlete-page">
         <div id="left-column">
             <div id="photo"><img alt="user" src={this.state.photo.split('=')[0] + '=200' }></img></div>

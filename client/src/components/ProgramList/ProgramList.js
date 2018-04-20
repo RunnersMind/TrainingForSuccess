@@ -41,7 +41,7 @@ class ProgramListComp extends Component {
 
     }).catch(err => {
       console.log(err);
-      window.location.pathname = '/';
+      // window.location.pathname = '/';
     });
   }
 
