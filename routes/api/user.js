@@ -11,7 +11,9 @@ router.route("/")
 router.route("/:id")
   .get(usersController.findById);
 
+// router.route("/edit/:id")
+
 router.route("/info/:id")
-	.get(usersController.findInfoById);
+  .get(usersController.findInfoById);
 
 module.exports = router;

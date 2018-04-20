@@ -4,15 +4,15 @@ import UserComponent from "../components/User";
 import ProgramListComp from "../components/ProgramList";
 
 
-const User = () => {
+const User = (props) => {
 return (
 <Container fluid className="mt-5">
 <Row>
   <Col sm="6">
-  <UserComponent />
+  <UserComponent user_id={props.match.params.id}/>
   </Col>
   <Col sm="6">
-  <ProgramListComp />
+  {/* <ProgramListComp /> */}
   </Col>
 </Row>
 </Container>
