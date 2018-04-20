@@ -1,6 +1,10 @@
 .athletes_list {
 	display: block;
+<<<<<<< Updated upstream
 	margin-top: 20px;
+=======
+	margin-top: 6rem;
+>>>>>>> Stashed changes
 }
 
 .user_prog_btn_group {
@@ -30,10 +34,7 @@
 }
 
 .accordion__title {
-	background-image: -webkit-linear-gradient(left, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
-	background-image: -o-linear-gradient(left, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
-	background-image: linear-gradient(to right, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
-
+	font-family: Nunito, sans-serif;
 }
 
 .clearfix::after {

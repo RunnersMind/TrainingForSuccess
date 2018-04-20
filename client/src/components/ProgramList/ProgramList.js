@@ -80,10 +80,11 @@ class ProgramListComp extends Component {
   render() {
       return (
         //primary wrapper
-        <Container fluid className="program-list my-5" >
+        <Container fluid className="program-list" >
           <div>
               <h2 className="text-center">PROGRAMS</h2>
               <hr/>
+<<<<<<< Updated upstream
               <div>
                 {this.state.programListAthlete.length ? (
                   <div><h5>Subscribed:</h5>
@@ -126,6 +127,33 @@ class ProgramListComp extends Component {
                   </div>
                 ) : ('')}
               </div>
+=======
+              {this.state.programListCoach.length ? (
+                <List>
+                  {this.state.programListCoach.map(program=>(
+                    <ListItem key={program.id}>
+                      <div className='program_data'>
+                        <h2> <Link className="program-link" to={ "/program/" + program.id } > {program.programName} </Link></h2>
+                        <div className="program_descr">
+                          {program.programDescription}
+                        </div>
+                        <div className="program_dates">
+                          Start Date: {dates.format_for_display(program.programStartDate)}
+                          <br/>
+                          End Date : {dates.format_for_display(program.programEndDate)}
+                        </div>
+                        <div className="user_avatar">
+                          <img alt="user" src={this.state.coachPicture}></img>
+                          <span>Coach: {this.state.coachName} </span>
+                        </div>
+                      </div>
+                    </ListItem>
+                  ))}
+                </List>
+              ) : (
+                <h3>No Results to Display</h3>
+              )}
+>>>>>>> Stashed changes
           </div>
         </Container>
       )

@@ -54,7 +54,7 @@ class NavbarGoogle extends Component {
               </a>
             </div>
             <NavItem>
-              <Link className="action-group text-uppercase pl-2 pr-2" to='/'>SEARCH</Link>
+              <Link className="action-group text-uppercase pl-2 pr-2" to='/'><i class="fas fa-search"></i></Link>
             </NavItem>
 
             {isLoggedIn

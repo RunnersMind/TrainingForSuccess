@@ -25,7 +25,7 @@ const modalCustomStyles = {
     bottom                : 'auto',
     zIndex                : '15',
     minWidth              : '40vw',
-    backgroundColor       : 'rgb(200,200,200)'
+    backgroundColor       : 'white'
   },
   overlay : {
     zIndex          : '12',

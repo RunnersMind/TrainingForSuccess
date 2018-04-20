@@ -12,15 +12,13 @@ div.greeting {
   color: white;
 }
 
-.nav-item:hover {
-  padding-bottom: .1rem;
-  border-bottom: .1rem solid white;
+.nav-item a {
+  padding-bottom: .2rem;
   color: white;
-  text-decoration: none;
-  cursor: pointer;
 }
 
-.nav-item a, a:hover {
-  color: white;
+.nav-item a:hover {
+  border-bottom: .1rem solid white;
   text-decoration: none;
+  cursor: pointer;
 }
