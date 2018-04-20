@@ -65,7 +65,7 @@ class NavbarGoogle extends Component {
             ) : ''}
             {isCoach ? (
               <NavItem>
-                <Link className="action-group text-uppercase pl-2 pr-2" to='/add-program'>ADD NEW PROGRAM</Link>
+                <Link className="action-group text-uppercase pl-2 pr-2" to='/add-program'>ADD PROGRAM</Link>
               </NavItem>
             ) : ''}
 
