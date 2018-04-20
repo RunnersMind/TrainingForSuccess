@@ -6,7 +6,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 
 import "./ProgramForm.css";
-import { FormText, Label, FormGroup, Form, Input } from "reactstrap";
+import { Label, FormGroup, Form, Input } from "reactstrap";
 
 class ProgramForm extends Component {
   constructor(props) {

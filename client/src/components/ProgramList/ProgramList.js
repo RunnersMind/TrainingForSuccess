@@ -44,7 +44,7 @@ class ProgramListComp extends Component {
         searchedUserId: searched,
       });
       console.log("logged user: ", res.data.id);
-      if( res.data && (res.data.id === parseInt(this.state.searchedUserId)) ){
+      if( res.data && (res.data.id === parseInt(this.state.searchedUserId, 10)) ){
         this.getSubscribedPrograms();
       }
       this.getCoachPrograms();

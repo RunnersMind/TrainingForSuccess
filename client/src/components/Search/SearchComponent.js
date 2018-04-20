@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import SearchButton from "./button.js";
 import SearchInput from "./input.js";
 import SearchMap from "./map.js";
 import SearchResults from "./results.js";
 import "./search.css";
-import API from "../../utils/API";
 
 
 
