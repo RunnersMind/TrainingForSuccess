@@ -22,8 +22,25 @@ Please take a look at Runality [here](https://runality.herokuapp.com/).
 ## Built With
 
 ### Front-end Technologies
+*   React.js, React Dom & React Router
+*   React Big Calendar & USA Map
+*   Axios
+*   Babel
+*   Bootstrap
+*   Concurrently
+*   Font-awesome
+*   Moment
+
 
 ### Back-end Technologies
+*    Body-parser
+*    Cookie-parser
+*    Express
+*    Morgan
+*    MySQL
+*    Passport
+*    Google Oauth20
+*    Sequelize/ Sequelize CLI
 
 ## Future Features
 * Bring in external Api's from Strava, Google and Weather

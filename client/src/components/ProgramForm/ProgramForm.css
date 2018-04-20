@@ -56,6 +56,10 @@
     border: 1px solid #ee6859;
     color: #fff;
 }
+
+.DateInput_input{
+    font-family: 'Nunito', sans-serif;
+}
 .DateInput_input__focused {
     outline: 0;
     background: #fff;
