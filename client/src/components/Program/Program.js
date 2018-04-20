@@ -118,8 +118,8 @@ class Program extends Component {
       {this.state.isAuthorised ?( 
         <div>
         {this.state.loaded ?(
-        <div>
-          <ProgramInfo 
+        <div className="my-5">
+          <ProgramInfo
             programName={this.state.programName}
             programDescr={this.state.programDescr}
             startDate={this.state.startDate}
@@ -133,7 +133,7 @@ class Program extends Component {
         <Accordion>
       		<AccordionItem>
           	<AccordionItemTitle>
-              <h5> Athletes </h5>
+              <h5> Athletes <i class="fas fa-angle-down"></i> </h5>
           	</AccordionItemTitle>
             <AccordionItemBody>
 	            {this.state.athletesList.length ? (

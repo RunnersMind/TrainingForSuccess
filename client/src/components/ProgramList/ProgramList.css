@@ -1,8 +1,22 @@
 .program-list {
+    margin-top: 5rem;
     width: 30rem;
     text-align: left;
   }
 
 h2 {
   font-family: 'Titillium Web', sans-serif;
+}
+
+.list-overflow-container li a {
+  color: #ee6859;
+}
+
+.list-overflow-container li a:hover {
+  color: #ff867a;
+  text-decoration: underline;
+}
+
+.list-group-item{
+  margin-left: 5rem;
 }

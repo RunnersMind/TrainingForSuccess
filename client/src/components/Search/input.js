@@ -50,6 +50,7 @@ export default class SearchDropdown extends React.Component {
   render() {
     return (
       <div>
+        <InputGroup name="searchText" >
         <ButtonDropdown name="searchType"
           isOpen={this.state.dropdownOpen}
           toggle={this.toggle}
@@ -64,7 +65,6 @@ export default class SearchDropdown extends React.Component {
               <DropdownItem value='Zip Code' onClick={this.handleItemOnClick}>Zip Code</DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>
-        <InputGroup name="searchText" >
           <Input type="search" placeholder="search text..." onChange={this.handleOnChange}/>
           <InputGroupAddon addonType="append"><Button onClick={this.handleSubmitClick}>Search</Button></InputGroupAddon>
         </InputGroup>
