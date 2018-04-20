@@ -30,9 +30,13 @@ module.exports = {
             attributes: ATTR_user,
             include: [{
                 model:db.Program,
-                where: { programDescription: {[Op.like]:"%" + req.params.text + "%"}}
+                where:{[Op.and]: [
+                    { programDescription: {[Op.like]:"%" + req.params.text + "%"}},
+                    { programStartDate: {[Op.gt]: new Date()}},
+                    { deleteFlag: false}
+                ]},
             }],
-            where:{ userType: 'Coach'}               
+            where:{ userType: 'Coach'}             
         })
         .then(Programs => {
             console.log(Programs);

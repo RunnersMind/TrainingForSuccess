@@ -12,21 +12,22 @@ class SearchComponent extends Component{
     constructor(props){
         super(props);
         this.state = {
-            child: null
+            coachList: [],
         }
+    this.handleSearchResults = this.handleSearchResults.bind(this);  
     }
 
-    setchildValue = (data) => {
-        this.setState({child:data})
+    handleSearchResults = (data) => {
+        this.setState({coachList:data})
     }
-      
+    
     render() {
         return (            
             <div className="container-fluid"> 
                 <h1 className="display-5 text-center mt-5">Find training in your area...</h1>      
-                <SearchMap onStateClick={this.onStateClick} />
-                <SearchInput />
-                <SearchResults action={this.setchildValue} />
+                <SearchMap onStateClick={this.handleSearchResults} />
+                <SearchInput action={this.handleSearchResults} />
+                <SearchResults coachList={this.state.coachList} />
             </div>   
         );
     }

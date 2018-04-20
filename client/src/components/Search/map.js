@@ -13,6 +13,7 @@ class SearchMap extends Component {
     this.state = {
       selected : 'CA',
       selected_name : 'California',
+      stateClick : props.onStateClick
 
     };
     this.mapHandler = this.mapHandler.bind(this);
@@ -41,9 +42,10 @@ class SearchMap extends Component {
   handleSubmitClick = () => {
     if (this.state.selected ){
       console.log('Search for' + this.state.selected);
-      API.getSearchResults('Please choose a filter', this.state.selected)
+      API.getSearchResults('State', this.state.selected)
       .then(res=>{
         console.log(res.data);
+        this.props.onStateClick(res.data);
       }, err=>{
         console.log(err);
       });

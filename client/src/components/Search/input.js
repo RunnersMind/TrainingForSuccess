@@ -1,6 +1,6 @@
 import React from "react";
 import { InputGroup, InputGroupAddon, Input, Button } from "reactstrap";
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Container, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import API from "../../utils/API";
 
 export default class SearchDropdown extends React.Component {
@@ -40,8 +40,8 @@ export default class SearchDropdown extends React.Component {
       API.getSearchResults(this.state.searchType, this.state.searchText)
       .then(res=>{
         console.log(res.data);
-        this.props.action(event.target.value)
-      }, err=>{
+        this.props.action(res.data);
+        }, err=>{
         console.log(err);
       });
     }
@@ -50,7 +50,7 @@ export default class SearchDropdown extends React.Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <InputGroup name="searchText" >
         <ButtonDropdown name="searchType"
           isOpen={this.state.dropdownOpen}
@@ -67,9 +67,9 @@ export default class SearchDropdown extends React.Component {
           </DropdownMenu>
         </ButtonDropdown>
           <Input type="search" placeholder="search text..." onChange={this.handleOnChange}/>
-          <InputGroupAddon addonType="append"><Button onClick={this.handleSubmitClick}>Data</Button></InputGroupAddon>
+          <InputGroupAddon addonType="append"><Button onClick={this.handleSubmitClick}>Search</Button></InputGroupAddon>
         </InputGroup>
-      </div>
+      </Container>
     );
   }
 }
