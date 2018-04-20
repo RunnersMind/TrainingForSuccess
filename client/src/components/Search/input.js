@@ -40,6 +40,7 @@ export default class SearchDropdown extends React.Component {
       API.getSearchResults(this.state.searchType, this.state.searchText)
       .then(res=>{
         console.log(res.data);
+        props.action(event.target.value)
       }, err=>{
         console.log(err);
       });
@@ -66,7 +67,7 @@ export default class SearchDropdown extends React.Component {
           </DropdownMenu>
         </ButtonDropdown>
           <Input type="search" placeholder="search text..." onChange={this.handleOnChange}/>
-          <InputGroupAddon addonType="append"><Button onClick={this.handleSubmitClick}>Search</Button></InputGroupAddon>
+          <InputGroupAddon addonType="append"><Button onClick={this.handleSubmitClick}>Data</Button></InputGroupAddon>
         </InputGroup>
       </div>
     );
