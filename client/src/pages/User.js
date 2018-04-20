@@ -12,7 +12,7 @@ return (
   <UserComponent user_id={props.match.params.id}/>
   </Col>
   <Col sm="6">
-  {/* <ProgramListComp /> */}
+  <ProgramListComp />
   </Col>
 </Row>
 </Container>
