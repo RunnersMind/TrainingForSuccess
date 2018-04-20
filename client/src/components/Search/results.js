@@ -1,10 +1,14 @@
 import React from "react";
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
-// const SearchResults = (props) => {
+const SearchResults = (props) => {
 
-//   render() 
-//     return (
+    return (
+    	<div></div>
+    	);
+}
+export default SearchResults;
+
 //       <Table>
 //         <thead>
 //           <tr>
@@ -35,8 +39,6 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 //           </tr>
 //         </tbody>
 //       </Table>
-//     );
 //   }
-
 
 

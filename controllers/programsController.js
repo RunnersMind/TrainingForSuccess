@@ -37,7 +37,12 @@ module.exports = {
       data.forEach(function(user_prog){
         promises.push( 
           db.Program.findById( user_prog.programId )
-            .then( program => programs.push(program),
+            .then( program => {
+              programs.push({
+                program  : program,
+                approved : user_prog.approved
+              });
+            },
             err=> res.status(422).json({}) ));
       });
       Promise.all( promises ).then( ()=>{
@@ -49,10 +54,9 @@ module.exports = {
 
   },
 
-  //get programs created by given user
+  //get programs created by given coach
   findByCoach: function(req, res) {
     var user_id;
-    console.log("Getting programs created by user(coach) " + req.user.id);
     if( req.params.id ){
       user_id = req.params.id;
     } else if( req.user ){
@@ -60,6 +64,7 @@ module.exports = {
     } else {
       res.redirect('/');
     }
+    console.log("Getting programs created by user(coach) " + user_id);
 
     db.Program.findAll({
       attributes: ATTR_program,
@@ -68,12 +73,26 @@ module.exports = {
         { coachId: user_id }
       ]}
     }).then( coach_programs => {
-
-      if( req.user.id == user_id ){
-        res.json({
-          rights: 'canEdit',
-          programs: coach_programs
-        });
+      if( req.isAuthenticated() ){
+        db.UserProgram.findAll({
+            attributes: ['approved', 'programId'],
+            where: {  userId: req.user.id }
+          }).then( subscr =>{
+            if(req.user.id == user_id){
+              res.json({
+                subscribed : subscr,
+                rights: 'canEdit',
+                programs: coach_programs
+              });
+            }
+            else{
+              res.json({
+                subscribed : subscr,
+                rights: 'canView',
+                programs: coach_programs
+              });
+            }
+          });
       }
       else {
         res.json({
@@ -81,6 +100,7 @@ module.exports = {
           programs: coach_programs
         });
       }
+      
     }, error => {
       console.log('findByCoach_'+ error);
       res.status(422).json(error);

@@ -1,7 +1,7 @@
 use runality_db;
 
 
-INSERT INTO `runality_db`.`users`
+INSERT INTO `Users`
 (`description`,
 `email`,
 `firstName`,
@@ -50,7 +50,7 @@ curdate(),
 curdate()
 );
 
-INSERT INTO `runality_db`.`users`
+INSERT INTO `Users`
 (`description`,
 `email`,
 `firstName`,
@@ -98,7 +98,7 @@ VALUES
 curdate(),
 curdate()
 );
-INSERT INTO `runality_db`.`users`
+INSERT INTO `Users`
 (`description`,
 `email`,
 `firstName`,
@@ -146,7 +146,7 @@ VALUES
 curdate(),
 curdate()
 );
-INSERT INTO `runality_db`.`users`
+INSERT INTO `Users`
 (`description`,
 `email`,
 `firstName`,
@@ -195,7 +195,7 @@ curdate(),
 curdate()
 );
 
-INSERT INTO `runality_db`.`users`
+INSERT INTO `Users`
 (`description`,
 `email`,
 `firstName`,

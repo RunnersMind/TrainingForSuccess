@@ -55,7 +55,7 @@ class SearchMap extends Component {
       <div className="SearchMap m-5">
        <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
        {this.state.selected ? (
-         <div className='searchByState-msg mt-2'>Selected State:<span>{ this.state.selected_name }</span><Button className="btn-sm" onClick={this.handleSubmitClick}><i class="fas fa-search"></i></Button></div>
+         <div className='searchByState-msg mt-2'>Selected State:<span>{ this.state.selected_name }</span><Button className="btn-sm" onClick={this.handleSubmitClick}><i className="fas fa-search"></i></Button></div>
         ) : ''}
       </div>
     );

@@ -133,7 +133,7 @@ class Program extends Component {
         <Accordion>
       		<AccordionItem>
           	<AccordionItemTitle>
-              <h5> Athletes <i class="fas fa-angle-down"></i> </h5>
+              <h5> Athletes <i className="fas fa-angle-down"></i> </h5>
           	</AccordionItemTitle>
             <AccordionItemBody>
 	            {this.state.athletesList.length ? (

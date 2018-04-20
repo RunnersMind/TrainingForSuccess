@@ -40,7 +40,7 @@ export default class SearchDropdown extends React.Component {
       API.getSearchResults(this.state.searchType, this.state.searchText)
       .then(res=>{
         console.log(res.data);
-        props.action(event.target.value)
+        this.props.action(event.target.value)
       }, err=>{
         console.log(err);
       });

@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
-import { Container, Card, CardHeader, CardText } from "reactstrap";
+import { Container } from "reactstrap";
+// import { Container, Card, CardHeader, CardText } from "reactstrap";
 
 import { List, ListItem } from "../../components/List";
 import ProgramInfo from '../ProgramInfo';
 import UserInfo from '../UserInfo';
 
 import API from "../../utils/API";
-import dates from "../../utils/dates";
 
 import "./ProgramList.css";
 
@@ -16,53 +15,105 @@ class ProgramListComp extends Component {
     super(props);
     this.state = {
       
-      userId: "",
-      userType : "athlete",
+      loggedInUserId: 0,
+      loggedInuserType : "athlete",
+
+      searchedUserId : props.user_id,
 
       programListCoach : [],
-      programListAthlete : [],
+      coachListLoaded : false,
+
+      programListAthlete : [],//if on own profile page
+      athleteListLoaded : false,
 
     };
   }
-
   componentDidMount() {
       this.loadList();
   }
   
   loadList = () => {
-    API.getUser().then(res => {
+    // let s_user_id = this.state.searchedUserId;
+    // console.log('searched user: ', s_user_id);
+    API.getUserLoggedin().then(res => {
+      let searched = this.state.searchedUserId ;
+      if(!searched && res.data.id) searched = res.data.id;
       this.setState({ 
-        userID: res.data.id, 
-        userType: res.data.userType 
+        loggedInUserId: res.data.id, 
+        loggedInuserType: res.data.userType,
+        searchedUserId: searched,
       });
-
-      if( res.data.userType==='coach' ) this.getCoachPrograms();
-      this.getSubscribedPrograms();
-
+      console.log("logged user: ", res.data.id);
+      if( res.data && (res.data.id === parseInt(this.state.searchedUserId)) ){
+        this.getSubscribedPrograms();
+      }
+      this.getCoachPrograms();
     }).catch(err => {
+      //try show programs created by searched_user in any case.
+      this.getCoachPrograms();
       console.log(err);
-      // window.location.pathname = '/';
     });
   }
 
   getCoachPrograms(){
-    API.getCoachPrograms('')
-      .then(res=>{
-        // console.log('coaches prog:',res.data);
+    console.log("getCoachPrograms...");
+    //if no searchedUser, should return data for logged in user
+    API.getCoachPrograms(this.state.searchedUserId) 
+      .then( res=>{
+        if( res.data.rights === 'canEdit' ){
+          let programs = res.data.programs.map( prog_item => {
+            let prog = prog_item;
+            prog.approved = true;
+            return prog;
+          });
+          this.setState({
+             programListCoach : programs,
+             coachListLoaded : true,
+          });        
+          console.log('coaches owned prog:',this.state.programListCoach);
+          return;          
+        }
+        //not the owner, so check privileges
+        let programs = res.data.programs.map( prog_item => {
+
+          let prog = prog_item;
+          let subscrList = res.data.subscribed;
+          console.log("SUBSCR=",subscrList);
+          if( !subscrList ) {
+            prog.approved = false;
+            prog.subscribed = false;
+          }
+          else{
+            subscrList.forEach( subscr_item => {
+              if( subscr_item.programId === prog.id) {
+                prog.subscribed = true;
+                if( subscr_item.approved )
+                  prog.approved = true;
+                else
+                  prog.approved = false;
+              }
+            });
+          }
+          return prog; // for programs.map
+        }); 
         this.setState({
-           programListCoach : res.data.programs
+           programListCoach : programs,
+           coachListLoaded  : true,
         });        
+        console.log('coaches prog:', this.state.programListCoach);
       }, err=>{
         console.log(err)
       });
   }
 
   getSubscribedPrograms(){
-    API.getUserPrograms(this.state.userId)
+    console.log("getsubscrPrograms...",this.state.loggedInUserId);
+    API.getUserPrograms(this.state.loggedInUserId)
       .then(res=>{
         console.log('subscribed: ',res.data);
         this.setState({
-           programListAthlete : res.data.programs
+           programListAthlete : res.data.programs,
+           athleteListLoaded  : true,
         });        
       }, err=>{
         console.log(err)
@@ -77,58 +128,65 @@ class ProgramListComp extends Component {
   //   </Card>
   // </Container>
 
+
   render() {
       return (
         //primary wrapper
-        <Container fluid className="program-list" >
+        <Container fluid className="program-list my-5" >
           <div>
               <h2 className="text-center">PROGRAMS</h2>
               <hr/>
               <div>
-                {this.state.programListAthlete.length ? (
+                {this.state.programListAthlete.length ?( 
                   <div><h5>Subscribed:</h5>
                   <List>
-                    {this.state.programListAthlete.map(program=>(
-                      <ListItem key={program.id}>
+                    {this.state.programListAthlete.map( item=>(
+                      <ListItem key={ item.program.id }>
                         <ProgramInfo 
-                          programId={program.id}
-                          programName={program.programName}
-                          programDescr={program.programDescription}
-                          startDate={program.programStartDate}
-                          endDate={program.programEndDate}
+                          approved={ item.approved }
+                          subscribed={ true }
+                          programId={ item.id }
+                          programName={ item.program.programName }
+                          programDescr={ item.program.programDescription }
+                          startDate={ item.program.programStartDate }
+                          endDate={ item.program.programEndDate }
                         />
                         <UserInfo 
-                          user_id={program.coachId} 
+                          user_id={item.program.coachId} 
                         />
                         <div className="clearfix"></div>
                       </ListItem>
                     ))}
                   </List>
                   </div>
-                ) : ('')}
+                ): '' }
               </div>
               <div>
                 {this.state.programListCoach.length ? (
                   <div><h5>Created:</h5>
-                  <List>
-                    {this.state.programListCoach.map(program=>(
-                      <ListItem key={program.id}>
-                        <ProgramInfo 
-                          programId={program.id}
-                          programName={program.programName}
-                          programDescr={program.programDescr}
-                          startDate={program.startDate}
-                          endDate={program.endDate}
+                  <List l={this.state.coachListLoaded}>
+                    {this.state.programListCoach.map( program=>(
+                      <ListItem key={program.id+' '+this.state.coachListLoaded}>
+                        <ProgramInfo
+                          loggedUser={ this.state.loggedInUserId }
+                          searchedUser={ this.state.searchedUserId }
+                          approved={ program.approved }
+                          subscribed={ program.subscribed }
+                          programId={ program.id } 
+                          programName={ program.programName }
+                          programDescr={ program.programDescription }
+                          startDate={ program.programStartDate }
+                          endDate={ program.programEndDate }
                         />
                       </ListItem>
                     ))}
                   </List>
                   </div>
-                ) : ('')}
+                ):''}
               </div>
           </div>
         </Container>
-      )
+      );
   }
 }
 
