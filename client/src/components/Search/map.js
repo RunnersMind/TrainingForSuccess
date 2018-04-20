@@ -33,7 +33,7 @@ class SearchMap extends Component {
   statesCustomConfig = () => {
     return {
       [this.state.selected]: {
-        fill: "#f06e64"        
+        fill: "#686e74"        
       }
     };
   };
@@ -41,7 +41,7 @@ class SearchMap extends Component {
   handleSubmitClick = () => {
     if (this.state.selected ){
       console.log('Search for' + this.state.selected);
-      API.getSearchResults('State', this.state.selected)
+      API.getSearchResults('Please choose a filter', this.state.selected)
       .then(res=>{
         console.log(res.data);
       }, err=>{
@@ -55,7 +55,7 @@ class SearchMap extends Component {
       <div className="SearchMap m-5">
        <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
        {this.state.selected ? (
-         <div className='searchByState-msg'>Selected State:<span>{ this.state.selected_name }</span><Button onClick={this.handleSubmitClick}>Search</Button></div>
+         <div className='searchByState-msg mt-2'>Selected State:<span>{ this.state.selected_name }</span><Button className="btn-sm" onClick={this.handleSubmitClick}><i class="fas fa-search"></i></Button></div>
         ) : ''}
       </div>
     );

@@ -9,7 +9,7 @@ const Divider = (props) => {
       <Container>
         <div className="row">
           <div className="col-sm">
-            <h3 className="mb-5 text-left">#GOALS</h3>
+            <h1 className="mb-5 text-left">#GOALS</h1>
           </div>
         </div>
     </Container>

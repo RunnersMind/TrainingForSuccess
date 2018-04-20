@@ -75,7 +75,7 @@ export default {
 
       case 'Zip Code': return axios.get("/api/search/zipcode/" + text);
 
-      case 'State': return axios.get("/api/search/state/" + text);
+      case 'Please choose a filter': return axios.get("/api/search/state/" + text);
 
       default : return [];
     }

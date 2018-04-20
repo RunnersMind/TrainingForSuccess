@@ -1,22 +1,19 @@
 const db = require('../models');
 const Op = db.Sequelize.Op;
 
-const ATTR_user = ['id', 'description','email','firstName', 'lastName', 'displayName',
-                      'userType','photo','tShirtSize','phone','address1','address2', 'city','state','country','zipcode','birthDate','gender','emergencyFName','emergencyLName','emergencyPhone'];
+const ATTR_user = ['id','description','email','firstName', 'lastName', 'displayName',
+                      'userType','phone','address1','address2', 'city','state','country','zipcode','birthDate','gender'];
 
 module.exports = {
     findByCoachName: function(req,res){
-        console.log('we are at the searchcontroller');
-        // res.json({result: 'Hello'});
         db.User.findAll({
             attributes: ATTR_user,
             include: [{
-                model:db.Program
+                model:db.Program,
             }],
             where:{ [Op.and]: [
-                { userType: 'Coach'},
-                // {displayName: req.params.text}
-                {displayName: { [Op.like]: ['%' + req.params.text + '%'] }}
+                {userType: 'Coach'},
+                {displayName: {[Op.like]:'%' + req.params.text + '%'}}
             ]}
         })
         .then(Coaches => {
@@ -25,24 +22,61 @@ module.exports = {
         }, error => {
             res.status(422).json(error);
         });
-    }
-    // findByProgram: function(req,res){
-    //     db.users.findAll({
-    //         attributes: ATTR_program,
-    //         include: [{
-    //             model:Program
-    //         }]
-    //         where: {zipCode: req.param.zipCode}
-    //     })
-    //     }.then(Coaches => {
-    //         res.json(users);
-    //     }, error => {
-    //         res.status(422).json(error);
-    //     });
-    // },
+    },
 
-    //     findByZipCode:
-
-    //     findByState:
+    findByProgram: function(req,res){
+        console.log("we are at the program controller");
+        db.User.findAll({
+            attributes: ATTR_user,
+            include: [{
+                model:db.Program,
+                where: { programDescription: {[Op.like]:"%" + req.params.text + "%"}}
+            }],
+            where:{ userType: 'Coach'}               
+        })
+        .then(Programs => {
+            console.log(Programs);
+            res.json(Programs);
+        }, error => {
+            res.status(422).json(error);
+        });
+    },
     
+    findByState: function(req,res){
+        db.User.findAll({
+            attributes: ATTR_user,
+            include: [{
+                model:db.Program
+            }],
+            where:{[Op.and]: [
+                {userType: 'Coach'},
+                {state: req.params.text}
+            ]}
+        })
+        .then(States => {
+            console.log(States);
+            res.json(States);
+        }, error => {
+            res.status(422).json(error);
+        });
+    },
+    
+    findByZipCode: function(req,res){
+        db.User.findAll({
+            attributes: ATTR_user,
+            include: [{
+                model:db.Program
+            }],
+            where:{ [Op.and]: [
+                {userType: 'Coach'},
+                {zipCode: req.params.text}
+            ]}
+        })
+        .then(ZipCode => {
+            console.log(ZipCode);
+            res.json(ZipCode);
+        }, error => {
+            res.status(422).json(error);
+        });
+    }
 };
