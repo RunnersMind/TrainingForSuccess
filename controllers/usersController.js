@@ -37,19 +37,34 @@ module.exports = {
     //double check that the user is logged in (the edit link is also checking this)
     // if (req.isAuthenticated()) {
 
-      db.User.update({
-        displayName: "Test"
-      }, {
-        where: {
-          id: req.params.id
+
+      db.User.update( req.body,{
+        where: { 
+          [db.Sequelize.Op.and]: [
+            { id : req.params.id }
+          ]
         }
       }).then( user => {
-        console.log("Updated!!!!!!!!!!!!!!!!!!!!!!!!");
         res.json(user);
       }, error => {
         console.log('update_user_'+ error);
         res.status(422).json(err);
       });
+
+
+      // db.User.update({
+      //   displayName: "Test"
+      // }, {
+      //   where: {
+      //     id: req.params.id
+      //   }
+      // }).then( user => {
+      //   console.log("Updated!!!!!!!!!!!!!!!!!!!!!!!!");
+      //   res.json(user);
+      // }, error => {
+      //   console.log('update_user_'+ error);
+      //   res.status(422).json(err);
+      // });
 
     // }
     // else res.redirect('/');     
