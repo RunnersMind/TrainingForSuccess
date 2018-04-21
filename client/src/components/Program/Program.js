@@ -49,8 +49,12 @@ class Program extends Component {
       isAuthorised : false,
       authId : 0,
 
+      change_counter : 0,
+
     };
 
+    this.handleAthleteBtnClick = this.handleAthleteBtnClick.bind(this);
+  
   };
 
   componentDidMount(){
@@ -63,16 +67,20 @@ class Program extends Component {
         if(res.data.id ) this.setState({ authId : res.data.id });
         else return this.setState({ isAuthorised: false });
 
-        this.getProgram(this.state.programId);
+        this.getProgram();
 
       }, err => {
         window.location.pathname='/';
-        console.log(err)
+        // console.log(err)
       }
     );
   }
 
-  getProgram(id){
+  getProgram(){
+
+      console.log("Getting PROGRAM data");
+
+      let id = this.state.programId;
       this.setState({ loaded: false });
       API.getProgram(id)
         .then(res => {
@@ -90,6 +98,7 @@ class Program extends Component {
             else window.location.pathname='/';
           }
           console.log('Program.js: getProgram: ',res.data.program);
+          console.log('Program.js: getUsers: ',res.data.users);
           this.setState({ 
             // program: res.data.program,
             canEdit      : (res.data.rights==='canEdit') ? true : false,
@@ -105,11 +114,59 @@ class Program extends Component {
           });
 
           this.setState({ loaded: true });
-          console.log("GOT THE PROGRAM");
+          // console.log("GOT THE PROGRAM");
         },err => {
           console.log(err);
           this.setState({ msg: "error"});
       });
+  }
+
+  handleAthleteBtnClick(event){
+    event.preventDefault();
+    console.log(event.target.id);
+
+    let program = this.state.programId;
+    let [action, user_id] = event.target.id.split('_'); 
+
+    if( action === 'approve' ){
+      console.log('approving user '+user_id+' for program '+ program);
+      API.approveUser({ 
+        program_id : program,
+        user_id : user_id
+      })
+      .then(res => {
+        console.log("Approved!");
+        let counter = this.state.change_counter + 1;
+        this.setState({
+          change_counter : counter, 
+        })
+      })
+      .catch(err => {
+        console.log(err);
+        // this.setState({ result: "error"});
+      });
+    }
+    else if( action === 'decline' ){
+      console.log('declining user '+user_id+' for program '+ program);
+      API.declineUser({ 
+        program_id : program,
+        user_id : user_id
+      })
+      .then(res => {
+        console.log("Declined!");
+        let counter = this.state.change_counter + 1;
+        this.setState({
+          change_counter : counter, 
+        })
+      })
+      .catch(err => {
+        console.log(err);
+        // this.setState({ result: "error"});
+      });
+    }
+
+    this.getProgram();
+
   }
 
   render() {
@@ -143,10 +200,10 @@ class Program extends Component {
 	                  <ListItem key={user.id}>
                       <UserInfo user_id={user.id} />
                       <div className="user_prog_btn_group">
-			                  <button className="prog-btn approve-btn">
+			                  <button className="prog-btn approve-btn" id={'approve_'+user.id} onClick={this.handleAthleteBtnClick}>
 									    		Accept
 			    							</button>
-			    							<button className="prog-btn decline-btn">
+			    							<button className="prog-btn decline-btn" id={'decline_'+user.id} onClick={this.handleAthleteBtnClick}>
 			    								Decline
 			    							</button>			    					
                     	</div>

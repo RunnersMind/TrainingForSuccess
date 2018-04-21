@@ -80,6 +80,71 @@ module.exports = {
     }, error => {
       res.status(422).json({});
     });
+  },
+
+  subscribeUserToProgram : function(req, res) {
+   
+    if (req.isAuthenticated()) {
+
+      let user_prog = {
+        userId : req.user.id,
+        programId : req.body.program_id
+      };
+      db.UserProgram.create(
+        user_prog
+      ).then(up_created => {
+          console.log('user-program: '+ up_created);
+          res.status(200).json(up_created);
+      }, err => {
+          console.log('db.User.subscribeUserToProgram')
+          console.log(err);
+          res.status(422).json(err);
+      }); 
+    }
+    else {
+      res.status(403).json({});
+    }
+  },
+
+  approveForProgram : function(req, res) {
+
+    if (req.isAuthenticated()) {
+
+      db.UserProgram.update( {
+        approved : true
+      },
+      {
+        where: { 
+          [db.Sequelize.Op.and]: [
+            { programId : req.body.program_id },
+            { userId : req.body.user_id }
+          ]
+        }
+      }).then( result => {
+        console.log(result.get({ plain: true }));
+        res.json(result);
+      }, error => {
+        console.log('update_user_program_'+ error);
+        res.status(422).json(error);
+      });
+
+    }
+    else res.status(403).json({});     
+  },
+
+  declineForProgram : function(req, res) {
+    if( req.isAuthenticated() )
+    db.UserProgram.destroy({
+      where: {
+        [db.Sequelize.Op.and]: [
+          { programId : req.body.program_id },
+          { userId : req.body.user_id }
+        ]
+      }
+    }).then(result=> res.status(200).send(),
+      error => res.status(422).send()
+    );
+
   }
 
 };

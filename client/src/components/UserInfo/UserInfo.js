@@ -12,6 +12,9 @@ class UserInfo extends Component {
       userName 		: props.userName,
       userPicture : props.userPictire,
 
+      userState   : props.State || '',
+      userCity    : props.City || '',
+
       userLoaded : false
     };
   }
@@ -45,6 +48,14 @@ class UserInfo extends Component {
   	      			<i className="fas fa-user-circle large-avatar-ico"></i>
   	      		)}
   	      		<span>{this.state.userName} </span>
+
+              {this.state.userCity ? (
+                <span className='info-user-scity'>{this.state.userCity} </span>
+                ):''}
+              {this.state.userState ? (
+                <span className='info-user-state'>{this.state.userState} </span>
+                ):''}
+
   	      	</div>
   	    		) : ''}
   	   	</div>

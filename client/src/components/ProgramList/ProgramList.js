@@ -145,7 +145,7 @@ class ProgramListComp extends Component {
                         <ProgramInfo 
                           approved={ item.approved }
                           subscribed={ true }
-                          programId={ item.id }
+                          programId={ item.program.id }
                           programName={ item.program.programName }
                           programDescr={ item.program.programDescription }
                           startDate={ item.program.programStartDate }

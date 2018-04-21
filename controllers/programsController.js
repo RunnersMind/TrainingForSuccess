@@ -108,22 +108,60 @@ module.exports = {
   },
 
   findById: function(req, res) {
-    db.Program.findById( req.params.id, { include: [ db.TrainingPlan, db.User ] })
+    db.Program.findById( req.params.id, { 
+      include: [ 
+        { model: db.TrainingPlan }, 
+        { 
+          model: db.User, 
+          attributes: ['id', 'email', 'displayName', 'photo', 'phone', 'userType', 'city', 'state']
+        },
+        // { needs association Program => UserProgram
+        //   model: db.UserProgram,
+        //   as: 'program_user',
+        //   through: { attributes: ['approved', 'userId', 'programId']}
+        // }
+      ] 
+    })
     .then( program => {
-      let user_id = program.coachId;
-      if( req.user && req.user.id == user_id ){
-        res.json({
-          rights: 'canEdit',
-          program: program
-        });
-      }
-      else {
-        res.json({
-          rights: 'canView',
-          program: program
-        });
-      }
-      // res.json(program);
+      // let user = program.users;
+      db.UserProgram.findAll( {
+        where: { programId: program.id }, 
+        include: db.User
+      }).then( users => {
+
+        let user_id = program.coachId;
+        if( req.user && req.user.id == user_id ){
+          res.json({
+            rights: 'canEdit',
+            program: program,
+            users : users
+          });
+        }
+        else {
+          res.json({
+            rights: 'canView',
+            program: program,
+            users : users
+          });
+        }
+        // res.json(program);
+      }, error => {
+        let user_id = program.coachId;
+        if( req.user && req.user.id == user_id ){
+          res.json({
+            rights: 'canEdit',
+            program: program
+          });
+        }
+        else {
+          res.json({
+            rights: 'canView',
+            program: program
+          });
+        }
+        // console.log('findById_'+ error);
+        // res.status(422).json(error);
+      });
     }, error => {
       console.log('findById_'+ error);
       res.status(422).json(error);
@@ -164,7 +202,7 @@ module.exports = {
         res.json(program);
       }, error => {
         console.log('update_program_'+ error);
-        res.status(422).json(err);
+        res.status(422).json(error);
       });
 
     }

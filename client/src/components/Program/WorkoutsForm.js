@@ -20,7 +20,8 @@ class WorkoutsForm extends Component {
       
       validation_msg    : "",
 
-      onAdd             : props.onAdd
+      onAdd             : props.onAdd,
+      result            : "",
 
     };
 
@@ -118,9 +119,7 @@ class WorkoutsForm extends Component {
         <div className="addWorkout_validation">
           {"  "}{this.state.validation_msg}
         </div>
-        <div className="addWorkout_result">
-          {"  "}{this.state.result}
-        </div>
+        
         <form className="form">
           {this.state.workoutList.length ? (
             <div>

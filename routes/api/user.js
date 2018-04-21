@@ -18,4 +18,14 @@ router.route("/:id")
 router.route("/info/:id")
   .get(usersController.findInfoById);
 
+router.route("/subscribe")
+  .post(usersController.subscribeUserToProgram);
+
+router.route("/approve_prog")
+  .post(usersController.approveForProgram);
+
+router.route("/decline_prog")
+  .post(usersController.declineForProgram);
+
+
 module.exports = router;

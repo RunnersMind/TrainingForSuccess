@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import { Link } from 'react-router-dom';
+
+import API from "../../utils/API";
 import dates from "../../utils/dates";
 
 import "./ProgramInfo.css";
@@ -23,8 +25,32 @@ class ProgramInfo extends Component {
 
       loggedInUserRights : false,
 
+      result : '',
+
     };
 
+    this.subscribeUserToProgram = this.subscribeUserToProgram.bind(this);
+
+  }
+
+  subscribeUserToProgram(event){
+    event.preventDefault();
+    let program = this.state.progId;
+    console.log('subscribing user:'+this.state.loggedInUserId+" to program: "+program);
+    if(program){
+    API.subscribeUser({ program_id : program })
+      .then(res => {
+        console.log("SUCCESS");
+        this.setState({
+          subscribed : true, 
+          result: "success"
+        })
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ result: "error"});
+      });
+    }
   }
 
   render (){
@@ -47,7 +73,7 @@ class ProgramInfo extends Component {
             ):(
             <div>
               {this.state.loggedInUserId ? (
-              <button className='prog-btn'> Subscribe </button>
+              <button className='prog-btn' onClick={this.subscribeUserToProgram}> Subscribe </button>
               ):''}
             </div>
             )}

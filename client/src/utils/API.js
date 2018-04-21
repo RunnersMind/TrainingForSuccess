@@ -48,6 +48,17 @@ export default {
     return axios.put("/api/user/" + id, userData);
   },
 
+  subscribeUser: function(progData) {
+    return axios.post("/api/user/subscribe", progData);
+  },
+
+  approveUser: function(progData) {
+    return axios.post("/api/user/approve_prog", progData);
+  },
+  declineUser: function(progData) {
+    return axios.post("/api/user/decline_prog", progData);
+  },
+
   // ======== Workouts ===============
   getCoachWorkouts(coach_id){
     return axios.get("/api/workouts/coach/" + coach_id);
