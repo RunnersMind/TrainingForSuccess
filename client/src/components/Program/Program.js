@@ -200,8 +200,8 @@ class Program extends Component {
 	                  <ListItem key={user.id}>
                       <UserInfo user_id={user.id} />
                       <div className="user_prog_btn_group">
-			                  <button className="prog-btn approve-btn" id={'approve_'+user.id} onClick={this.handleAthleteBtnClick}>
-									    		Accept
+			                  <button className="prog-btn approve-btn mr-2" id={'approve_'+user.id} onClick={this.handleAthleteBtnClick}>
+                        <i class="fas fa-check"></i> Accept
 			    							</button>
 			    							<button className="prog-btn decline-btn" id={'decline_'+user.id} onClick={this.handleAthleteBtnClick}>
 			    								Decline

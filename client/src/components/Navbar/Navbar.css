@@ -1,6 +1,7 @@
 .nav-item {
     font-family: 'Titillium Web', sans-serif;
     height: 50px;
+    padding: 10px;
 }
 
 div.greeting {
@@ -21,4 +22,12 @@ div.greeting {
   border-bottom: .1rem solid white;
   text-decoration: none;
   cursor: pointer;
+}
+
+.logo-google {
+  width: 23px;
+  /*margin-bottom: -7px;*/
+}
+.login {
+  font-size: 25px;
 }

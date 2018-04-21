@@ -1,6 +1,6 @@
 .program-list {
-    margin-top: 5rem;
     width: 30rem;
+    margin-left: 0;
     text-align: left;
   }
 
@@ -17,6 +17,7 @@ h2 {
   text-decoration: underline;
 }
 
-.list-group-item{
+.list-group-item, .created, .subscribed{
   margin-left: 5rem;
+  font-family: 'Nunito', sans-serif;
 }

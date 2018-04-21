@@ -132,13 +132,13 @@ class ProgramListComp extends Component {
   render() {
       return (
         //primary wrapper
-        <Container fluid className="program-list my-5" >
+        <Container fluid className="program-list" >
           <div>
               <h2 className="text-center">PROGRAMS</h2>
               <hr/>
-              <div>
+              <div className="mb-5">
                 {this.state.programListAthlete.length ?( 
-                  <div><h5>Subscribed:</h5>
+                  <div><h5 className="subscribed pl-4"><i class="far fa-check-square"></i> Subscribed:</h5>
                   <List>
                     {this.state.programListAthlete.map( item=>(
                       <ListItem key={ item.program.id }>
@@ -163,7 +163,7 @@ class ProgramListComp extends Component {
               </div>
               <div>
                 {this.state.programListCoach.length ? (
-                  <div><h5>Created:</h5>
+                  <div className="mb-5"><h5 className="created mt-5 pl-4"><i class="far fa-edit"></i> Created:</h5>
                   <List l={this.state.coachListLoaded}>
                     {this.state.programListCoach.map( program=>(
                       <ListItem key={program.id+' '+this.state.coachListLoaded}>
