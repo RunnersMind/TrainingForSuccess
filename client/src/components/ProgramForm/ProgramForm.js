@@ -6,7 +6,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { DateRangePicker } from 'react-dates';
 
 import "./ProgramForm.css";
-import { Label, FormGroup, Form, Input } from "reactstrap";
+import { Container, Label, FormGroup, Form, Input } from "reactstrap";
 
 class ProgramForm extends Component {
   constructor(props) {
@@ -82,7 +82,8 @@ class ProgramForm extends Component {
 
   render() {
     return (
-      <div className="add-program">
+      <Container fluid className="background">
+      <div className="add-program container bg-white pt-2 pb-5">
         <h2 className="my-5">
           Add New Program
         </h2>
@@ -127,6 +128,7 @@ class ProgramForm extends Component {
           <button className="program-button btn btn-outline-dark"onClick={this.handleFormSubmit}>Add</button>
         </Form>
       </div>
+      </Container>
     );
   }
 }

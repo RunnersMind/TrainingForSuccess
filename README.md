@@ -33,14 +33,14 @@ Please take a look at Runality [here](https://runality.herokuapp.com/).
 
 
 ### Back-end Technologies
-*    Body-parser
-*    Cookie-parser
-*    Express
-*    Morgan
-*    MySQL
-*    Passport
-*    Google Oauth20
-*    Sequelize/ Sequelize CLI
+*   Body-parser
+*   Cookie-parser
+*   Express
+*   Morgan
+*   MySQL
+*   Passport
+*   Google Oauth20
+*   Sequelize/ Sequelize CLI
 
 ## Future Features
 * Bring in external Api's from Strava, Google and Weather

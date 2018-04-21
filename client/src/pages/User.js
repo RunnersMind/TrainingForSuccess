@@ -2,17 +2,19 @@ import React from "react";
 import { Container, Row, Col } from 'reactstrap';
 import UserComponent from "../components/User";
 import ProgramListComp from "../components/ProgramList";
+import RaceDayCountdown from "../components/RaceDayCountdown";
 
 
-const User = (props) => {
+const User = () => {
 return (
 <Container fluid className="mt-5">
 <Row>
   <Col sm="6">
-  <UserComponent user_id={props.match.params.id}/>
+  <UserComponent />
+  <ProgramListComp />
   </Col>
   <Col sm="6">
-  <ProgramListComp user_id={ props.match.params.id } />
+  <RaceDayCountdown />
   </Col>
 </Row>
 </Container>

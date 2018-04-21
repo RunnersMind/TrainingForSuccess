@@ -78,8 +78,10 @@
 }
 
 .add-program{
+    max-width: 60%;
     margin-top: 8rem;
     margin-bottom: 35rem;
+    border-radius: 2px;
 }
 
 .form-group, .program-button {
@@ -90,4 +92,17 @@
     padding-left: 1rem;
     padding-right: 1rem;
     
+}
+
+.DateRangePickerInput {
+    border-radius: 4px;
+    
+}
+
+.background{
+    width: 100%;
+    background-image: url("./modal.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }

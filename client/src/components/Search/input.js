@@ -73,4 +73,3 @@ export default class SearchDropdown extends React.Component {
     );
   }
 }
-
