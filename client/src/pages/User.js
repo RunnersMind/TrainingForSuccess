@@ -8,15 +8,26 @@ import countdown from "./countdown.png"
 import miles from "./miles.png"
 import progress from "./progress.png"
 
+		// <Container fluid className="mt-5">
+		// <Row>
+		//   <Col sm="6">
+		// 	  <UserComponent  user_id={props.match.params.id}/>
+		// 	  <ProgramListComp  user_id={ props.match.params.id } />
+		//   </Col>
+		//   <Col sm="6">
+		// 	  <RaceDayCountdown />
+		//   </Col>
+		// </Row>
+		// </Container>
 
-const User = () => {
+const User = (props) => {
 return (
 <Container fluid className="mt-5">
 <Row>
   <Col className="pl-5" sm="6">
-  <UserComponent />
+  <UserComponent user_id={props.match.params.id}/>
   {/* <div><img className="progress" alt="progress" src={progress} style={{width:200}} /></div> */}
-  <ProgramListComp />
+  <ProgramListComp user_id={ props.match.params.id } />
   </Col>
   <Col className="pr-5" sm="6 justify-content-center">
   <div><img className="weather my-5" alt="weather" src={weather} style={{width:600}} /></div>

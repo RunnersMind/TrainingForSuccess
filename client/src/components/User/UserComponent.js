@@ -12,7 +12,7 @@ class User extends Component {
       id: "",
       urlId: props.user_id,
       //this default should probably be replaced with a local file
-      photo: "https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png",
+      photo: "",//https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png",
       email: "",
       name: "",
       userType: "athlete",
@@ -58,8 +58,13 @@ loadUser = () => {
         //let's check for edit rights while we're here
         var tempUser = res.data.id;
         this.setEditRights(tempUser);
+        let user_photo = res.data.photo;
+        if(user_photo){
+          user_photo = res.data.photo.split('=')[0] + '=200';
+        }
+        else user_photo = "https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png";
 
-        this.setState({ id: res.data.id, photo: res.data.photo, email: res.data.email, name: res.data.displayName, userType: res.data.userType, tShirtSize: res.data.tShirtSize, phone: res.data.phone, address1: res.data.address1, address2: res.data.address2, city: res.data.city, state: res.data.state, country: res.data.country, zipcode: res.data.zipcode, birthDate: res.data.birthDate, gender: res.data.gender})
+        this.setState({ id: res.data.id, photo: user_photo, email: res.data.email, name: res.data.displayName, userType: res.data.userType, tShirtSize: res.data.tShirtSize, phone: res.data.phone, address1: res.data.address1, address2: res.data.address2, city: res.data.city, state: res.data.state, country: res.data.country, zipcode: res.data.zipcode, birthDate: res.data.birthDate, gender: res.data.gender})
 
       })
       .catch(err => console.log(err));
@@ -69,8 +74,13 @@ loadUser = () => {
   else {
     API.getUserLoggedin()
     .then(res => {
+      let user_photo = res.data.photo;
+      if(user_photo){
+        user_photo = res.data.photo.split('=')[0] + '=200';
+      }
+      else user_photo = "https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png";
 
-      this.setState({ id: res.data.id, photo: res.data.photo, email: res.data.email, name: res.data.displayName, userType: res.data.userType, tShirtSize: res.data.tShirtSize, phone: res.data.phone, address1: res.data.address1, address2: res.data.address2, city: res.data.city, state: res.data.state, country: res.data.country, zipcode: res.data.zipcode, birthDate: res.data.birthDate, gender: res.data.gender})
+      this.setState({ id: res.data.id, photo: user_photo, email: res.data.email, name: res.data.displayName, userType: res.data.userType, tShirtSize: res.data.tShirtSize, phone: res.data.phone, address1: res.data.address1, address2: res.data.address2, city: res.data.city, state: res.data.state, country: res.data.country, zipcode: res.data.zipcode, birthDate: res.data.birthDate, gender: res.data.gender})
 
             //let's check for edit rights while we're here
             var tempUser = res.data.id;
@@ -167,7 +177,7 @@ handleInputChange = event => {
             <div id="left-column">
               
               <div id="photo">
-                <img className="rounded-circle" alt="user" src={this.state.photo.split('=')[0] + '=200' }></img></div>
+                <img className="rounded-circle" alt="user" src={this.state.photo }></img></div>
               </div>
 
               <div id="userType">

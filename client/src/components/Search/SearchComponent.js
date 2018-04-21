@@ -30,7 +30,7 @@ class SearchComponent extends Component{
                 <SearchInput action={this.handleSearchResults} />
                 </div>
                 </div>
-                <div className="row justify-content-center"mt-5>
+                <div className="row justify-content-center mt-5">
                 <div className="col-sm-12">
                 <SearchResults coachList={this.state.coachList} />
                 </div>
