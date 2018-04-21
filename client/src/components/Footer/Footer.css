@@ -32,6 +32,14 @@
     background-image: linear-gradient(to right, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
 }
 
+.footer-button a{
+    color: white;
+}
+
+.footer-button a:hover{
+    text-decoration: none;
+}
+
 .footer {
     position: absolute;
     left: 0;

@@ -114,7 +114,7 @@ class WorkoutsForm extends Component {
     let wo_options = this.state.workoutList.map( item => ({ value: item.id, label: item.workoutName }));
 
     return (
-      <div>
+      <div className="modal-input">
 
         <div className="addWorkout_validation">
           {"  "}{this.state.validation_msg}
@@ -122,8 +122,8 @@ class WorkoutsForm extends Component {
         
         <form className="form">
           {this.state.workoutList.length ? (
-            <div>
-              Select Workout or
+            <div className="m-2">
+              <p className="m-2">Select Workout</p>
               <Select 
                 matchProp="label"
                 name="workoutId"
@@ -135,27 +135,30 @@ class WorkoutsForm extends Component {
             </div>)
             : ''}
 
-          <label>
-            Create New Workout
+
+          <div className="m-2">
+          <p className="m-2">OR</p>
+            <p className="m-2">Create New Workout</p>
             <input
               value={this.state.workoutName}
               name="workoutName"
               onChange={this.handleInputChange}
               type="text"
               placeholder="Workout Title"
-              className="workout_input"
+              className="form-control my-2"
             />
-            <input
+            <textarea
               value={this.state.workoutDescr}
               name="workoutDescr"
               onChange={this.handleInputChange}
               type="text"
               placeholder="Workout Description"
-              className="workout_input"
+              className="form-control my-2"
+              rows="3"
             />
-          </label>
+          </div>
           <br/><br/>
-          <button onClick={this.handleFormSubmit}>Add</button>
+          <button className="add-btn pull-right" onClick={this.handleFormSubmit}>Add</button>
         </form>
       </div>
     );

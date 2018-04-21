@@ -23,6 +23,7 @@ h1 {
 }
 .rbc-btn-group {
   background-image: linear-gradient(to right, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+  border-radius: 3px;
 }
 .rbc-toolbar button{
   font-family: 'Nunito', sans-serif;
@@ -43,4 +44,8 @@ h1 {
 
 .ReactModal__Content {
 	/*width: 40vw;*/
+}
+
+.ReactModal__Content p {
+  font-family: 'Nunito', sans-serif;
 }

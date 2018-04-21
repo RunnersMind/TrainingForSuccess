@@ -262,8 +262,7 @@ class TrainingPlan extends Component {
           onRequestClose={this.closeModal}
           style={modalCustomStyles}
         >
-          <button onClick={this.closeModal}>Close Modal</button>
-          <hr/>
+          <button className="pull-right" onClick={this.closeModal}><i className="fas fa-times"></i></button>
           <WorkoutsForm 
             day={this.state.progDay}
             programId={this.state.programId}
@@ -277,11 +276,11 @@ class TrainingPlan extends Component {
           onRequestClose={this.closeModal2}
           style={modalCustomStyles}
         >
-          <button onClick={this.closeModal2}>Close Modal</button>          
+          <button onClick={this.closeModal2}><i className="fas fa-times"></i></button>          
           <hr />
-          <h3>{this.state.currWorkoutName}</h3>
-          Day {this.state.progDay},<br/>
-          {this.state.currWorkoutDescr}
+          <h3 className="m-5">{this.state.currWorkoutName}</h3>
+          <p className="m-5">Day {this.state.progDay}</p><br/>
+          <p className="m-5">{this.state.currWorkoutDescr}</p>
           <hr />
           {this.state.canEdit
             ? <button onClick={this.remove_wo}>Remove Workout</button> 

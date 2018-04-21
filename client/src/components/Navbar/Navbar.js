@@ -79,7 +79,7 @@ class NavbarGoogle extends Component {
                 <a href="/api/logout">Log Out</a>
               </NavItem>              
               ) : (
-              <NavItem><a href="/auth/google">Login With <i className="fab fa-google-plus-g"></i></a></NavItem>
+              <NavItem className="action-group text-light text-uppercase pl-2 pr-2"><a href="/auth/google">Login With <i className="fab fa-google-plus-g"></i></a></NavItem>
               )}
 
           </Nav>

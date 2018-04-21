@@ -1,6 +1,5 @@
 .athletes_list {
 	display: block;
-	/*margin-top: 6rem;*/
 }
 
 .user_prog_btn_group {
@@ -13,9 +12,7 @@
 	height : 40px;
 
 	border-radius : 3px;
-	box-shadow : 1px 1px 10px grey;
 	text-align : center;
-	margin : 10px;
 
 	font-size: 1rem;
 	color: white;
@@ -29,6 +26,11 @@
 	color: black;
 }
 
+.prog-btn.decline-btn{
+	background-color: #808080;
+	background-image: none;
+}
+
 .accordion__title {
 	font-family: Nunito, sans-serif;
 }
@@ -37,4 +39,8 @@
     content: "";
     clear: both;
     /*display: table;*/
+}
+
+.program-info span{
+	font-family: Nunito, sans-serif;
 }

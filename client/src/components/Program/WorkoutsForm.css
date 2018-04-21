@@ -1,5 +1,5 @@
 .addWorkout_validation {
-	color: red;
+	color: #ee6859;
 }
 
 .form input {
@@ -15,4 +15,27 @@
 	margin-bottom: 10px;
 	height: 40px;
 	/*width: 70%;*/
+}
+
+.modal-input{
+	font-family: 'Nunito', sans-serif;
+}
+
+.add-btn{
+	display: inline-block;
+	width : 100px;
+	height : 40px;
+
+	border-radius : 3px;
+	text-align : center;
+
+	font-size: 1rem;
+	color: white;
+	background-image: -webkit-linear-gradient(left, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+	background-image: -o-linear-gradient(left, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+	background-image: linear-gradient(to right, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+}
+
+.add-btn:hover {
+	color: black;
 }

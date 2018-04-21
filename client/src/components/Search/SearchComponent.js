@@ -21,11 +21,16 @@ class SearchComponent extends Component{
     
     render() {
         return (            
-            <div className="container-fluid"> 
-                <h1 className="display-5 text-center mt-5">Find training in your area...</h1>      
+            <div className="search-component container-fluid"> 
+                <h1 className="display-5 text-center">Find training in your area...</h1>      
                 <SearchMap onStateClick={this.handleSearchResults} />
+                <div className="row justify-content-center">
+                <div className="col-sm-10"></div>
+                <div className="col-md-6">
                 <SearchInput action={this.handleSearchResults} />
+                </div>
                 <SearchResults coachList={this.state.coachList} />
+                </div>
             </div>   
         );
     }

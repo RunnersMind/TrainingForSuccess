@@ -26,3 +26,7 @@ path:hover {
   margin-left: 10px;
   font-family: 'Nunito', sans-serif;	
 }
+.search-component{
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+}
