@@ -58,7 +58,11 @@ class WorkoutsForm extends Component {
     console.log(`Selected: ${selectedOption.label}`);
     console.log(`Selected: ${selectedOption.value}`);
 
-    this.setState({validation_msg: ""});
+    this.setState({
+      validation_msg: "",
+      workoutLabel : selectedOption.label,
+      workoutId : selectedOption.value
+    });
 
     // let value = event.target.value;
     // const name = event.target.name;
@@ -67,10 +71,10 @@ class WorkoutsForm extends Component {
     
     // let label = event.target.options[event.target.selectedIndex].text;
 
-    this.setState({
-      workoutLabel : selectedOption.label,
-      workoutId : selectedOption.value
-    });
+    // this.setState({
+    //   workoutLabel : selectedOption.label,
+    //   workoutId : selectedOption.value
+    // });
 
   }
 
@@ -109,8 +113,7 @@ class WorkoutsForm extends Component {
 
   render() {
     
-    const { selectedOption1 } = this.state.workoutId;
-    console.log('&&&'+selectedOption1);
+    console.log('&&&'+this.state.workoutId);
     let wo_options = this.state.workoutList.map( item => ({ value: item.id, label: item.workoutName }));
 
     return (
@@ -127,7 +130,7 @@ class WorkoutsForm extends Component {
               <Select 
                 matchProp="label"
                 name="workoutId"
-                value={ selectedOption1 }
+                value={ this.state.workoutId }
                 onChange={ this.handleSelectChange }
                 options={ wo_options }
                 onSelectResetsInput={true}

@@ -24,7 +24,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/api/current_user', function(req, res) {
-        res.send(req.user);
+        res.json(req.user);
     });
 
 };

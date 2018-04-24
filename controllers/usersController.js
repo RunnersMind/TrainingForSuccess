@@ -32,7 +32,8 @@ module.exports = {
 
 
   updateUser: function(req, res){
-    console.log("UPDATING USER FUNCTION FOR USER ID: " + req.params.id);
+    if(req.isAuthenticated()){
+    console.log("UPDATING USER FUNCTION FOR USER ID: " + req.user.id);
     // console.log(req.params.id);
     //double check that the user is logged in (the edit link is also checking this)
     // if (req.isAuthenticated()) {
@@ -41,7 +42,7 @@ module.exports = {
       db.User.update( req.body,{
         where: { 
           [db.Sequelize.Op.and]: [
-            { id : req.params.id }
+            { id : req.user.id }
           ]
         }
       }).then( user => {
@@ -51,7 +52,7 @@ module.exports = {
         res.status(422).json(err);
       });
 
-
+    }
       // db.User.update({
       //   displayName: "Test"
       // }, {

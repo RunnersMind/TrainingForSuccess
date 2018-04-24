@@ -1,8 +1,25 @@
 import React, { Component } from "react";
 import { Container } from 'reactstrap';
 import API from "../../utils/API";
+import DATES from "../../utils/dates";
 import "./User.css";
 
+const def_image_url = "https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png";
+
+function setPhoto(url){
+  let user_photo = url;
+  if(user_photo){
+    try {
+      user_photo = user_photo.split('=')[0] + '=200';
+    }
+    catch(err) {
+      console.log('photo is not google-format');
+      console.log(err);
+    }
+  }
+  else user_photo = def_image_url;
+  return user_photo;
+}
 
 class User extends Component {
   constructor(props) {
@@ -48,55 +65,60 @@ componentDidMount() {
   this.loadUser();
 }
 
-loadUser = () => {
+setStateFromData( data, editable ){
+
+    this.setState({
+      id          : data.id, 
+      photo       : setPhoto(data.photo),
+      email       : data.email, 
+      name        : data.displayName, 
+      userType    : data.userType, 
+      tShirtSize  : data.tShirtSize, 
+      phone       : data.phone, 
+      address1    : data.address1, 
+      address2    : data.address2, 
+      city        : data.city, 
+      state       : data.state, 
+      country     : data.country, 
+      zipcode     : data.zipcode, 
+      birthDate   : data.birthDate, 
+      gender      : data.gender,
+
+      isEditable  : editable,
+    });  
+}
+
+loadUser() {
 
   //let's see if there's a URL parameter in the request and load that as the user first
   if (this.state.urlId) {
+    // console.log("User: URLid = ", this.state.urlId);
     API.getUser(this.state.urlId)
       .then(res => {
 
-        //let's check for edit rights while we're here
-        var tempUser = res.data.id;
-        this.setEditRights(tempUser);
-        let user_photo = res.data.photo;
-        if(user_photo){
-          try {
-            user_photo = res.data.photo.split('=')[0] + '=200';
+        let canEdit = false;
+        API.getUserLoggedin()
+        .then(logged_user => {
+          console.log("HERE: ",logged_user.data,this.state.urlId);
+          if(logged_user.data && (parseInt(logged_user.data.id) === parseInt(this.state.urlId))){
+            console.log("HERE 2 = canEdit: ", canEdit);
+            canEdit = true;
           }
-          catch(err) {
-            console.log('photo is not google-format');
-            console.log(err);
-          }
-        }
-        else user_photo = `https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png`;
-
-        this.setState({ id: res.data.id, photo: user_photo, email: res.data.email, name: res.data.displayName, userType: res.data.userType, tShirtSize: res.data.tShirtSize, phone: res.data.phone, address1: res.data.address1, address2: res.data.address2, city: res.data.city, state: res.data.state, country: res.data.country, zipcode: res.data.zipcode, birthDate: res.data.birthDate, gender: res.data.gender})
-
-      })
-      .catch(err => console.log(err));
+          this.setStateFromData(res.data, canEdit);
+        }, error => {
+          this.setStateFromData(res.data, false);
+          console.log(error);
+        })
+      }, err => console.log(err));
   }
 
   //if there isn't a url parameter, then it's probably the user logging in, so let's check who's logged in instead
   else {
+    // console.log("User: no URLid");
     API.getUserLoggedin()
     .then(res => {
-      let user_photo = res.data.photo;
-        if(user_photo){
-          try {
-            user_photo = res.data.photo.split('=')[0] + '=200';
-          }
-          catch(err) {
-            console.log('photo is not google-format');
-            console.log(err);
-          }
-        }
-      else user_photo = `https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png`;
-
-      this.setState({ id: res.data.id, photo: user_photo, email: res.data.email, name: res.data.displayName, userType: res.data.userType, tShirtSize: res.data.tShirtSize, phone: res.data.phone, address1: res.data.address1, address2: res.data.address2, city: res.data.city, state: res.data.state, country: res.data.country, zipcode: res.data.zipcode, birthDate: res.data.birthDate, gender: res.data.gender})
-
-            //let's check for edit rights while we're here
-            var tempUser = res.data.id;
-            this.setEditRights(tempUser);
+      if(!res.data) window.location.pathname='/';
+      this.setStateFromData(res.data, true);
     })
     .catch(err => {
       window.location.pathname='/';
@@ -144,11 +166,25 @@ enableEditForm = () => {
 
 handleFormSubmit = event => {
   event.preventDefault();
+  console.log("User update: ", this.state);
   var userData = {
-    displayName: this.state.name
+    displayName : this.state.name, 
+    birthDate : this.state.birthDate,
+    email: this.state.email,
+    userType: this.state.userType,
+    tShirtSize: this.state.tShirtSize,
+    phone: this.state.phone,
+    address1: this.state.address1,
+    address2: this.state.address2,
+    city: this.state.city,
+    state: this.state.state,
+    country: this.state.country,
+    zipcode: this.state.zipcode,
+    gender: this.state.gender,
+
   };
 
-  this.updateUserFunc(this.state.id,userData);
+  this.updateUserFunc(userData);
 
   //hide edit form again
   this.setState({ wantstoEdit: false })
@@ -210,7 +246,9 @@ handleInputChange = event => {
                 </p>
                 <p>
                   <i className="mr-2"></i>
-                  <span> {this.state.birthDate}</span>
+                  {this.state.birthDate ?
+                  <span> { DATES.format_for_display(this.state.birthDate) }</span>
+                  : '' }
                 </p>
               </div>
 

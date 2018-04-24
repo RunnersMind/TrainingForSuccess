@@ -16,9 +16,7 @@ const SearchResults = props => (
           <ListItem key={user.id}>
             <UserInfo className="mb-3" user_id={user.id} />
             <div className="user_prog_btn_group">
-              <button className="profile-btn btn-outline-light">
-                <a href={"/user/"+user.id} alt="coach">Profile</a>
-              </button>
+              <a href={"/user/"+user.id} className="profile-btn btn-outline-light" alt="coach">Profile</a>
             </div>
           </ListItem>
         )}

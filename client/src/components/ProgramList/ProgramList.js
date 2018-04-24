@@ -18,7 +18,7 @@ class ProgramListComp extends Component {
       loggedInUserId: 0,
       loggedInuserType : "athlete",
 
-      searchedUserId : props.user_id,
+      searchedUserId : props.user_id || '',
 
       programListCoach : [],
       coachListLoaded : false,
@@ -58,7 +58,10 @@ class ProgramListComp extends Component {
   getCoachPrograms(){
     console.log("getCoachPrograms...");
     //if no searchedUser, should return data for logged in user
-    API.getCoachPrograms(this.state.searchedUserId) 
+    let user = this.state.searchedUserId || this.state.loggedInUserId;
+    if(!user) return ;
+
+    API.getCoachPrograms(user) 
       .then( res=>{
         if( res.data.rights === 'canEdit' ){
           let programs = res.data.programs.map( prog_item => {
@@ -103,7 +106,9 @@ class ProgramListComp extends Component {
         console.log('coaches prog:', this.state.programListCoach);
       }, err=>{
         console.log(err)
-      });
+    });
+
+
   }
 
   getSubscribedPrograms(){
@@ -163,7 +168,7 @@ class ProgramListComp extends Component {
               </div>
               <div>
                 {this.state.programListCoach.length ? (
-                  <div className="mb-5"><h5 className="created mt-5 pl-4"><i class="far fa-edit"></i> Created:</h5>
+                  <div className="mb-5"><h5 className="created mt-5 pl-4"><i className="far fa-edit"></i> Created:</h5>
                   <List l={this.state.coachListLoaded}>
                     {this.state.programListCoach.map( program=>(
                       <ListItem key={program.id+' '+this.state.coachListLoaded}>

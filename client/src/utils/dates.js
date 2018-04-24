@@ -17,8 +17,9 @@ export default {
 	},
 
 	format_for_display: function(sql_date){
-		let mdate = moment(sql_date);
-		return mdate.format('LL');
+		let mdate = moment.utc(sql_date);
+		// return mdate.format('LL');
+		return mdate.format('MMM Do, YYYY');
 	}
 
 }
