@@ -84,7 +84,7 @@ class ProgramInfo extends Component {
         {this.state.progDescr}
       </div>
       <div className="program_dates">
-        Start Date: {dates.format_for_display(this.state.startDate)}
+        Start Date : {dates.format_for_display(this.state.startDate)}
         <br/>
         End Date : {dates.format_for_display(this.state.endDate)}
       </div>

@@ -60,9 +60,15 @@ loadUser = () => {
         this.setEditRights(tempUser);
         let user_photo = res.data.photo;
         if(user_photo){
-          user_photo = res.data.photo.split('=')[0] + '=200';
+          try {
+            user_photo = res.data.photo.split('=')[0] + '=200';
+          }
+          catch(err) {
+            console.log('photo is not google-format');
+            console.log(err);
+          }
         }
-        else user_photo = "https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png";
+        else user_photo = `https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png`;
 
         this.setState({ id: res.data.id, photo: user_photo, email: res.data.email, name: res.data.displayName, userType: res.data.userType, tShirtSize: res.data.tShirtSize, phone: res.data.phone, address1: res.data.address1, address2: res.data.address2, city: res.data.city, state: res.data.state, country: res.data.country, zipcode: res.data.zipcode, birthDate: res.data.birthDate, gender: res.data.gender})
 
@@ -75,10 +81,16 @@ loadUser = () => {
     API.getUserLoggedin()
     .then(res => {
       let user_photo = res.data.photo;
-      if(user_photo){
-        user_photo = res.data.photo.split('=')[0] + '=200';
-      }
-      else user_photo = "https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png";
+        if(user_photo){
+          try {
+            user_photo = res.data.photo.split('=')[0] + '=200';
+          }
+          catch(err) {
+            console.log('photo is not google-format');
+            console.log(err);
+          }
+        }
+      else user_photo = `https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png`;
 
       this.setState({ id: res.data.id, photo: user_photo, email: res.data.email, name: res.data.displayName, userType: res.data.userType, tShirtSize: res.data.tShirtSize, phone: res.data.phone, address1: res.data.address1, address2: res.data.address2, city: res.data.city, state: res.data.state, country: res.data.country, zipcode: res.data.zipcode, birthDate: res.data.birthDate, gender: res.data.gender})
 

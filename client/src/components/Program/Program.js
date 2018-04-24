@@ -107,7 +107,7 @@ class Program extends Component {
             programName  : res.data.program.programName,
             programDescr : res.data.program.programDescription,
             coachId      : res.data.program.coachId,
-            athletesList : res.data.program.Users,
+            athletesList : res.data.users,
             trainingPlan : res.data.program.TrainingPlans,
             calStartDate : dates.format_for_calendar(res.data.program.programStartDate),
             calEndDate 	 : dates.format_for_calendar(res.data.program.programEndDate),
@@ -199,14 +199,22 @@ class Program extends Component {
 	                {this.state.athletesList.map(user => (
 	                  <ListItem key={user.id}>
                       <UserInfo user_id={user.id} />
-                      <div className="user_prog_btn_group">
-			                  <button className="prog-btn approve-btn mr-2" id={'approve_'+user.id} onClick={this.handleAthleteBtnClick}>
-                        <i class="fas fa-check"></i> Accept
-			    							</button>
-			    							<button className="prog-btn decline-btn" id={'decline_'+user.id} onClick={this.handleAthleteBtnClick}>
-			    								Decline
-			    							</button>			    					
-                    	</div>
+                      {user.UserProgram.approved ? ''
+                      :(
+                      <div>
+                        <div className='pending'>(Pending)</div>
+                        {this.state.canEdit ? (
+                          <div className="user_prog_btn_group">
+		    	                  <button className="prog-btn approve-btn mr-2" id={'approve_'+user.id} onClick={this.handleAthleteBtnClick}>
+                              <i className="fas fa-check"></i> Accept
+			    	    	 					</button>
+			    				     			<button className="prog-btn decline-btn" id={'decline_'+user.id} onClick={this.handleAthleteBtnClick}>
+			    						   		  Decline
+			    							    </button>			    					
+                          </div>
+                          ) : '' }
+                      </div>
+                    )}
 
 	                  </ListItem>
 	                ))}

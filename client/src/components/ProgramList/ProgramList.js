@@ -138,7 +138,7 @@ class ProgramListComp extends Component {
               <hr/>
               <div className="mb-5">
                 {this.state.programListAthlete.length ?( 
-                  <div><h5 className="subscribed pl-4"><i class="far fa-check-square"></i> Subscribed:</h5>
+                  <div><h5 className="subscribed pl-4"><i className="far fa-check-square"></i> Subscribed:</h5>
                   <List>
                     {this.state.programListAthlete.map( item=>(
                       <ListItem key={ item.program.id }>

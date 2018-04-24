@@ -4,6 +4,21 @@ const Op = db.Sequelize.Op;
 const ATTR_program = ['id', 'programName', 'programDescription', 'coachId',
                       'programStartDate', 'programEndDate'];
 
+function map_users_approved(userList, userProgList){
+  let users = userList.map( user_obj =>{
+    let user = user_obj.toJSON();
+    for(let i=0; i < userProgList; i++){
+      if(userProgList[i].id === user.id && userProgList[i].approved ){
+        user.approved = true;
+        break;
+      }
+    }
+    return user;
+  });
+  console.log('\n\nMAPPED USERS: ', users);
+  return users;
+}
+
 module.exports = {
 
   findAll: function(req,res){
@@ -124,24 +139,28 @@ module.exports = {
     })
     .then( program => {
       // let user = program.users;
+      console.log('\n\nprogram by id: ', program);
       db.UserProgram.findAll( {
-        where: { programId: program.id }, 
-        include: db.User
-      }).then( users => {
+        where: { programId: program.id }
+      }).then( user_prog => {
+
+        console.log('\n\nusers by program id: ', user_prog, '\n\n');
+        
+        let users_appr = map_users_approved(program.Users, user_prog)
 
         let user_id = program.coachId;
         if( req.user && req.user.id == user_id ){
           res.json({
             rights: 'canEdit',
             program: program,
-            users : users
+            users : users_appr
           });
         }
         else {
           res.json({
             rights: 'canView',
             program: program,
-            users : users
+            users : users_appr
           });
         }
         // res.json(program);
