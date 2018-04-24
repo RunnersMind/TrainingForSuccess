@@ -32,7 +32,9 @@ class User extends Component {
       photo: "",//https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png",
       email: "",
       name: "",
+      isCoach: false,
       userType: "athlete",
+      isCoach: false,
       tShirtSize: "",
       phone: "",
       address1: "",
@@ -48,18 +50,6 @@ class User extends Component {
       wantstoEdit: false
     }
   }
-  // state = {
-  //   id: "",
-  //   test_user_id: props.user_id,
-  //   //this default needs to get replaced with a local file
-  //   photo: "https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png",
-  //   name: "",
-  //   userType: "",
-  //   email: "",
-  //   //this default is set to true when the user viewing is the same as the user whose page it is
-  //   isEditable: false
-  // };
-
 
 componentDidMount() {
   this.loadUser();
@@ -72,7 +62,8 @@ setStateFromData( data, editable ){
       photo       : setPhoto(data.photo),
       email       : data.email, 
       name        : data.displayName, 
-      userType    : data.userType, 
+      userType    : data.userType,
+      isCoach     : data.userType === 'coach' ? true : false,
       tShirtSize  : data.tShirtSize, 
       phone       : data.phone, 
       address1    : data.address1, 
@@ -146,9 +137,9 @@ setEditRights = (tempUser) => {
   // };
   // this.updateUser(testID,testData);
 
-  updateUserFunc = (userToUpdate, data) => {
+  updateUserFunc = (data) => {
 
-    API.updateUser(userToUpdate,data)
+    API.updateUser(data)
         .then(res => {
           alert("Profile updated!");
         })
@@ -159,48 +150,49 @@ setEditRights = (tempUser) => {
   }
 
 
-enableEditForm = () => {
-  this.setState({ wantstoEdit: true })
+  enableEditForm = () => {
+    this.setState({ wantstoEdit: true })
 
-}
+  }
 
-handleFormSubmit = event => {
-  event.preventDefault();
-  console.log("User update: ", this.state);
-  var userData = {
-    displayName : this.state.name, 
-    birthDate : this.state.birthDate,
-    email: this.state.email,
-    userType: this.state.userType,
-    tShirtSize: this.state.tShirtSize,
-    phone: this.state.phone,
-    address1: this.state.address1,
-    address2: this.state.address2,
-    city: this.state.city,
-    state: this.state.state,
-    country: this.state.country,
-    zipcode: this.state.zipcode,
-    gender: this.state.gender,
+  handleFormSubmit = event => {
+    event.preventDefault();
+    console.log("User update: ", this.state);
+    var userData = {
+      displayName   : this.state.name, 
+      birthDate     : this.state.birthDate,
+      email         : this.state.email,
+      userType      : this.state.isCoach ? 'coach' : 'athlete',
+      tShirtSize    : this.state.tShirtSize,
+      phone         : this.state.phone,
+      address1      : this.state.address1,
+      address2      : this.state.address2,
+      city          : this.state.city,
+      state         : this.state.state,
+      country       : this.state.country,
+      zipcode       : this.state.zipcode,
+      gender        : this.state.gender,
 
-  };
+    };
 
-  this.updateUserFunc(userData);
+    this.updateUserFunc(userData);
 
-  //hide edit form again
-  this.setState({ wantstoEdit: false })
+    //hide edit form again
+    this.setState({ wantstoEdit: false })
 
-}
+  }
 
-handleInputChange = event => {
-  this.setState({validation_msg: ""});
-  let value = event.target.value;
-  const name = event.target.name;
-  console.log(name, value);
-  this.setState({
-    [name]: value
-  });
+  handleInputChange = event => {
 
-}
+    this.setState({validation_msg: ""});
+    let value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+    const name = event.target.name;
+    console.log(name, value);
+    this.setState({
+      [name]: value
+    });
+
+  }
 
 //need to write some code to enable a checkbox for coach state
 // handleCoachState = event => {
@@ -228,8 +220,10 @@ handleInputChange = event => {
                 <img className="rounded-circle" alt="user" src={this.state.photo }></img></div>
               </div>
 
-              <div id="userType">
-                <span>{this.state.userType}</span>
+              <div id="isCoach">
+                {this.state.isCoach
+                ?<span>Coach</span>
+                : <span>Athlete</span>}
               </div>
               
               <div className="Info">
@@ -262,20 +256,15 @@ handleInputChange = event => {
                   <label>
                     <h5>Edit Profile</h5> 
                     <br/><br/>
-
                      <label>
-                        Are you a coach or athlete?
-                          <input
-                            label="Type"
-                            value={this.state.userType}
-                            name="Type"
-                            onChange={this.handleInputChange}
-                            type="text"
-                            placeholder="Type"
-                            className="userType_input"
-                           />
-                    </label>
-
+                        Are you a coach?
+                        <input
+                          name="isCoach"
+                          type="checkbox"
+                          checked={this.state.isCoach}
+                          onChange={this.handleInputChange} />
+                      </label>
+                      <br />
                     <input
                       value={this.state.name}
                       name="name"
@@ -360,7 +349,7 @@ handleInputChange = event => {
                       value={this.state.birthDate}
                       name="birthDate"
                       onChange={this.handleInputChange}
-                      type="text"
+                      type="date"
                       placeholder="Birthday"
                       className="birthday_input"
                     />
