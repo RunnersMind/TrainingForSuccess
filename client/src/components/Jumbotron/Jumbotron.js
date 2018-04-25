@@ -11,7 +11,7 @@ const Jumbo = (props) => {
         <div className="col-sm"><img className="logo-runality" alt="runality" src={logoR} style={{width:400}} /></div>
         <div className="col-sm d-flex flex-column justify-content-center align-items-center">
           <h1 className="display-5 text-white">A virtual hub that connects Coaches, Runners and Teammates</h1>
-          <a href="" className="btn btn-outline-light btn-large mt-5">Learn more »</a>
+          <a href="#services" className="btn btn-outline-light btn-large mt-5">Learn more »</a>
           </div>
           </div>
         </Container>

@@ -210,7 +210,7 @@ setEditRights = (tempUser) => {
 
     return (
       //primary wrapper
-      <Container fluid className="profile">
+      <Container className="profile">
 
         <div className="profile-widget bg-light">
           <div id="athlete-page">
@@ -220,7 +220,7 @@ setEditRights = (tempUser) => {
                 <img className="rounded-circle" alt="user" src={this.state.photo }></img></div>
               </div>
 
-              <div id="isCoach">
+              <div id="isCoach" className="mt-2">
                 {this.state.isCoach
                 ?<span>Coach</span>
                 : <span>Athlete</span>}
@@ -250,11 +250,11 @@ setEditRights = (tempUser) => {
                 {isEditable ? (<small><i className="fas fa-pencil-alt mr-2"></i><a href="#" onClick={this.enableEditForm}>edit profile</a></small>) : (<span></span>)}
               </div>
 
-                {wantstoEdit ? (<form className="form">
+                {wantstoEdit ? (<form className="form pb-5">
                   <hr/>
                   <br/><br/>
                   <label>
-                    <h5>Edit Profile</h5> 
+                    <h5 className="edit-title">Edit Profile</h5> 
                     <br/><br/>
                      <label>
                         Are you a coach?
@@ -365,7 +365,7 @@ setEditRights = (tempUser) => {
 
 
                   <br/><br/>
-                  <button onClick={this.handleFormSubmit}>Update</button>
+                  <button className="edit-profile-btn" onClick={this.handleFormSubmit}>Update</button>
                 </form>)
                : (<span></span>)}
               

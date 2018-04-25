@@ -78,7 +78,7 @@
 }
 
 .add-program{
-    max-width: 60%;
+    max-width: 100%;
     margin-top: 8rem;
     margin-bottom: 35rem;
     border-radius: 2px;
@@ -99,10 +99,10 @@
     
 }
 
-.fontawesome-i2svg{
+/* .background{
     width: 100%;
     background-image: url("./modal.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-}
+} */

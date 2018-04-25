@@ -6,7 +6,7 @@
 	display: block;
 	text-align: right;
 }
-.prog-btn {
+.prog-btn, .edit-profile-btn, .remove-workout-btn {
 	display: inline-block;
 	width : 100px;
 	height : 40px;
@@ -22,11 +22,11 @@
 	background-image: linear-gradient(to right, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
 }
 
-.prog-btn:hover {
+.prog-btn:hover, .edit-profile-btn:hover, .remove-workout-btn:hover {
 	color: black;
 }
 
-.prog-btn.decline-btn{
+.prog-btn.decline-btn,{
 	background-color: #808080;
 	background-image: none;
 }

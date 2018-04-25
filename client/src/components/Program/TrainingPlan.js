@@ -268,14 +268,14 @@ class TrainingPlan extends Component {
           onRequestClose={this.closeModal2}
           style={modalCustomStyles}
         >
-          <button onClick={this.closeModal2}>Close Modal</button>          
+          <button className="close-modal-btn" onClick={this.closeModal2}>Close Modal</button>          
           <hr />
-          <h3>{this.state.currWorkoutName}</h3>
-          Day {this.state.progDay},<br/>
-          {this.state.currWorkoutDescr}
+          <h3 className="ml-5">{this.state.currWorkoutName}</h3>
+          <p className="ml-5">Day {this.state.progDay},<br/>
+          {this.state.currWorkoutDescr}</p>
           <hr />
           {this.state.canEdit
-            ? <button onClick={this.remove_wo}>Remove Workout</button> 
+            ? <button className="remove-workout-btn pull-right" onClick={this.remove_wo}>DELETE</button> 
             : ``
           }
         </Modal>
