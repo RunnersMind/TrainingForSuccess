@@ -2,21 +2,21 @@ import React from "react";
 import { Container, Row, Col } from 'reactstrap';
 import UserComponent from "../components/User";
 import ProgramListComp from "../components/ProgramList";
-import RaceDayCountdown from "../components/RaceDayCountdown";
+// import RaceDayCountdown from "../components/RaceDayCountdown";
 import weather from "./weather.png"
 import countdown from "./countdown.png"
 import miles from "./miles.png"
-import progress from "./progress.png"
+// import progress from "./progress.png"
 
 
-const User = () => {
+const User = (props) => {
 return (
 <Container fluid className="user-container mt-5">
 <Row>
   <Col classname="justify-conetent-center" sm="6">
-  <UserComponent />
+  <UserComponent user_id={props.match.params.id}/>
   {/* <div><img className="progress" alt="progress" src={progress} style={{width:200}} /></div> */}
-  <ProgramListComp />
+  <ProgramListComp user_id={ props.match.params.id}/>
   </Col>
   <Col sm="6">
   <div><img className="weather img-fluid mb-5" alt="weather" src={weather} style={{width:600}} /></div>
