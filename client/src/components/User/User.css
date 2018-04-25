@@ -5,7 +5,6 @@
     margin-left: auto;
     margin-right: auto;
     color: #444;
-    font-family: 'Lato', sans-serif;
     font-weight: 300;
     line-height: 1;
     text-align: center;   
@@ -20,11 +19,11 @@
     margin-right: 20px;
 }
 
-.my-name{
+.my-name, .edit-title{
 font-family: 'Titillium Web', sans-serif;
 }
 
-p {
+p, #isCoach, .form {
 font-family: 'nunito', sans-serif; 
 }
 
@@ -49,7 +48,11 @@ hr {
 .profile-widget{
     margin-top: 5rem;
     margin-bottom: 5rem;
-    margin-left: 8rem;
+    margin-left: 5rem;
     max-width: 20rem;
+}
+
+.weather, .countdown, .miles{
+    border-radius: 3px;
 }
   

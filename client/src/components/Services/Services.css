@@ -7,7 +7,7 @@
     opacity: .8;
     object-fit: cover;
     max-width: 100%;
-    max-height: 40%;
+    max-height: 15rem;
 }
 
 .card-deck {

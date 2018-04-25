@@ -82,8 +82,7 @@ class ProgramForm extends Component {
 
   render() {
     return (
-      <Container fluid className="background">
-      <div className="add-program container bg-white pt-2 pb-5">
+      <Container fluid className="add-program pt-2 pb-5">
         <h2 className="my-5">
           Add New Program
         </h2>
@@ -109,7 +108,7 @@ class ProgramForm extends Component {
             name="description"
             onChange={this.handleInputChange}
             type="text"
-            className="program_input"
+            className="program_input pb-5"
           />
           </FormGroup>
           
@@ -127,7 +126,6 @@ class ProgramForm extends Component {
           <br/><br/>
           <button className="program-button btn btn-outline-dark"onClick={this.handleFormSubmit}>Add</button>
         </Form>
-      </div>
       </Container>
     );
   }
