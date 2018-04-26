@@ -205,10 +205,10 @@ class Program extends Component {
                         <div className='pending'>(Pending)</div>
                         {this.state.canEdit ? (
                           <div className="user_prog_btn_group">
-		    	                  <button className="prog-btn approve-btn mr-2" id={'approve_'+user.id} onClick={this.handleAthleteBtnClick}>
+		    	                  <button className="prog-btn approve-btn m-2" id={'approve_'+user.id} onClick={this.handleAthleteBtnClick}>
                               <i className="fas fa-check"></i> Accept
 			    	    	 					</button>
-			    				     			<button className="prog-btn decline-btn" id={'decline_'+user.id} onClick={this.handleAthleteBtnClick}>
+			    				     			<button className="prog-btn decline-btn m-2" id={'decline_'+user.id} onClick={this.handleAthleteBtnClick}>
 			    						   		  Decline
 			    							    </button>			    					
                           </div>

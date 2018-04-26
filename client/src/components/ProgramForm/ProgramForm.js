@@ -86,7 +86,7 @@ class ProgramForm extends Component {
         <h2 className="my-5">
           Add New Program
         </h2>
-        <hr></hr>
+        <hr className="program-hr"></hr>
         <div className="addProgram_validation">
           {"  "}{this.state.validation_msg}
         </div>
