@@ -99,6 +99,10 @@
     
 }
 
+.program-hr {
+    max-width: 20rem;
+}
+
 /* .background{
     width: 100%;
     background-image: url("./modal.jpg");
