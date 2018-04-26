@@ -6,16 +6,43 @@ import API   from "../../utils/API";
 
 import logoR from "./runality2.svg"
 
-import { Nav, NavItem} from 'reactstrap';
+// import { Nav, NavItem} from 'reactstrap';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
+
 import './Navbar.css';
 
 class NavbarGoogle extends Component {
 
-  state = {
-    userName    : '',
-    userIsCoach : false,
-    isLoggedIn  : false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName    : '',
+      userIsCoach : false,
+      isLoggedIn  : false,
+
+      navIsOpen      : false,
+    };
+
+    this.toggle = this.toggle.bind(this);
+  
+  }
+  
+  toggle() {
+    this.setState({
+      navIsOpen: !this.state.navIsOpen
+    });
+  }
 
   componentDidMount(){
     API.getUserLoggedin()
@@ -44,47 +71,46 @@ class NavbarGoogle extends Component {
     const isCoach = this.state.userIsCoach;
     // console.log(isLoggedIn);
     return (
-
-      <nav className="navbar fixed-top navbar-dark bg-dark navbar-top justify-content-between">
-        <div className="container-fluid">
-          <Nav>
-            <div className="navbar-header">
-              <a href="/" className="navbar-brand">
-                <img className="logo-runality" alt="runality" src={logoR} style={{width:70, height:40}} />
-              </a>
-            </div>
+      <div>
+      <Navbar color="dark" dark expand="md" className="navbar fixed-top navbar-dark bg-dark navbar-top justify-content-between">
+        <NavbarBrand href="/">
+          <img className="logo-runality" alt="runality" src={logoR} style={{width:70, height:40}} />
+        </NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse className='menu-left-up' isOpen={this.state.navIsOpen} navbar>
+          <Nav className="ml-0" navbar>
             <NavItem>
-              <Link className="action-group text-uppercase pl-2 pr-2" to='/'><i className="fas fa-search"></i></Link>
+              <NavLink className="action-group text-uppercase text-light pl-2 pr-2" href='/'><i className="fas fa-search"></i></NavLink>
             </NavItem>
-
             {isLoggedIn
             ?(
               <NavItem>
-                  <Link className="action-group text-uppercase pl-2 pr-2" to='/user'>PROFILE</Link>
+                  <NavLink className="action-group text-light text-uppercase pl-2 pr-2" href='/user'>PROFILE</NavLink>
               </NavItem>
             ) : ''}
             {isCoach ? (
               <NavItem>
-                <Link className="action-group text-uppercase pl-2 pr-2" to='/add-program'>ADD PROGRAM</Link>
+                <NavLink className="action-group text-uppercase text-light pl-2 pr-2" href='/add-program'>ADD PROGRAM</NavLink>
               </NavItem>
             ) : ''}
-
           </Nav>
-          <Nav>
-            {isLoggedIn ? (
-                <div className='greeting text-uppercase'>{this.state.userName}</div>
-              ) : ''}
-            {isLoggedIn ? (
-              <NavItem className="action-group text-light text-uppercase pl-2 pr-2">
-                <a href="/api/logout">Log Out</a>
-              </NavItem>              
-              ) : (
-              <NavItem className="action-group text-light text-uppercase pl-2 pr-2"><a href="/auth/google">Login With <i className="fab fa-google-plus-g"></i></a></NavItem>
-              )}
-
-          </Nav>
-        </div>
-      </nav>
+        </Collapse>
+        <Nav>
+          {isLoggedIn ? (
+              <div className='greeting text-uppercase'>{this.state.userName}</div>
+            ) : ''}
+          {isLoggedIn ? (
+            <NavItem className="action-group text-light text-uppercase pl-2 pr-2">
+              <a href="/api/logout">Log Out</a>
+            </NavItem>              
+            ) : (
+            <NavItem className="action-group text-light text-uppercase pl-2 pr-2">
+              <a href="/auth/google">Login With <i className="fab fa-google-plus-g"></i></a>
+            </NavItem>
+            )}
+        </Nav>
+      </Navbar>
+      </div>
     );
 
   }

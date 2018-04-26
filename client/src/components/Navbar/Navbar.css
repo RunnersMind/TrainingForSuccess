@@ -1,7 +1,7 @@
 .nav-item {
     font-family: 'Titillium Web', sans-serif;
     height: 50px;
-    padding: 10px;
+    padding-top: 10px;
 }
 
 div.greeting {
@@ -31,3 +31,7 @@ div.greeting {
 .login {
   font-size: 25px;
 }
+.menu-left-up {
+  margin-top: -15px;
+}
+
