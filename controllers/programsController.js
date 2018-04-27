@@ -192,7 +192,7 @@ module.exports = {
     if (req.isAuthenticated()) {
       console.log(req.body);
       let new_program = req.body;
-      new_program.coachId = 1;//req.user.id;
+      new_program.coachId = req.user.id;
 
       db.Program.create( new_program )
         .then( program => {
