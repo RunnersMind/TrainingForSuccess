@@ -43,7 +43,7 @@ class ProgramListComp extends Component {
         loggedInuserType: res.data.userType,
         searchedUserId: searched,
       });
-      console.log("logged user: ", res.data.id);
+      // console.log("logged user: ", res.data.id);
       if( res.data && (res.data.id === parseInt(this.state.searchedUserId, 10)) ){
         this.getSubscribedPrograms();
       }
@@ -56,7 +56,7 @@ class ProgramListComp extends Component {
   }
 
   getCoachPrograms(){
-    console.log("getCoachPrograms...");
+    // console.log("getCoachPrograms...");
     //if no searchedUser, should return data for logged in user
     let user = this.state.searchedUserId || this.state.loggedInUserId;
     if(!user) return ;
@@ -73,7 +73,7 @@ class ProgramListComp extends Component {
              programListCoach : programs,
              coachListLoaded : true,
           });        
-          console.log('coaches owned prog:',this.state.programListCoach);
+          // console.log('coaches owned prog:',this.state.programListCoach);
           return;          
         }
         //not the owner, so check privileges
@@ -81,7 +81,7 @@ class ProgramListComp extends Component {
 
           let prog = prog_item;
           let subscrList = res.data.subscribed;
-          console.log("SUBSCR=",subscrList);
+          // console.log("SUBSCR=",subscrList);
           if( !subscrList ) {
             prog.approved = false;
             prog.subscribed = false;
@@ -103,7 +103,7 @@ class ProgramListComp extends Component {
            programListCoach : programs,
            coachListLoaded  : true,
         });        
-        console.log('coaches prog:', this.state.programListCoach);
+        // console.log('coaches prog:', this.state.programListCoach);
       }, err=>{
         console.log(err)
     });
@@ -112,10 +112,10 @@ class ProgramListComp extends Component {
   }
 
   getSubscribedPrograms(){
-    console.log("getsubscrPrograms...",this.state.loggedInUserId);
+    // console.log("getsubscrPrograms...",this.state.loggedInUserId);
     API.getUserPrograms(this.state.loggedInUserId)
       .then(res=>{
-        console.log('subscribed: ',res.data);
+        // console.log('subscribed: ',res.data);
         this.setState({
            programListAthlete : res.data.programs,
            athleteListLoaded  : true,

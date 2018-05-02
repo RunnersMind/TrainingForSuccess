@@ -1,3 +1,6 @@
+h1 {
+  font-family: 'Titillium Web', sans-serif;
+}
 .rbc-month-view {
   min-height: 800px;
   height: auto;
@@ -6,29 +9,50 @@
   margin-right: auto;
   margin-left: auto;
   width: 80%;
-  background-color: orange;
+  background-color: #ff867a ;
+
 }
 .rbc-event.rbc-selected{
-  background-color: #f05c2a;
+  background-color: #ee5f4f;
+
 }
 .rbc-today {
-  background-color: #ffd7a7;
+  background-color: #ff867a;
+  opacity: .1;
+
 }
 .rbc-btn-group {
-  background-color: orange;
+  background-image: linear-gradient(to right, #ff8177 0%, #ff867a 10%, #ee6859 78%, #ee5f4f 100%);
+  border-radius: 3px;
 }
 .rbc-toolbar button{
+  font-family: 'Nunito', sans-serif;
   color:white;
+}
+.rbc-toolbar button:hover{
+  cursor: pointer;
+  opacity: .5;
+}
+.rbc-toolbar .rbc-toolbar-label{
+ font-family: 'Nunito', sans-serif;
+ text-align: right;
 }
 .rbc-row-segment {
   min-width: 14.29%;
 }
 
-
 .ReactModal__Content {
-	/*width: 40vw;*/
+  /*width: 40vw;*/
+}
+.ReactModal__Content p {
+  font-family: 'Nunito', sans-serif;
 }
 
 .calendar {
   padding-bottom: 50px;
+}
+
+.info-modal {
+  color: #ec6155;
+  text-align: center;
 }

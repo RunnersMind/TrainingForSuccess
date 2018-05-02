@@ -13,7 +13,7 @@ const User = (props) => {
 return (
 <Container fluid className="user-container mt-5">
 <Row>
-  <Col classname="justify-conetent-center" sm="6">
+  <Col className="justify-conetent-center" sm="6">
   <UserComponent user_id={props.match.params.id}/>
   {/* <div><img className="progress" alt="progress" src={progress} style={{width:200}} /></div> */}
   <ProgramListComp user_id={ props.match.params.id}/>

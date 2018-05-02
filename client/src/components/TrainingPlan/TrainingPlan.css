@@ -41,11 +41,9 @@ h1 {
   min-width: 14.29%;
 }
 
-
 .ReactModal__Content {
 	/*width: 40vw;*/
 }
-
 .ReactModal__Content p {
   font-family: 'Nunito', sans-serif;
 }

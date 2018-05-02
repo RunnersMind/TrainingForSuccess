@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Container } from 'reactstrap';
+import { Container } from 'reactstrap';
 import './Jumbotron.css';
 import logoR from "./runality2.svg"
 

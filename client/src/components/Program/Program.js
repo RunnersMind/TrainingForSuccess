@@ -78,7 +78,7 @@ class Program extends Component {
 
   getProgram(){
 
-      console.log("Getting PROGRAM data");
+      // console.log("Getting PROGRAM data");
 
       let id = this.state.programId;
       this.setState({ loaded: false });
@@ -97,8 +97,8 @@ class Program extends Component {
             if( in_list ) this.setState({ isAuthorised:true });
             else window.location.pathname='/';
           }
-          console.log('Program.js: getProgram: ',res.data.program);
-          console.log('Program.js: getUsers: ',res.data.users);
+          // console.log('Program.js: getProgram: ',res.data.program);
+          // console.log('Program.js: getUsers: ',res.data.users);
           this.setState({ 
             // program: res.data.program,
             canEdit      : (res.data.rights==='canEdit') ? true : false,
@@ -123,19 +123,19 @@ class Program extends Component {
 
   handleAthleteBtnClick(event){
     event.preventDefault();
-    console.log(event.target.id);
+    // console.log(event.target.id);
 
     let program = this.state.programId;
     let [action, user_id] = event.target.id.split('_'); 
 
     if( action === 'approve' ){
-      console.log('approving user '+user_id+' for program '+ program);
+      // console.log('approving user '+user_id+' for program '+ program);
       API.approveUser({ 
         program_id : program,
         user_id : user_id
       })
       .then(res => {
-        console.log("Approved!");
+        // console.log("Approved!");
         let counter = this.state.change_counter + 1;
         this.setState({
           change_counter : counter, 
@@ -147,13 +147,13 @@ class Program extends Component {
       });
     }
     else if( action === 'decline' ){
-      console.log('declining user '+user_id+' for program '+ program);
+      // console.log('declining user '+user_id+' for program '+ program);
       API.declineUser({ 
         program_id : program,
         user_id : user_id
       })
       .then(res => {
-        console.log("Declined!");
+        // console.log("Declined!");
         let counter = this.state.change_counter + 1;
         this.setState({
           change_counter : counter, 

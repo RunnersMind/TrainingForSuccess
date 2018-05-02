@@ -41,6 +41,21 @@ font-family: 'nunito', sans-serif;
     color: #444;
 }
 
+.edit-profile button {
+    color: #444;
+    border: 0px;
+    background: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.edit-profile button:hover {
+    color: #000;
+    text-decoration: underline;
+    border: none;
+    background: none;
+}
+
 .profile-widget{
     margin-top: 5rem;
     margin-bottom: 5rem;

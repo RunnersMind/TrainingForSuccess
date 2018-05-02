@@ -32,7 +32,6 @@ class User extends Component {
       photo: "",//https://fch.lisboa.ucp.pt/sites/default/files/assets/images/avatar-fch-9_2.png",
       email: "",
       name: "",
-      isCoach: false,
       userType: "athlete",
       isCoach: false,
       tShirtSize: "",
@@ -60,20 +59,20 @@ setStateFromData( data, editable ){
     this.setState({
       id          : data.id, 
       photo       : setPhoto(data.photo),
-      email       : data.email, 
-      name        : data.displayName, 
-      userType    : data.userType,
+      email       : data.email || '', 
+      name        : data.displayName || '', 
+      userType    : data.userType || '',
       isCoach     : data.userType === 'coach' ? true : false,
-      tShirtSize  : data.tShirtSize, 
-      phone       : data.phone, 
-      address1    : data.address1, 
-      address2    : data.address2, 
-      city        : data.city, 
-      state       : data.state, 
-      country     : data.country, 
-      zipcode     : data.zipcode, 
-      birthDate   : data.birthDate, 
-      gender      : data.gender,
+      tShirtSize  : data.tShirtSize || '', 
+      phone       : data.phone || '', 
+      address1    : data.address1 || '', 
+      address2    : data.address2 || '', 
+      city        : data.city || '', 
+      state       : data.state || '', 
+      country     : data.country || '', 
+      zipcode     : data.zipcode || '', 
+      birthDate   : data.birthDate ? (data.birthDate.split('T')[0]): '', 
+      gender      : data.gender || '',
 
       isEditable  : editable,
     });  
@@ -91,7 +90,7 @@ loadUser() {
         API.getUserLoggedin()
         .then(logged_user => {
           console.log("HERE: ",logged_user.data,this.state.urlId);
-          if(logged_user.data && (parseInt(logged_user.data.id) === parseInt(this.state.urlId))){
+          if(logged_user.data && (parseInt(logged_user.data.id,10) === parseInt(this.state.urlId, 10))){
             console.log("HERE 2 = canEdit: ", canEdit);
             canEdit = true;
           }
@@ -151,7 +150,7 @@ setEditRights = (tempUser) => {
 
 
   enableEditForm = () => {
-    this.setState({ wantstoEdit: true })
+    this.setState({ wantstoEdit: !this.state.wantstoEdit })
 
   }
 
@@ -246,16 +245,14 @@ setEditRights = (tempUser) => {
                 </p>
               </div>
 
-              <div className="edit-profile pb-3"> 
-                {isEditable ? (<small><i className="fas fa-pencil-alt mr-2"></i><a href="#" onClick={this.enableEditForm}>edit profile</a></small>) : (<span></span>)}
+              <div className="edit-profile"> 
+                {isEditable ? (<small><i className="fas fa-pencil-alt mr-2"></i><button onClick={this.enableEditForm}>Edit profile</button></small>) : (<span></span>)}
               </div>
-
                 {wantstoEdit ? (<form className="form pb-5">
                   <hr/>
-                  <br/><br/>
+                  <br/>
                   <label>
                     <h5 className="edit-title">Edit Profile</h5> 
-                    <br/><br/>
                      <label>
                         Are you a coach?
                         <input

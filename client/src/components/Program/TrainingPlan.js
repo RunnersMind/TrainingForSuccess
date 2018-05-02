@@ -57,6 +57,8 @@ class TrainingPlan extends Component {
       currWorkoutDescr  : "",
       currWorkoutId     : 0,
 
+      infoModal : false,
+
       msg : '',
 
     };
@@ -71,11 +73,14 @@ class TrainingPlan extends Component {
     this.openModal2 = this.openModal2.bind(this);
     this.closeModal2 = this.closeModal2.bind(this);
 
+    this.openInfoModal = this.openInfoModal.bind(this);
+    this.closeInfoModal = this.closeInfoModal.bind(this);
+
     this.remove_wo = this.remove_wo.bind(this);
   };
 
   componentDidMount(){
-    console.log("*** Training Plan ***");
+    // console.log("=== Training Plan ===");
     this.createEventList();
   }
 
@@ -161,7 +166,8 @@ class TrainingPlan extends Component {
       let programDay = clickedDate.diff(this.state.startDate, 'days')+1;
 
       if(programDay <=0 || programDay > programMaxDays) {
-        console.log("this day doesn't belong to program")
+        console.log("this day doesn't belong to program");
+        this.openInfoModal();
         return;
       }
       console.log(programDay);
@@ -228,6 +234,14 @@ class TrainingPlan extends Component {
     this.setState({modal2IsOpen: false});
   }
 
+  openInfoModal() {
+    this.setState({infoModal: true});
+  }
+
+  closeInfoModal() {
+    this.setState({infoModal: false});
+  }
+
   render() {
     return (
       <div className='container calendar'>
@@ -253,8 +267,10 @@ class TrainingPlan extends Component {
           onRequestClose={this.closeModal}
           style={modalCustomStyles}
         >
-          <button onClick={this.closeModal}>Close Modal</button>
-          <hr/>
+          <button type="button" onClick={this.closeModal} className="close">
+            &times;
+          </button>
+          <br/>
           <WorkoutsForm 
             day={this.state.progDay}
             programId={this.state.programId}
@@ -268,8 +284,10 @@ class TrainingPlan extends Component {
           onRequestClose={this.closeModal2}
           style={modalCustomStyles}
         >
-          <button className="close-modal-btn" onClick={this.closeModal2}>Close Modal</button>          
-          <hr />
+          <button type="button" onClick={this.closeModal2} className="close">
+            &times;
+          </button>
+          <br/>
           <h3 className="ml-5">{this.state.currWorkoutName}</h3>
           <p className="ml-5">Day {this.state.progDay},<br/>
           {this.state.currWorkoutDescr}</p>
@@ -278,6 +296,20 @@ class TrainingPlan extends Component {
             ? <button className="remove-workout-btn pull-right" onClick={this.remove_wo}>DELETE</button> 
             : ``
           }
+        </Modal>
+
+        <Modal
+          isOpen={this.state.infoModal}
+          onRequestClose={this.closeInfoModal}
+          style={modalCustomStyles}
+        >
+          <button type="button" onClick={this.closeInfoModal} className="close">
+            &times;
+          </button>
+          <br/>
+          <div className='info-modal'>
+            This is not a Program day.
+          </div>
         </Modal>
 
       </div>

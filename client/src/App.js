@@ -9,7 +9,6 @@ import Program from './pages/Program';
 
 import ProgramForm  from './components/ProgramForm';
 import Navbar   from './components/Navbar';
-import TrainingPlan from './components/TrainingPlan';
 import Footer from './components/Footer';
 
 const App = () => {
@@ -23,7 +22,6 @@ const App = () => {
           <Route exact path="/user" component={User} />
           <Route path="/user/:id" component={User} />
           <Route exact path="/add-program" component={ProgramForm} />
-          <Route exact path="/training-plan" component={TrainingPlan} />
           <Route path="/program/:id" component={Program} />
         </div>
         <Footer />

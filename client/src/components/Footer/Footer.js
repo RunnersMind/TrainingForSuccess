@@ -11,9 +11,9 @@ const Footer = (props) => {
             <div className="row mb-5">
                 <div className="col-sm-12">
                     <div className="social-networks">
-                        <a href="https://twitter.com/runality" target="_blank" className="twitter"><i className="fab fa-twitter"></i></a>
-                        <a href="https://www.facebook.com/runality/" target="_blank" className="facebook"><i className="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/runalitysocial/" target="_blank" className="instagram"><i className="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/runality" target="_blank" className="twitter" rel="noopener noreferrer"><i className="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/runality/" target="_blank" className="facebook" rel="noopener noreferrer"><i className="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/runalitysocial/" target="_blank" className="instagram" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
                     </div>
                     <button type="button" className="footer-button btn text-center btn-outline-light pl-3 p-r-4"><a href="mailto:example@email.com">Contact Us</a></button>
                 </div>

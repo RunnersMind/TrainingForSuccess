@@ -1,5 +1,5 @@
 import React, { Component }from "react";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 import API   from "../../utils/API";
@@ -14,11 +14,8 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  NavLink
+  } from 'reactstrap';
 
 import './Navbar.css';
 

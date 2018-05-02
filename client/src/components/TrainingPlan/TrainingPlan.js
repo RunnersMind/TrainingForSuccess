@@ -1,7 +1,9 @@
+/*
 import React, {Component} from 'react';
-import Modal              from 'react-modal';
+// import Modal              from 'react-modal';
 import BigCalendar        from 'react-big-calendar';
 import moment             from 'moment';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import WorkoutsForm from '../WorkoutsForm';
 
@@ -14,7 +16,7 @@ import "./TrainingPlan.css";
 // to the correct localizer.
 BigCalendar.momentLocalizer(moment);
 
-Modal.setAppElement('#root')
+// Modal.setAppElement('#root')
 
 const modalCustomStyles = {
   content : {
@@ -62,6 +64,8 @@ class TrainingPlan extends Component {
       currWorkoutDescr : "",
       currWorkoutId    : 0,
 
+      infoModal : false,
+
       msg : '',
 
       statePromises     : []
@@ -78,6 +82,8 @@ class TrainingPlan extends Component {
     this.openModal2 = this.openModal2.bind(this);
     this.closeModal2 = this.closeModal2.bind(this);
 
+    this.toggleInfoModal = this.toggleInfoModal.bind(this);
+
     this.remove_wo = this.remove_wo.bind(this);
   };
 
@@ -90,6 +96,13 @@ class TrainingPlan extends Component {
 
     // this.statePromises.forEach(p => p.cancel());
 
+  }
+
+  toggleInfoModal() {
+    console.log("!!222333");
+    this.setState({
+      infoModal: !this.state.infoModal
+    });
   }
 
   getProgram(id){
@@ -185,13 +198,16 @@ class TrainingPlan extends Component {
       let programDay = clickedDate.diff(this.state.startDate, 'days')+1;
 
       if(programDay <=0 || programDay > programMaxDays) {
-        console.log("this day doesn't belong to program")
+        console.log("this day doesn't belong to program ===");
+        this.toggleInfoModal();
         return;
       }
-      console.log(programDay);
-      this.setState({progDay: programDay});
+      else{
+        console.log(programDay);
+        this.setState({progDay: programDay});
 
-      this.openModal();
+        this.openModal();
+      }
     }
   }
 
@@ -256,37 +272,15 @@ class TrainingPlan extends Component {
 		      onSelectEvent={this.handleEventClick}
 		      onSelectSlot={this.handleSlotClick}
 		    />
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          style={modalCustomStyles}
-        >
-          <button className="pull-right" onClick={this.closeModal}><i className="fas fa-times"></i></button>
-          <WorkoutsForm 
-            day={this.state.progDay}
-            programId={this.state.programId}
-            woList={this.state.workoutList}
-            onAdd={this.closeModal}
-          />
-        </Modal>
-
-        <Modal
-          isOpen={this.state.modal2IsOpen}
-          onRequestClose={this.closeModal2}
-          style={modalCustomStyles}
-        >
-          <button onClick={this.closeModal2}><i className="fas fa-times"></i></button>          
-          <hr />
-          <h3 className="m-5">{this.state.currWorkoutName}</h3>
-          <p className="m-5">Day {this.state.progDay}</p><br/>
-          <p className="m-5">{this.state.currWorkoutDescr}</p>
-          <hr />
-          {this.state.canEdit
-            ? <button onClick={this.remove_wo}>Remove Workout</button> 
-            : ``
-          }
-        </Modal>
+        <Modal isOpen={this.state.infoModal} toggle={this.toggleInfoModal}>
+            <ModalHeader toggle={this.toggleInfoModal}>{ }</ModalHeader>
+            <ModalBody>
+              This day doesn't belong to the Program.
+            </ModalBody>
+            <ModalFooter>
+              <Button color="secondary" onClick={this.toggleInfoModal}>Close</Button>
+            </ModalFooter>
+          </Modal>
 
       </div>
 
@@ -294,4 +288,4 @@ class TrainingPlan extends Component {
   }
 }
 
-export default TrainingPlan;
+export default TrainingPlan;*/

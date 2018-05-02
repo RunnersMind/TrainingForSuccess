@@ -1,7 +1,7 @@
 import React from "react";
 import { List, ListItem } from "../../components/List";
 import UserInfo from "../../components/UserInfo";
-import { Container, Card, CardHeader, CardBody, Row, Col } from 'reactstrap';
+import { Card, CardHeader, CardBody, Row, Col } from 'reactstrap';
 
 
 const SearchResults = props => (
